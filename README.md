@@ -4,7 +4,7 @@
 
 A TYPO3 extension for maintaining employee profiles and displaying a searchable, filterable employee directory.
 
-> **Release status:** Documentation draft for version **1.0.0**. On **14 October 2026**, the extension was successfully uploaded as a ZIP, manually activated, and checked with two existing employee cards in a separate **TYPO3 14.3.7 Classic Mode** installation (ALL-INKL, without Composer). A complete clean-install test with newly created records and full functional acceptance testing are still pending. Publication on TER or Packagist has not been confirmed.
+> **Project status (22 October 2026):** Source code is publicly available on [GitHub](https://github.com/dirklehmann68/employee-directory). Combined and standalone LIST/SHOW plugins, including readable detail URLs, have been tested in an existing TYPO3 installation. A clean Composer installation test, Packagist/TER publication and an official release tag are still pending.
 
 ## Features
 
@@ -82,6 +82,60 @@ Manual installation via FTP was also tested successfully. The ZIP upload workflo
 
 The Site Set imports `Configuration/TypoScript/setup.typoscript`. There is no demo `setup.typoscript` at the extension root.
 
+## Readable URLs (route enhancers)
+
+Without site-specific routing, detail links may contain Extbase query parameters. Add a route enhancer to **each TYPO3 site's own site configuration** (`config/sites/<site-identifier>/config.yaml`, depending on project layout). **The extension does not install this site-specific configuration automatically.**
+
+The following complete example handles the combined plugin on page **3** and the standalone detail plugin on page **5**. **Replace both example page UIDs with your own.** If you only use the combined plugin, keep only the first enhancer.
+
+```yaml
+routeEnhancers:
+  EmployeeDirectory:
+    type: Extbase
+    extension: EmployeeDirectory
+    plugin: EmployeeList
+    limitToPages:
+      - 3  # REPLACE: page UID containing the combined plugin
+    routes:
+      -
+        routePath: '/{employee}'
+        _controller: 'Employee::show'
+        _arguments:
+          employee: employee
+    defaultController: 'Employee::list'
+    aspects:
+      employee:
+        type: PersistedAliasMapper
+        tableName: tx_employeedirectory_domain_model_employee
+        routeFieldName: slug
+
+  EmployeeDirectoryDetail:
+    type: Extbase
+    extension: EmployeeDirectory
+    plugin: EmployeeDetail
+    limitToPages:
+      - 5  # REPLACE: page UID containing the standalone detail plugin
+    routes:
+      -
+        routePath: '/{employee}'
+        _controller: 'Employee::show'
+        _arguments:
+          employee: employee
+    aspects:
+      employee:
+        type: PersistedAliasMapper
+        tableName: tx_employeedirectory_domain_model_employee
+        routeFieldName: slug
+```
+
+**Important notes:**
+
+- `limitToPages` restricts each enhancer to its corresponding plugin page. Without it, overlapping enhancers caused missing required `employee` action arguments on the standalone detail page in our practical test.
+- `routeFieldName: slug` resolves the employee record's slug; ensure that the slug field is populated correctly.
+- For separate LIST/SHOW pages, also set `detailPageUid` and `listPageUid` in the **Site Set settings**.
+- **Multiple TYPO3 sites:** In our test, Extbase could list employee records stored under another site using the configured record-storage starting point, but `PersistedAliasMapper` returned 404 for their slugs. An employee stored within the demo site's own page tree could be resolved. This is an observation from our setup, not a universal statement about all TYPO3 configurations. Check site ownership and record storage when diagnosing slug-related 404s.
+- Each TYPO3 site requires its own route-enhancer configuration and correct page UIDs. Clear TYPO3 caches after changes if necessary.
+
 ## Using the directory
 
 Visitors can filter employees by last name, job function, department and first letter of the last name. Selecting a profile opens its detail view. The current implementation's **“Back to overview”** link returns to the unfiltered overview; preserving the previous filter state is planned for a later release.
@@ -99,7 +153,7 @@ Interface labels are available in English and German, with an additional Low Ger
 - The A–Z filter is based on last names. Matching umlauts can depend on the database collation.
 - The directory has no pagination in the current version.
 - Multiple independently filtered instances on the same page have not been validated.
-- No Route Enhancer for readable employee-detail URLs is shipped by default.
+- No route enhancer is installed automatically; see the complete site-configuration example above.
 - Back-navigation does not preserve active list filters.
 - Standalone LIST/SHOW plugins have passed initial practical use, but direct-link access to hidden/deleted records, unset target page IDs, multiple instances, and caching edge cases still require validation.
 - ZIP upload and manual activation were successful in a separate TYPO3 14.3.7 Classic Mode installation; a full clean-install test with new records and complete functional acceptance tests are still pending.
@@ -109,6 +163,7 @@ Interface labels are available in English and German, with an additional Low Ger
 | Symptom | What to check |
 | --- | --- |
 | ZIP upload reports `Extension employee_directory is not available` | In the tested TYPO3 14.3.7 Classic Mode setup, disabling `automaticInstallation` under Extension Configuration → extensionmanager, re-uploading the ZIP, and activating manually resolved the issue. This is not a universal diagnosis for other installations. |
+| Slug URL returns 404 | Check `limitToPages`, the slug field, site configuration, and whether employee records belong to the expected site. |
 | No employee records appear | Plugin record-storage page, record visibility, and whether the records are stored in the expected location. |
 | Department or job-function filter is empty | Whether corresponding records exist, are accessible, and are assigned to visible employees. |
 | Styles are missing | Whether the extension Site Set is included in the site's set dependencies. |
