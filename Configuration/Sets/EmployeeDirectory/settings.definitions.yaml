@@ -1,0 +1,213 @@
+
+categories:
+  employeeDirectory:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:category.employeeDirectory'
+
+  employeeDirectory.filter:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:category.filter'
+    parent: employeeDirectory
+
+  employeeDirectory.card:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:category.card'
+    parent: employeeDirectory
+
+  employeeDirectory.accessibility:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:category.accessibility'
+    parent: employeeDirectory
+
+  employeeDirectory.templates:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:category.templates'
+    parent: employeeDirectory
+  
+  employeeDirectory.styles:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:category.styles'
+    parent: employeeDirectory
+
+  employeeDirectory.pages:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:category.pages'
+    parent: employeeDirectory
+
+settings:
+
+  # Darstellung
+
+  plugin.tx_employeedirectory.cssVariant:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:styles.cssVariant'
+    category: employeeDirectory.styles
+    type: string
+    default: 'bootstrap'
+    enum:
+      bootstrap: 'Bootstrap'
+      standalone: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:styles.standalone'
+
+  # Seitenverknüpfung
+
+  plugin.tx_employeedirectory.detailPageUid:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:pages.detailPageUid'
+    category: employeeDirectory.pages
+    type: int
+    default: 0
+
+  plugin.tx_employeedirectory.listPageUid:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:pages.listPageUid'
+    category: employeeDirectory.pages
+    type: int
+    default: 0
+
+  # Templates
+
+  plugin.tx_employeedirectory.templateRootPath:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:templates.templateRootPath'
+    category: employeeDirectory.templates
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.partialRootPath:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:templates.partialRootPath'
+    category: employeeDirectory.templates
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.layoutRootPath:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:templates.layoutRootPath'
+    category: employeeDirectory.templates
+    type: string
+    default: ''
+
+  # Filter
+  
+  plugin.tx_employeedirectory.showNameFilter:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.showName'
+    category: employeeDirectory.filter
+    type: bool
+    default: true
+  
+  plugin.tx_employeedirectory.showJobFunctionFilter:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.showJobFunction'
+    category: employeeDirectory.filter
+    type: bool
+    default: true
+
+  plugin.tx_employeedirectory.showDepartmentFilter:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.showDepartment'
+    category: employeeDirectory.filter
+    type: bool
+    default: true
+
+  plugin.tx_employeedirectory.showAlphabeticalFilter:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.showAlphabetical'
+    category: employeeDirectory.filter
+    type: bool
+    default: true
+
+  plugin.tx_employeedirectory.labels.name:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.name'
+    category: employeeDirectory.filter
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.jobFunction:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.jobFunction'
+    category: employeeDirectory.filter
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.department:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.department'
+    category: employeeDirectory.filter
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.allJobFunctions:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.allJobFunctions'
+    category: employeeDirectory.filter
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.allDepartments:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.allDepartments'
+    category: employeeDirectory.filter
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.apply:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.apply'
+    category: employeeDirectory.filter
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.reset:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.reset'
+    category: employeeDirectory.filter
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.all:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.all'
+    category: employeeDirectory.filter
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.noResults:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:filter.noResults'
+    category: employeeDirectory.filter
+    type: string
+    default: ''
+
+  # Mitarbeiterkarten
+
+  plugin.tx_employeedirectory.labels.phone:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:card.phone'
+    category: employeeDirectory.card
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.email:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:card.email'
+    category: employeeDirectory.card
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.location:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:card.location'
+    category: employeeDirectory.card
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.cardDepartment:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:card.department'
+    category: employeeDirectory.card
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.room:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:card.room'
+    category: employeeDirectory.card
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.officeHours:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:card.officeHours'
+    category: employeeDirectory.card
+    type: string
+    default: ''
+
+  # Barrierefreiheit
+
+  plugin.tx_employeedirectory.labels.alphabeticalFilter:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:accessibility.alphabeticalFilter'
+    category: employeeDirectory.accessibility
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.call:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:accessibility.call'
+    category: employeeDirectory.accessibility
+    type: string
+    default: ''
+
+  plugin.tx_employeedirectory.labels.writeEmail:
+    label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:accessibility.writeEmail'
+    category: employeeDirectory.accessibility
+    type: string
+    default: ''

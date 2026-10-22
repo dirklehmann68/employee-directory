@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages">
+        <body>
+            <trans-unit id="employee.record">
+                <source>Employee</source>
+                <target>Mitarbeiter</target>
+            </trans-unit>
+
+            <trans-unit id="employee.hidden">
+                <source>Hide record</source>
+                <target>Datensatz verbergen</target>
+            </trans-unit>
+
+            <trans-unit id="employee.image">
+                <source>Image</source>
+                <target>Bild</target>
+            </trans-unit>
+
+            <trans-unit id="employee.title">
+                <source>Title</source>
+                <target>Titel</target>
+            </trans-unit>
+
+            <trans-unit id="employee.first_name">
+                <source>First name</source>
+                <target>Vorname</target>
+            </trans-unit>
+
+            <trans-unit id="employee.last_name">
+                <source>Last name</source>
+                <target>Nachname</target>
+            </trans-unit>
+
+            <trans-unit id="employee.slug">
+                <source>URL segment</source>
+                <target>URL-Segment</target>
+            </trans-unit>
+
+            <trans-unit id="employee.phone">
+                <source>Phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+
+            <trans-unit id="employee.email">
+                <source>Email</source>
+                <target>E-Mail</target>
+            </trans-unit>
+
+            <trans-unit id="employee.room">
+                <source>Room</source>
+                <target>Raum</target>
+            </trans-unit>
+
+            <trans-unit id="employee.location">
+                <source>Location</source>
+                <target>Standort</target>
+            </trans-unit>
+
+            <trans-unit id="employee.office_hours">
+                <source>Office hours</source>
+                <target>Sprechzeiten</target>
+            </trans-unit>
+
+            <trans-unit id="employee.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_list_only.title">
+                <source>Employee list</source>
+                <target>Mitarbeiterliste</target>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_list_only.description">
+                <source>Displays a list of employees.</source>
+                <target>Zeigt eine Mitarbeiterliste an.</target>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_detail.title">
+                <source>Employee detail</source>
+                <target>Mitarbeiterdetail</target>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_detail.description">
+                <source>Displays the detailed profile of an employee.</source>
+                <target>Zeigt die Detailansicht eines Mitarbeiters an.</target>
+            </trans-unit>
+
+            <trans-unit id="employee.department">
+                <source>Department</source>
+                <target>Abteilung</target>
+            </trans-unit>
+
+            <trans-unit id="employee.job_function">
+                <source>Job function</source>
+                <target>Funktion</target>
+            </trans-unit>
+
+            <trans-unit id="common.copy">
+                <source> (Copy %s)</source>
+                <target> (Kopie %s)</target>
+            </trans-unit>
+
+            <trans-unit id="department.record">
+                <source>Department</source>
+                <target>Abteilung</target>
+            </trans-unit>
+
+            <trans-unit id="department.title">
+                <source>Department name</source>
+                <target>Name der Abteilung</target>
+            </trans-unit>
+
+            <trans-unit id="job_function.record">
+                <source>Job function</source>
+                <target>Funktion</target>
+            </trans-unit>
+
+            <trans-unit id="job_function.title">
+                <source>Job function name</source>
+                <target>Name der Funktion</target>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_list.title">
+                <source>Employee directory</source>
+                <target>Mitarbeiterverzeichnis</target>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_list.description">
+                <source>Displays an employee directory with filters for name, job function, department and initial.</source>
+                <target>Zeigt ein Mitarbeiterverzeichnis mit Filtern nach Name, Funktion, Abteilung und Anfangsbuchstaben an.</target>
+            </trans-unit>
+
+            <trans-unit id="plugin.record_storage">
+                <source>Record storage</source>
+                <target>Datensatzsammlung</target>
+            </trans-unit>
+
+            <trans-unit id="employee.department.none">
+                <source>— no department —</source>
+                <target>— keine Abteilung —</target>
+            </trans-unit>
+
+            <trans-unit id="employee.job_function.none">
+                <source>— no function —</source>
+                <target>— keine Funktion —</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

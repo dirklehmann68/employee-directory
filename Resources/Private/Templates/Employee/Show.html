@@ -1,0 +1,167 @@
+<div class="employee-directory">
+    <f:variable name="labelPhone">
+        <f:translate key="employee.phone" extensionName="EmployeeDirectory" />
+    </f:variable>
+
+    <f:variable name="labelEmail">
+        <f:translate key="employee.email" extensionName="EmployeeDirectory" />
+    </f:variable>
+
+    <f:variable name="labelLocation">
+        <f:translate key="employee.location" extensionName="EmployeeDirectory" />
+    </f:variable>
+
+    <f:variable name="labelDepartment">
+        <f:translate key="employee.department" extensionName="EmployeeDirectory" />
+    </f:variable>
+
+    <f:variable name="labelRoom">
+        <f:translate key="employee.room" extensionName="EmployeeDirectory" />
+    </f:variable>
+
+    <f:variable name="labelOfficeHours">
+        <f:translate key="employee.office_hours" extensionName="EmployeeDirectory" />
+    </f:variable>
+
+    <f:variable name="labelCall">
+        <f:translate key="accessibility.call" extensionName="EmployeeDirectory" />
+    </f:variable>
+
+    <f:variable name="labelWriteEmail">
+        <f:translate key="accessibility.write_email" extensionName="EmployeeDirectory" />
+    </f:variable>
+
+    <div class="row employee-show-profile">
+        <div class="col-md-3 employee-show-image-column">
+            <div class="employee-show-image">
+                <f:if condition="{employee.image}">
+                    <f:then>
+                        <img
+                            src="{f:uri.image(image: employee.image, width: 300)}"
+                            srcset="{f:image.srcset(image: employee.image, srcset: '1x, 2x, 3x', referenceWidth: 300)}"
+                            class="img-fluid rounded"
+                            width="300"
+                            alt="{employee.title} {employee.firstName} {employee.lastName}"
+                        />
+                    </f:then>
+
+                    <f:else>
+                        <img
+                            src="{f:uri.resource(path: 'Svg/employee-placeholder.svg', extensionName: 'EmployeeDirectory')}"
+                            class="img-fluid rounded"
+                            width="300"
+                            height="300"
+                            alt=""
+                        />
+                    </f:else>
+                </f:if>
+            </div>
+        </div>
+        <div class="col-md-9 employee-show-info mt-3 mt-md-0">
+            <div class="employee-show-header">
+                <h3 class="employee-name" translate="no">
+                   <f:render partial="Employee/Name" arguments="{employee: employee}" />
+                </h3>
+
+                <f:if condition="{employee.jobFunction}">
+                    <p class="employee-job-function">
+                        {employee.jobFunction.title}
+                    </p>
+                </f:if>
+            </div>
+
+            <f:render
+                partial="Employee/Contact"
+                arguments="{
+                    employee: employee,
+                    labelPhone: labelPhone,
+                    labelEmail: labelEmail,
+                    labelCall: labelCall,
+                    labelWriteEmail: labelWriteEmail
+                }"
+            />
+            <f:if condition="{employee.department}">
+                <div class="employee-meta employee-meta-department">
+                    <span class="employee-meta-label">
+                        {labelDepartment}
+                    </span>
+                    <span class="employee-meta-value">
+                        {employee.department.title}
+                    </span>
+                </div>
+            </f:if>
+            <f:if condition="{employee.location} || {employee.room}">
+                <div class="employee-meta-wrap">
+                    <f:if condition="{employee.location}">
+                        <div class="employee-meta employee-meta-location">
+                            <span class="employee-meta-label">
+                                {labelLocation}
+                            </span>
+                            <span class="employee-meta-value" translate="no">
+                                {employee.location}
+                            </span>
+                        </div>
+                    </f:if>
+
+                    <f:if condition="{employee.room}">
+                        <div class="employee-meta employee-meta-room">
+                            <span class="employee-meta-label">
+                                {labelRoom}
+                            </span>
+                            <span class="employee-meta-value">
+                                {employee.room}
+                            </span>
+                        </div>
+                    </f:if>
+                </div>
+            </f:if>
+
+            <f:if condition="{employee.officeHours}">
+                <div class="employee-office-hours bg-body-tertiary border rounded p-3 my-3 small">
+                    <span class="employee-office-hours-label">
+                        {labelOfficeHours}
+                    </span>
+                    <span class="employee-office-hours-value">
+                        <f:format.nl2br>{employee.officeHours}</f:format.nl2br>
+                    </span>
+                </div>
+            </f:if>
+        </div>
+    </div>
+
+    <f:if condition="{employee.description}">
+        <div class="employee-description mt-4 mt-lg-5">
+            <f:format.html>{employee.description}</f:format.html>
+        </div>
+    </f:if>
+
+    <div class="employee-show-actions">
+        <f:if condition="{isStandaloneDetail}">
+            <f:then>
+                <f:link.action
+                    action="list"
+                    extensionName="EmployeeDirectory"
+                    pluginName="EmployeeListOnly"
+                    pageUid="{settings.listPageUid}"
+                    class="btn btn-outline-secondary">
+                    <f:translate
+                        key="employee.back"
+                        extensionName="EmployeeDirectory"
+                    />
+                </f:link.action>
+            </f:then>
+            <f:else>
+                <f:link.action
+                    action="list"
+                    extensionName="EmployeeDirectory"
+                    pluginName="EmployeeList"
+                    class="btn btn-outline-secondary">
+                    <f:translate
+                        key="employee.back"
+                        extensionName="EmployeeDirectory"
+                    />
+                </f:link.action>
+            </f:else>
+        </f:if>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+plugin.tx_employeedirectory {
+    view {
+        templateRootPaths {
+            20 = {$plugin.tx_employeedirectory.templateRootPath}
+        }
+
+        partialRootPaths {
+            20 = {$plugin.tx_employeedirectory.partialRootPath}
+        }
+
+        layoutRootPaths {
+            20 = {$plugin.tx_employeedirectory.layoutRootPath}
+        }
+    }
+
+    settings {
+        showNameFilter = {$plugin.tx_employeedirectory.showNameFilter}
+        showJobFunctionFilter = {$plugin.tx_employeedirectory.showJobFunctionFilter}
+        showDepartmentFilter = {$plugin.tx_employeedirectory.showDepartmentFilter}
+        showAlphabeticalFilter = {$plugin.tx_employeedirectory.showAlphabeticalFilter}
+
+        detailPageUid = {$plugin.tx_employeedirectory.detailPageUid}
+        listPageUid = {$plugin.tx_employeedirectory.listPageUid}
+
+        labels {
+            name = {$plugin.tx_employeedirectory.labels.name}
+            jobFunction = {$plugin.tx_employeedirectory.labels.jobFunction}
+            department = {$plugin.tx_employeedirectory.labels.department}
+            allJobFunctions = {$plugin.tx_employeedirectory.labels.allJobFunctions}
+            allDepartments = {$plugin.tx_employeedirectory.labels.allDepartments}
+            apply = {$plugin.tx_employeedirectory.labels.apply}
+            reset = {$plugin.tx_employeedirectory.labels.reset}
+            all = {$plugin.tx_employeedirectory.labels.all}
+            noResults = {$plugin.tx_employeedirectory.labels.noResults}
+
+            phone = {$plugin.tx_employeedirectory.labels.phone}
+            email = {$plugin.tx_employeedirectory.labels.email}
+            location = {$plugin.tx_employeedirectory.labels.location}
+            cardDepartment = {$plugin.tx_employeedirectory.labels.cardDepartment}
+            room = {$plugin.tx_employeedirectory.labels.room}
+            officeHours = {$plugin.tx_employeedirectory.labels.officeHours}
+
+            alphabeticalFilter = {$plugin.tx_employeedirectory.labels.alphabeticalFilter}
+            call = {$plugin.tx_employeedirectory.labels.call}
+            writeEmail = {$plugin.tx_employeedirectory.labels.writeEmail}
+        }
+    }
+}
+
+page.includeCSS {
+    employeeDirectory = EXT:employee_directory/Resources/Public/Css/employee-directory-bootstrap.css
+}
+
+["{$plugin.tx_employeedirectory.cssVariant}" == "standalone"]
+    page.includeCSS.employeeDirectory = EXT:employee_directory/Resources/Public/Css/employee-directory.css
+[END]

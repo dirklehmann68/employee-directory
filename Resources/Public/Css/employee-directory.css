@@ -1,0 +1,589 @@
+/* ==========================================================
+   1. Custom Properties
+   ========================================================== */
+
+:root {
+    --employee-directory-primary: #3f6f64;
+    --employee-directory-primary-strong: #31584f;
+    --employee-directory-primary-soft: rgba(63, 111, 100, .10);
+    --employee-directory-primary-subtle: rgba(63, 111, 100, .07);
+    --employee-directory-border: rgba(63, 111, 100, .22);
+
+    --employee-directory-surface: #fff;
+    --employee-directory-text: #3f4543;
+
+    --employee-directory-primary-hover: rgba(63, 111, 100, .18);
+
+    --employee-directory-meta-label-width: 6rem;
+}
+
+/* ==========================================================
+   2. Base / Scope
+   ========================================================== */
+
+.employee-directory {
+	--gutter-x: 1.5rem;
+	--gutter-y: 0;
+    padding-right: calc(var(--gutter-x) * .5);
+	padding-left: calc(var(--gutter-x) * .5);
+}
+
+.employee-directory,
+.employee-directory *,
+.employee-directory *::before,
+.employee-directory *::after {
+    box-sizing: border-box;
+}
+
+.employee-directory img {
+    border-radius: .25rem;
+}
+
+.employee-directory .img-fluid {
+	max-width: 100%;
+	height: auto;
+}
+
+/* ==========================================================
+   3. Layout / Grid
+   ========================================================== */
+
+.employee-directory .employee-list-grid .card > .row.g-0 {
+    --gutter-x: 0 !important;
+	--gutter-y: 0 !important;
+}
+
+.employee-directory .employee-list-grid.g-4 {
+    --gutter-x: 1.5rem !important;
+	--gutter-y: 1.5rem !important;
+}
+
+.employee-directory .employee-list-grid .card > .row.g-0 > .p-3 {
+	padding: 1rem !important;
+}
+
+.employee-directory .employee-list-grid,
+.employee-directory .employee-show-profile {
+	--gutter-x: 1.5rem;
+	--gutter-y: 0;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 1.5rem;
+	margin-right: calc(-.5 * var(--gutter-x));
+	margin-left: calc(-.5 * var(--gutter-x));
+}
+
+.employee-directory .employee-list-grid > *,
+.employee-directory .employee-show-profile > * {
+	flex-shrink: 0;
+	width: 100%;
+	max-width: 100%;
+	padding-right: calc(var(--gutter-x) * .5);
+	padding-left: calc(var(--gutter-x) * .5);
+	margin-top: var(--gutter-y);
+}
+
+.employee-directory .employee-list-grid.row-cols-1 > * {
+	flex: 0 0 auto;
+	width: 100%;
+}
+
+.employee-directory .employee-list-grid .card > .row.g-0 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 576px) {
+    .employee-directory .employee-list-grid .card > .row.g-0 > .col-sm-3 {
+        width: 25%;
+    }
+
+    .employee-directory .employee-list-grid .card > .row.g-0 > .col-sm-9 {
+        width: 75%;
+    }
+}
+
+/* ==========================================================
+   4. Employee Cards
+   ========================================================== */
+
+/* 4.1 Card / Employee Header */
+
+.employee-directory .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    background-color: var(--employee-directory-primary-subtle);
+    border: 1px solid var(--employee-directory-border);
+    border-radius: .375rem;
+    transition: background-color .15s ease-in-out;
+}
+
+.employee-directory .card:hover,
+.employee-directory .card:focus-within {
+    background-color: var(--employee-directory-surface);
+}
+
+.employee-directory .employee-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: .25rem;
+    color: var(--employee-directory-primary-strong);
+}
+
+.employee-directory .employee-job-function {
+    font-size: .8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: var(--employee-directory-primary);
+}
+
+/* 4.2 Contact */
+
+.employee-directory .employee-contact-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .375rem;
+    margin-top: .75rem;
+}
+
+.employee-directory .employee-contact {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+.employee-directory .employee-contact-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: .375rem;
+    color: var(--employee-directory-primary);
+    text-decoration: none;
+    background-color: var(--employee-directory-primary-soft);
+    border: 1px solid var(--employee-directory-border);
+    border-radius: .375rem;
+
+    transition:
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out;
+}
+
+.employee-directory .employee-contact-link:hover {
+    color: var(--employee-directory-primary-strong);
+    background-color: var(--employee-directory-primary-hover);
+    border-color: var(--employee-directory-primary);
+}
+
+.employee-directory .employee-contact-link:focus-visible {
+    outline: 2px solid var(--employee-directory-primary);
+    outline-offset: 2px;
+}
+
+.employee-directory .employee-contact-icon {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.employee-directory .employee-contact-label,
+.employee-directory .employee-contact-value {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 4.3 Meta Information */
+
+.employee-directory .employee-meta-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .375rem 1rem;
+    margin-top: 1rem;
+}
+
+.employee-directory .employee-meta {
+    display: flex;
+    gap: .25rem;
+    color: var(--employee-directory-text);
+}
+
+.employee-directory .employee-meta-department {
+    flex-basis: 100%;
+}
+
+
+/* 4.4 Office Hours */
+
+.employee-directory .employee-office-hours {
+    margin-top: 1rem;
+    padding: .5rem .75rem;
+    background-color: var(--employee-directory-primary-subtle);
+    border: 1px solid var(--employee-directory-border);
+    border-radius: .375rem;
+}
+
+.employee-directory .employee-office-hours-label {
+    display: block;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.employee-directory .employee-office-hours-value {
+    font-size: .9375rem;
+    line-height: 1.5;
+}
+
+/* 4.5 Card Actions */
+
+.employee-directory .employee-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+/* ==========================================================
+   5. Filter
+   ========================================================== */
+
+.employee-directory .employee-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.employee-directory .employee-filter-field {
+    flex: 1 1 100%;
+    min-width: 0;
+}
+
+@media (min-width: 768px) {
+    .employee-directory .employee-filter-field {
+        flex: 1 1 0;
+    }
+}
+
+.employee-directory .employee-filter-field input,
+.employee-directory .employee-filter-field select {
+    display: block;
+    width: 100%;
+}
+
+.employee-directory .employee-filter-actions {
+    display: flex;
+    justify-content: center;
+    gap: .75rem;
+    margin-top: 1rem;
+}
+
+.employee-directory .form-control,
+.employee-directory .form-select {
+    display: block;
+    width: 100%;
+    min-height: 2.5rem;
+    padding: .375rem .75rem;
+    font: inherit;
+    line-height: 1.5;
+    color: var(--employee-directory-text);
+    border: 1px solid var(--employee-directory-border);
+    border-radius: .375rem;
+    background-color: var(--employee-directory-surface);
+}
+
+.employee-directory .form-control:focus,
+.employee-directory .form-select:focus {
+    outline: none;
+    border-color: var(--employee-directory-primary);
+    box-shadow: 0 0 0 .2rem var(--employee-directory-primary-soft);
+}
+
+.employee-directory .form-select {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image: url(../Svg/select-arrow.svg);
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 1rem;
+}
+
+.employee-directory .employee-filter-field label {
+    display: block;
+    margin-bottom: .375rem;
+    font-size: .875rem;
+    font-weight: 600;
+    color: var(--employee-directory-text);
+}
+
+.employee-directory .btn {
+    display: inline-block;
+    padding: .375rem .75rem;
+    font: inherit;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: .375rem;
+    transition:
+        color .15s ease-in-out,
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out;
+}
+
+.employee-directory .btn:focus-visible {
+    outline: 2px solid var(--employee-directory-primary);
+    outline-offset: 2px;
+}
+
+.employee-directory .btn-primary {
+    color: #fff;
+    background-color: var(--employee-directory-primary);
+    border-color: var(--employee-directory-primary);
+}
+
+.employee-directory .btn-secondary {
+    color: #fff;
+    background-color: var(--employee-directory-primary);
+    border-color: var(--employee-directory-primary);
+}
+
+.employee-directory .btn-secondary:hover {
+    color: #fff;
+    background-color: var(--employee-directory-primary-strong);
+    border-color: var(--employee-directory-primary-strong);
+}
+
+.employee-directory .btn-outline-secondary {
+    color: var(--employee-directory-text);
+    background-color: transparent;
+    border-color: var(--employee-directory-border);
+}
+
+.employee-directory .btn-primary:hover {
+    color: #fff;
+    background-color: var(--employee-directory-primary-strong);
+    border-color: var(--employee-directory-primary-strong);
+}
+
+.employee-directory .btn-outline-secondary:hover {
+    color: var(--employee-directory-primary-strong);
+    background-color: var(--employee-directory-primary-soft);
+    border-color: var(--employee-directory-primary);
+}
+
+/* ==========================================================
+   6. A–Z Navigation
+   ========================================================== */
+
+.employee-directory .employee-filter-az {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem;
+    padding: 0;
+    margin: 2rem 0;
+    list-style: none;
+}
+
+.employee-directory .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+
+    text-align: center;
+    text-decoration: none;
+
+    color: var(--employee-directory-primary);
+    background-color: var(--employee-directory-primary-subtle);
+    border: 1px solid var(--employee-directory-border);
+    border-radius: .5rem;
+
+    transition:
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out,
+        color .15s ease-in-out;
+}
+
+.employee-directory .employee-filter-all {
+    width: auto;
+    padding-right: .75rem;
+    padding-left: .75rem;
+}
+
+.employee-directory .page-link:hover {
+    color: var(--employee-directory-primary-strong);
+    background-color: var(--employee-directory-primary-soft);
+    border-color: var(--employee-directory-primary);
+}
+
+.employee-directory .page-link:focus {
+    box-shadow: none;
+}
+
+.employee-directory .page-link:focus-visible {
+    outline: 3px solid var(--employee-directory-primary);
+    outline-offset: 3px;
+}
+
+.employee-directory .page-item.active .page-link {
+    color: #fff;
+    background-color: var(--employee-directory-primary);
+    border-color: var(--employee-directory-primary);
+}
+
+.employee-directory .page-item.disabled .page-link {
+    color: #7f8b87;
+    background-color: #f1f4f3;
+    border-color: #d2d9d6;
+    cursor: default;
+}
+
+.employee-directory .page-item:not(.disabled):not(.active) .page-link {
+    color: var(--employee-directory-primary-strong);
+    font-weight: 600;
+}
+
+/* ==========================================================
+   7. Employee Detail
+   ========================================================== */
+
+.employee-directory .employee-show-profile {
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.employee-directory .employee-show-image {
+    max-width: 300px;
+}
+
+.employee-directory .employee-show-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.employee-directory .employee-show-header .employee-name {
+    line-height: 1;
+}
+
+/* Kontaktbuttons in der Detailansicht */
+.employee-directory .employee-show-info .employee-contact-wrap {
+    margin-top: .75rem;
+}
+
+/* Abteilung unter den Kontaktbuttons */
+.employee-directory .employee-show-info > .employee-meta-department {
+    margin-top: .75rem;
+}
+
+/* Ort und Raum unter der Abteilung */
+.employee-directory .employee-show-info .employee-meta-wrap {
+    margin-top: .375rem;
+}
+
+.employee-directory .employee-description {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.employee-directory .employee-description p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.employee-directory .employee-description ul,
+.employee-directory .employee-description ol {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-left: 2.25rem;
+}
+
+.employee-directory .employee-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================
+   8. Responsive
+   ========================================================== */
+
+@media (min-width: 768px) {
+    .employee-directory .employee-show-profile > .employee-show-image-column {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+
+    .employee-directory .employee-show-profile > .employee-show-info {
+        flex: 0 0 auto;
+        width: 75%;
+    }
+}
+
+@media (min-width: 992px) {
+    .employee-directory .employee-list-grid.row-cols-lg-2 > * {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+
+
+/* Abstand zwischen Foto und Informationen bis zur Tabletbreite */
+@media (max-width: 767.98px) {
+    .employee-directory .employee-show-info {
+        margin-top: 1rem;
+    }
+}
+
+/* Optimierung für Smartphones */
+@media (max-width: 575.98px) {
+    /* Einheitliche Labelbreite bei Mitarbeiterangaben */
+    .employee-directory .employee-meta {
+        width: 100%;
+    }
+
+    .employee-directory .employee-meta-label {
+        flex: 0 0 var(--employee-directory-meta-label-width);
+    }
+
+    .employee-directory .employee-show-image {
+        max-width: 220px;
+        margin-inline: auto;
+    }
+
+    .employee-directory .employee-show-info {
+        font-size: .875rem;
+    }
+
+    .employee-directory .employee-show-header .employee-name {
+        font-size: 1.125rem;
+    }
+
+    .employee-directory .employee-show-info .employee-job-function {
+        font-size: .75rem;
+    }
+
+    .employee-directory .employee-show-info .employee-office-hours-value {
+        font-size: .875rem;
+    }
+}

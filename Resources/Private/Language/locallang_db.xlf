@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+    <file source-language="en" datatype="plaintext" original="messages">
+        <body>
+            <trans-unit id="employee.record">
+                <source>Employee</source>
+            </trans-unit>
+
+            <trans-unit id="employee.hidden">
+                <source>Hide record</source>
+            </trans-unit>
+
+            <trans-unit id="employee.image">
+                <source>Image</source>
+            </trans-unit>
+
+            <trans-unit id="employee.title">
+                <source>Title</source>
+            </trans-unit>
+
+            <trans-unit id="employee.first_name">
+                <source>First name</source>
+            </trans-unit>
+
+            <trans-unit id="employee.last_name">
+                <source>Last name</source>
+            </trans-unit>
+
+            <trans-unit id="employee.slug">
+                <source>URL segment</source>
+            </trans-unit>
+
+            <trans-unit id="employee.phone">
+                <source>Phone</source>
+            </trans-unit>
+
+            <trans-unit id="employee.email">
+                <source>Email</source>
+            </trans-unit>
+
+            <trans-unit id="employee.room">
+                <source>Room</source>
+            </trans-unit>
+
+            <trans-unit id="employee.location">
+                <source>Location</source>
+            </trans-unit>
+
+            <trans-unit id="employee.office_hours">
+                <source>Office hours</source>
+            </trans-unit>
+
+            <trans-unit id="employee.description">
+                <source>Description</source>
+            </trans-unit>
+
+            <trans-unit id="employee.department">
+                <source>Department</source>
+            </trans-unit>
+
+            <trans-unit id="employee.job_function">
+                <source>Job function</source>
+            </trans-unit>
+
+            <trans-unit id="common.copy">
+                <source> (Copy %s)</source>
+            </trans-unit>
+
+            <trans-unit id="department.record">
+                <source>Department</source>
+            </trans-unit>
+
+            <trans-unit id="department.title">
+                <source>Department name</source>
+            </trans-unit>
+
+            <trans-unit id="job_function.record">
+                <source>Job function</source>
+            </trans-unit>
+
+            <trans-unit id="job_function.title">
+                <source>Job function name</source>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_list.title">
+                <source>Employee directory</source>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_list.description">
+                <source>Displays an employee directory with filters for name, job function, department and initial.</source>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_list_only.title">
+                <source>Employee list</source>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_list_only.description">
+                <source>Displays a list of employees.</source>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_detail.title">
+                <source>Employee detail</source>
+            </trans-unit>
+
+            <trans-unit id="plugin.employee_detail.description">
+                <source>Displays the detailed profile of an employee.</source>
+            </trans-unit>
+
+            <trans-unit id="plugin.record_storage">
+                <source>Record storage</source>
+            </trans-unit>
+
+            <trans-unit id="employee.department.none">
+                <source>— no department —</source>
+            </trans-unit>
+
+            <trans-unit id="employee.job_function.none">
+                <source>— no function —</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

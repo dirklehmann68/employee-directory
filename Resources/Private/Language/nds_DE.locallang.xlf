@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+    <file source-language="en" target-language="nds" datatype="plaintext" original="messages">
+        <body>
+            <!-- Filter -->
+            <trans-unit id="filter.name">
+                <source>Name</source>
+                <target>Naam</target>
+            </trans-unit>
+
+            <trans-unit id="filter.job_function">
+                <source>Job function</source>
+                <target>Opgaav</target>
+            </trans-unit>
+
+            <trans-unit id="filter.department">
+                <source>Department</source>
+                <target>Afdeelen</target>
+            </trans-unit>
+
+            <trans-unit id="filter.all_job_functions">
+                <source>All job functions</source>
+                <target>All Opgaven</target>
+            </trans-unit>
+
+            <trans-unit id="filter.all_departments">
+                <source>All departments</source>
+                <target>All Afdeelen</target>
+            </trans-unit>
+
+            <trans-unit id="filter.apply">
+                <source>Apply</source>
+                <target>Anwennen</target>
+            </trans-unit>
+
+            <trans-unit id="filter.reset">
+                <source>Reset</source>
+                <target>Torüchsetten</target>
+            </trans-unit>
+
+            <trans-unit id="filter.all">
+                <source>All</source>
+                <target>All</target>
+            </trans-unit>
+
+            <trans-unit id="filter.no_results">
+                <source>No employees found.</source>
+                <target>Keen Mitarbeiders funnen.</target>
+            </trans-unit>
+
+            <!-- Accessibility -->
+            <trans-unit id="accessibility.alphabetical_filter">
+                <source>Filter employees alphabetically</source>
+                <target>Mitarbeiders na't Alphabet filtern</target>
+            </trans-unit>
+
+            <trans-unit id="accessibility.call">
+                <source>Call:</source>
+                <target>Anropen:</target>
+            </trans-unit>
+
+            <trans-unit id="accessibility.write_email">
+                <source>Write email:</source>
+                <target>E-Mail schrieven:</target>
+            </trans-unit>
+
+            <!-- Employee card -->
+            <trans-unit id="employee.phone">
+                <source>Phone:</source>
+                <target>Telefoon:</target>
+            </trans-unit>
+
+            <trans-unit id="employee.email">
+                <source>Email:</source>
+                <target>E-Mail:</target>
+            </trans-unit>
+
+            <trans-unit id="employee.location">
+                <source>Location:</source>
+                <target>Oort:</target>
+            </trans-unit>
+
+            <trans-unit id="employee.department">
+                <source>Department:</source>
+                <target>Afdeelen:</target>
+            </trans-unit>
+
+            <trans-unit id="employee.room">
+                <source>Room:</source>
+                <target>Ruum:</target>
+            </trans-unit>
+
+            <trans-unit id="employee.office_hours">
+                <source>Office hours:</source>
+                <target>Spreektieden:</target>
+            </trans-unit>
+
+            <trans-unit id="employee.more">
+                <source>Learn more</source>
+                <target>Mehr weten</target>
+            </trans-unit>
+
+            <trans-unit id="employee.back">
+                <source>Overview</source>
+                <target>Översicht</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

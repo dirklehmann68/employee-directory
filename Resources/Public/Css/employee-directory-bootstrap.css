@@ -1,0 +1,66 @@
+/* ==========================================================
+   Employee Directory – Bootstrap Additions
+   ========================================================== */
+
+/* Kontakt-Icons nebeneinander anordnen */
+.employee-directory .employee-contact-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .375rem;
+    margin-top: .75rem;
+    margin-bottom: .75rem;
+}
+
+/* Kontakt-Links */
+.employee-directory .employee-contact-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: .375rem;
+    transition: filter .2s ease-in-out;
+}
+
+/* Kontakt-Icons */
+.employee-directory .employee-contact-icon {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+/* Beschriftungen für Screenreader erhalten */
+.employee-directory .employee-contact-label,
+.employee-directory .employee-contact-value {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Kontakt-Links: Hover und Tastaturfokus */
+.employee-directory .employee-contact-link:hover {
+    filter: brightness(.94);
+}
+
+.employee-directory .employee-contact-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.employee-directory .employee-filter-az .page-link {
+    border-radius: var(--bs-border-radius);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .employee-directory .employee-contact-link {
+        transition: none;
+    }
+}

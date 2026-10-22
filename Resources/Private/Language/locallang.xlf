@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+    <file source-language="en" datatype="plaintext" original="messages">
+        <body>
+            <!-- Filter -->
+            <trans-unit id="filter.name">
+                <source>Name</source>
+            </trans-unit>
+
+            <trans-unit id="filter.job_function">
+                <source>Job function</source>
+            </trans-unit>
+
+            <trans-unit id="filter.department">
+                <source>Department</source>
+            </trans-unit>
+
+            <trans-unit id="filter.all_job_functions">
+                <source>All job functions</source>
+            </trans-unit>
+
+            <trans-unit id="filter.all_departments">
+                <source>All departments</source>
+            </trans-unit>
+
+            <trans-unit id="filter.apply">
+                <source>Apply</source>
+            </trans-unit>
+
+            <trans-unit id="filter.reset">
+                <source>Reset</source>
+            </trans-unit>
+
+            <trans-unit id="filter.all">
+                <source>All</source>
+            </trans-unit>
+
+            <trans-unit id="filter.no_results">
+                <source>No employees found.</source>
+            </trans-unit>
+
+            <!-- Accessibility -->
+            <trans-unit id="accessibility.alphabetical_filter">
+                <source>Filter employees alphabetically</source>
+            </trans-unit>
+
+            <trans-unit id="accessibility.call">
+                <source>Call:</source>
+            </trans-unit>
+
+            <trans-unit id="accessibility.write_email">
+                <source>Write email:</source>
+            </trans-unit>
+
+            <!-- Employee card -->
+            <trans-unit id="employee.phone">
+                <source>Phone:</source>
+            </trans-unit>
+
+            <trans-unit id="employee.email">
+                <source>Email:</source>
+            </trans-unit>
+
+            <trans-unit id="employee.location">
+                <source>Location:</source>
+            </trans-unit>
+
+            <trans-unit id="employee.department">
+                <source>Department:</source>
+            </trans-unit>
+
+            <trans-unit id="employee.room">
+                <source>Room:</source>
+            </trans-unit>
+
+            <trans-unit id="employee.office_hours">
+                <source>Office hours:</source>
+            </trans-unit>
+
+            <trans-unit id="employee.more">
+                <source>View profile</source>
+            </trans-unit>
+
+            <trans-unit id="employee.back">
+                <source>Overview</source>
+            </trans-unit>
+            <!-- FlexForm -->
+            <trans-unit id="flexform.sheet.card_content">
+                <source>Card content</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.sheet.images">
+                <source>Images</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.show_image">
+                <source>Show employee photo</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.show_image_placeholder">
+                <source>Show placeholder if no photo is available</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.show_job_function">
+                <source>Show job function</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.show_department">
+                <source>Show department</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.show_phone">
+                <source>Show phone number</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.show_email">
+                <source>Show email address</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.show_location">
+                <source>Show location</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.show_room">
+                <source>Show room</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.show_office_hours">
+                <source>Show office hours</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

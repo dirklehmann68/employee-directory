@@ -1,0 +1,26 @@
+
+{
+    "name": "dirk-lehmann/employee-directory",
+    "description": "Employee Directory - TYPO3 extension for displaying and filtering employee profiles",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "typo3/cms-core": "^14.3",
+        "typo3/cms-extbase": "^14.3",
+        "typo3/cms-fluid": "^14.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "DirkLehmann\\EmployeeDirectory\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "employee_directory",
+            "version": "1.0.0",
+            "Package": {
+                "providesPackages": {}
+            }
+        }
+    }
+}

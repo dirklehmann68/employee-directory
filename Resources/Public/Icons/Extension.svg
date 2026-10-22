@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Employee Directory</title>
+  <desc id="desc">White address book symbol on school red background</desc>
+
+  <rect width="256" height="256" rx="34" fill="#d51130"/>
+
+  <!-- Address book body -->
+  <rect x="55" y="37" width="146" height="182" rx="18"
+        fill="none" stroke="#ffffff" stroke-width="12"/>
+
+  <!-- Spine -->
+  <path d="M78 43 V213"
+        fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- Binder rings -->
+  <rect x="43" y="72" width="38" height="14" rx="7"
+        fill="none" stroke="#ffffff" stroke-width="8"/>
+  <rect x="43" y="166" width="38" height="14" rx="7"
+        fill="none" stroke="#ffffff" stroke-width="8"/>
+
+  <!-- Index tabs -->
+  <path d="M201 73 H215 Q224 73 224 82 V103 Q224 112 215 112 H201"
+        fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M201 111 H215 Q224 111 224 120 V141 Q224 150 215 150 H201"
+        fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M201 149 H215 Q224 149 224 158 V179 Q224 188 215 188 H201"
+        fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+
+  <!-- Avatar -->
+  <circle cx="138" cy="91" r="22" fill="#ffffff"/>
+  <path d="M106 147
+           C106 125 120 113 138 113
+           C156 113 170 125 170 147
+           V156
+           Q170 164 162 164
+           H114
+           Q106 164 106 156 Z"
+        fill="#ffffff"/>
+
+  <!-- Contact list -->
+  <rect x="99" y="178" width="12" height="12" rx="3" fill="#ffffff"/>
+  <rect x="99" y="198" width="12" height="12" rx="3" fill="#ffffff"/>
+  <rect x="99" y="218" width="12" height="12" rx="3" fill="#ffffff"/>
+
+  <rect x="121" y="180" width="56" height="8" rx="4" fill="#ffffff"/>
+  <rect x="121" y="200" width="56" height="8" rx="4" fill="#ffffff"/>
+  <rect x="121" y="220" width="56" height="8" rx="4" fill="#ffffff"/>
+</svg>

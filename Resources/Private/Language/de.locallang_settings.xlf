@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages">
+        <body>
+            <trans-unit id="category.employeeDirectory">
+                <source>Employee Directory</source>
+                <target>Mitarbeiterverzeichnis</target>
+            </trans-unit>
+
+            <trans-unit id="category.filter">
+                <source>Filter</source>
+                <target>Filter</target>
+            </trans-unit>
+
+            <trans-unit id="category.card">
+                <source>Employee cards</source>
+                <target>Mitarbeiterkarten</target>
+            </trans-unit>
+
+            <trans-unit id="category.accessibility">
+                <source>Accessibility</source>
+                <target>Barrierefreiheit</target>
+            </trans-unit>
+
+            <trans-unit id="category.templates">
+                <source>Templates</source>
+                <target>Templates</target>
+            </trans-unit>
+
+            <trans-unit id="category.pages">
+                <source>Page linking</source>
+                <target>Seitenverknüpfung</target>
+            </trans-unit>
+
+            <trans-unit id="pages.detailPageUid">
+                <source>Page for employee profiles</source>
+                <target>Seite für Mitarbeiterprofile</target>
+            </trans-unit>
+
+            <trans-unit id="pages.listPageUid">
+                <source>Page for employee list</source>
+                <target>Seite für Mitarbeiterliste</target>
+            </trans-unit>
+
+            <trans-unit id="templates.templateRootPath">
+                <source>Template root path</source>
+                <target>Template-Verzeichnispfad</target>
+            </trans-unit>
+
+            <trans-unit id="templates.partialRootPath">
+                <source>Partial root path</source>
+                <target>Partial-Verzeichnispfad</target>
+            </trans-unit>
+
+            <trans-unit id="templates.layoutRootPath">
+                <source>Layout root path</source>
+                <target>Layout-Verzeichnispfad</target>
+            </trans-unit>
+
+            <trans-unit id="filter.showName">
+                <source>Show name filter</source>
+                <target>Namensfilter anzeigen</target>
+            </trans-unit>
+
+            <trans-unit id="filter.showJobFunction">
+                <source>Show job function filter</source>
+                <target>Filter nach Funktion anzeigen</target>
+            </trans-unit>
+
+            <trans-unit id="filter.showDepartment">
+                <source>Show department filter</source>
+                <target>Filter nach Abteilung anzeigen</target>
+            </trans-unit>
+
+            <trans-unit id="filter.showAlphabetical">
+                <source>Show alphabetical filter</source>
+                <target>Alphabetischen Filter anzeigen</target>
+            </trans-unit>
+            
+            <trans-unit id="filter.name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+
+            <trans-unit id="filter.jobFunction">
+                <source>Job function</source>
+                <target>Funktion</target>
+            </trans-unit>
+
+            <trans-unit id="filter.department">
+                <source>Department (filter)</source>
+                <target>Abteilung (Filter)</target>
+            </trans-unit>
+
+            <trans-unit id="filter.allJobFunctions">
+                <source>All job functions</source>
+                <target>Alle Funktionen</target>
+            </trans-unit>
+
+            <trans-unit id="filter.allDepartments">
+                <source>All departments</source>
+                <target>Alle Abteilungen</target>
+            </trans-unit>
+
+            <trans-unit id="filter.apply">
+                <source>Apply</source>
+                <target>Anwenden</target>
+            </trans-unit>
+
+            <trans-unit id="filter.reset">
+                <source>Reset</source>
+                <target>Zurücksetzen</target>
+            </trans-unit>
+
+            <trans-unit id="filter.all">
+                <source>All (A–Z filter)</source>
+                <target>Alle (A–Z-Filter)</target>
+            </trans-unit>
+
+            <trans-unit id="filter.noResults">
+                <source>No employees found</source>
+                <target>Keine Mitarbeiter gefunden</target>
+            </trans-unit>
+
+            <trans-unit id="card.phone">
+                <source>Phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+
+            <trans-unit id="card.email">
+                <source>Email</source>
+                <target>E-Mail</target>
+            </trans-unit>
+
+            <trans-unit id="card.location">
+                <source>Location</source>
+                <target>Ort</target>
+            </trans-unit>
+
+            <trans-unit id="card.department">
+                <source>Department (employee card)</source>
+                <target>Abteilung (Mitarbeiterkarte)</target>
+            </trans-unit>
+
+            <trans-unit id="card.room">
+                <source>Room</source>
+                <target>Raum</target>
+            </trans-unit>
+
+            <trans-unit id="card.officeHours">
+                <source>Office hours</source>
+                <target>Sprechzeiten</target>
+            </trans-unit>
+
+            <trans-unit id="accessibility.alphabeticalFilter">
+                <source>Alphabetical filter (ARIA)</source>
+                <target>Alphabetischer Filter (ARIA)</target>
+            </trans-unit>
+
+            <trans-unit id="accessibility.call">
+                <source>Call (ARIA)</source>
+                <target>Anrufen (ARIA)</target>
+            </trans-unit>
+
+            <trans-unit id="accessibility.writeEmail">
+                <source>Write email (ARIA)</source>
+                <target>E-Mail schreiben (ARIA)</target>
+            </trans-unit>
+
+            <trans-unit id="category.styles">
+                <source>Appearance</source>
+                <target>Darstellung</target>
+            </trans-unit>
+
+            <trans-unit id="styles.cssVariant">
+                <source>CSS variant</source>
+                <target>CSS-Variante</target>
+            </trans-unit>
+
+            <trans-unit id="styles.standalone">
+                <source>Standalone CSS</source>
+                <target>Eigenständiges CSS</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
