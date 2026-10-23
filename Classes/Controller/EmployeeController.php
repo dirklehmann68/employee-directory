@@ -76,8 +76,17 @@ class EmployeeController extends ActionController
         return $this->htmlResponse();
     }
 
-    public function showAction(Employee $employee): ResponseInterface
+    public function showAction(int $employee): ResponseInterface
     {
+        $employee = $this->employeeRepository->findByUid($employee);
+
+        if ($employee === null) {
+            throw new \TYPO3\CMS\Core\Error\Http\PageNotFoundException(
+                'Employee not found',
+                1761238800
+            );
+        }
+
         $this->view->assign('employee', $employee);
 
         $this->view->assign(
