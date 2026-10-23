@@ -387,6 +387,14 @@
     border-color: var(--employee-directory-primary);
 }
 
+.employee-no-results {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    color: #666;
+    background-color: #f5f5f5;
+    border-left: 3px solid #999;
+}
+
 /* ==========================================================
    6. A–Z Navigation
    ========================================================== */
