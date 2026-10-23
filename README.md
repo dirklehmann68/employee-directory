@@ -18,6 +18,10 @@ A TYPO3 extension for maintaining employee profiles and displaying a searchable,
 - Site Set integration with selectable standalone or Bootstrap-oriented CSS.
 - Configurable filters, card fields, images, placeholder display and frontend labels.
 
+## Preview
+
+![Employee Directory preview](Documentation/Images/employee-preview.png)
+
 ## Requirements
 
 - TYPO3 **14.3 or later, but below 15.0** (according to the extension's Composer constraints).

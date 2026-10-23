@@ -18,6 +18,10 @@ Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung 
 - Integration über ein TYPO3 Site Set mit wählbarem eigenständigem CSS oder Bootstrap-orientiertem CSS.
 - Konfigurierbare Filter, Karteninhalte, Bilder, Platzhalter und Frontend-Beschriftungen.
 
+## Vorschau
+
+![Vorschau des Mitarbeiterverzeichnisses mit Suchfiltern und Mitarbeiterkarten](Documentation/Images/employee-preview.png)
+
 ## Systemvoraussetzungen
 
 - TYPO3 **ab 14.3 und unterhalb von 15.0** (entsprechend den Composer-Versionsbedingungen).
