@@ -153,7 +153,7 @@
                 <f:variable name="hasCardImage" value="1" />
             </f:if>
 
-            <f:if condition="{settings.showImagePlaceholder} && (!{settings.showImage} || !{employee.image})">
+            <f:if condition="{settings.showImage} && {settings.showImagePlaceholder} && !{employee.image}">
                 <f:variable name="hasCardImage" value="1" />
             </f:if>
 
