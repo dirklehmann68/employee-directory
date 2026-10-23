@@ -35,7 +35,7 @@ settings:
     label: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:styles.cssVariant'
     category: employeeDirectory.styles
     type: string
-    default: 'bootstrap'
+    default: 'standalone'
     enum:
       bootstrap: 'Bootstrap'
       standalone: 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_settings.xlf:styles.standalone'
