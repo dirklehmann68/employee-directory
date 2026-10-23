@@ -228,9 +228,15 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 - [ ] Vollständige Erstinstallation im Classic Mode einschließlich Schema-Abgleich, neuer Datensätze und aller Funktionen testen.
 - [ ] Geprüfte Screenshots und Veröffentlichungsangaben vor der Veröffentlichung ergänzen.
 
-## Screenshots (werden ergänzt)
+## Screenshots
 
-Sinnvolle Abbildungen: Datensatzablage mit Datensatztypen; Bearbeitungsformular eines Mitarbeiters; Plugin-Einstellungen mit Datensatzablage; Frontend-Liste mit Filtern; Mitarbeiter-Detailansicht.
+### Mitarbeiterverzeichnis (LIST)
+
+![Mitarbeiterverzeichnis mit Suchfiltern und Mitarbeiterkarten](Documentation/Images/employee-list.png)
+
+### Mitarbeiterprofil (SHOW)
+
+![Mitarbeiterprofil mit Kontaktdaten und Beschreibung](Documentation/Images/employee-detail.png)
 
 ## Lizenz
 

@@ -228,9 +228,15 @@ Interface labels are available in English and German, with an additional Low Ger
 - [ ] Perform a complete clean-install acceptance test in Classic Mode, including schema setup, new records and all features.
 - [ ] Add verified screenshots and release metadata before publication.
 
-## Screenshots (to be added)
+## Screenshots
 
-Suggested screenshots: record-storage folder and record types; employee edit form; plugin configuration and storage selection; frontend list with filters; employee detail view.
+### Employee directory (LIST)
+
+![Employee directory with search filters and employee cards](Documentation/Images/employee-list.png)
+
+### Employee profile (SHOW)
+
+![Employee profile with contact details and description](Documentation/Images/employee-detail.png)
 
 ## License
 
