@@ -81,10 +81,12 @@ class EmployeeController extends ActionController
         $employee = $this->employeeRepository->findByUid($employee);
 
         if ($employee === null) {
-            throw new \TYPO3\CMS\Core\Error\Http\PageNotFoundException(
-                'Employee not found',
-                1761238800
-            );
+            return $this->responseFactory
+                ->createResponse(404)
+                ->withHeader('Content-Type', 'text/plain; charset=utf-8')
+                ->withBody(
+                    $this->streamFactory->createStream('Employee not found')
+                );
         }
 
         $this->view->assign('employee', $employee);
