@@ -17,10 +17,7 @@
     "extra": {
         "typo3/cms": {
             "extension-key": "employee_directory",
-            "version": "1.0.0",
-            "Package": {
-                "providesPackages": {}
-            }
+            "version": "1.0.0"
         }
     }
 }
