@@ -261,15 +261,17 @@
                                 <div class="employee-card-actions mt-auto">
                                     <f:if condition="{isStandaloneList}">
                                         <f:then>
-                                            <f:link.action
-                                                action="show"
-                                                extensionName="EmployeeDirectory"
-                                                pluginName="EmployeeDetail"
-                                                pageUid="{settings.detailPageUid}"
-                                                arguments="{employee: employee}"
-                                                class="btn btn-secondary btn-sm">
-                                                {labelMore}
-                                            </f:link.action>
+                                            <f:if condition="{settings.detailPageUid} > 0">
+                                                <f:link.action
+                                                    action="show"
+                                                    extensionName="EmployeeDirectory"
+                                                    pluginName="EmployeeDetail"
+                                                    pageUid="{settings.detailPageUid}"
+                                                    arguments="{employee: employee}"
+                                                    class="btn btn-secondary btn-sm">
+                                                    {labelMore}
+                                                </f:link.action>
+                                            </f:if>
                                         </f:then>
                                         <f:else>
                                             <f:link.action
