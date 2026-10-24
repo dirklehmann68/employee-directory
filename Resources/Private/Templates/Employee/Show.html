@@ -138,17 +138,19 @@
     <div class="employee-show-actions">
         <f:if condition="{isStandaloneDetail}">
             <f:then>
-                <f:link.action
-                    action="list"
-                    extensionName="EmployeeDirectory"
-                    pluginName="EmployeeListOnly"
-                    pageUid="{settings.listPageUid}"
-                    class="btn btn-outline-secondary">
-                    <f:translate
-                        key="employee.back"
+                <f:if condition="{settings.listPageUid} > 0">
+                    <f:link.action
+                        action="list"
                         extensionName="EmployeeDirectory"
-                    />
-                </f:link.action>
+                        pluginName="EmployeeListOnly"
+                        pageUid="{settings.listPageUid}"
+                        class="btn btn-outline-secondary">
+                        <f:translate
+                            key="employee.back"
+                            extensionName="EmployeeDirectory"
+                        />
+                    </f:link.action>
+                </f:if>
             </f:then>
             <f:else>
                 <f:link.action
