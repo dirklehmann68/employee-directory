@@ -83,7 +83,7 @@ class EmployeeController extends ActionController
         if ($employee === null) {
             return $this->responseFactory
                 ->createResponse(404)
-                ->withHeader('Content-Type', 'text/plain; charset=utf-8')
+                ->withHeader('Content-Type', 'text/html; charset=utf-8')
                 ->withBody(
                     $this->streamFactory->createStream('Employee not found')
                 );
