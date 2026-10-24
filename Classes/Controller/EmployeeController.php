@@ -81,12 +81,17 @@ class EmployeeController extends ActionController
         $employee = $this->employeeRepository->findByUid($employee);
 
         if ($employee === null) {
-            return $this->responseFactory
-                ->createResponse(404)
-                ->withHeader('Content-Type', 'text/html; charset=utf-8')
-                ->withBody(
-                    $this->streamFactory->createStream('Employee not found')
-                );
+            $response = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+                \TYPO3\CMS\Frontend\Controller\ErrorController::class
+            )->pageNotFoundAction(
+                $this->request,
+                'Das angeforderte Mitarbeiterprofil konnte nicht gefunden werden.'
+            );
+
+            throw new \TYPO3\CMS\Core\Http\PropagateResponseException(
+                $response,
+                1761292800
+            );
         }
 
         $this->view->assign('employee', $employee);
