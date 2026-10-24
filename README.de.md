@@ -244,4 +244,6 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 
 ## Lizenz
 
-GPL-2.0-or-later (laut `composer.json`).
+Diese Extension ist unter der GNU General Public License, Version 2 oder einer späteren Version (GPL-2.0-or-later) lizenziert.
+
+Die Lizenz ist in der [`composer.json`](composer.json) angegeben. Den vollständigen Lizenztext findest du in der Datei [LICENSE](LICENSE).

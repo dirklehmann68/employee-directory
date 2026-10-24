@@ -244,4 +244,7 @@ Interface labels are available in English and German, with an additional Low Ger
 
 ## License
 
-GPL-2.0-or-later (as declared in `composer.json`).
+This extension is licensed under the GNU General Public License, version 2 or any later version (GPL-2.0-or-later).
+
+The license is declared in [`composer.json`](composer.json).
+See the [LICENSE](LICENSE) file for the full license text.
