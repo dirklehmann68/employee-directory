@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <guides xmlns="https://www.phpdoc.org/guides">
     <extension
-        class="\T3Docs\Guides\DependencyInjection\GuidesExtension"
+        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+        project-home="https://extensions.typo3.org/extension/employee_directory"
+        project-repository="https://github.com/dirklehmann68/employee-directory"
+        edit-on-github="dirklehmann68/employee-directory"
+        edit-on-github-branch="main"
     />
-    <project>
-        <title>Employee Directory</title>
-        <release>1.0.0</release>
-        <version>1.0</version>
-        <copyright>2026, Dirk Lehmann</copyright>
-    </project>
+    <project
+        title="Employee Directory"
+        version="local"
+        copyright="2026, Dirk Lehmann"
+    />
 </guides>
