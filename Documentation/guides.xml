@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<guides xmlns="https://www.phpdoc.org/guides">
+    <extension
+        class="\T3Docs\Guides\DependencyInjection\GuidesExtension"
+    />
+    <project>
+        <title>Employee Directory</title>
+        <release>1.0.0</release>
+        <version>1.0</version>
+        <copyright>2026, Dirk Lehmann</copyright>
+    </project>
+</guides>
