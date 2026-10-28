@@ -23,7 +23,7 @@
     <f:if condition="{settings.showNameFilter} || {settings.showJobFunctionFilter} || {settings.showDepartmentFilter}">
         <f:form action="filter" method="post" class="employee-filter">
             <f:form.hidden name="initial" value="{selectedInitial}" />
-            <div class="row employee-filter-row">
+            <div class="row gy-3 employee-filter-row">
                 <f:if condition="{settings.showNameFilter}">
                     <div class="col-md employee-filter-field">
                         <label for="employee-name-filter">
