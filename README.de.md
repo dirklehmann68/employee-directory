@@ -1,33 +1,34 @@
 # Mitarbeiterverzeichnis für TYPO3
 
-[English](README.md) | [Deutsch](README.de.md)
+[English](https://github.com/dirklehmann68/employee-directory/blob/main/README.md) | [Deutsch](https://github.com/dirklehmann68/employee-directory/blob/main/README.de.md)
 
 Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung eines durchsuchbaren und filterbaren Mitarbeiterverzeichnisses.
 
-> **Projektstand (23.10.2026):** Der Quellcode ist öffentlich auf [GitHub](https://github.com/dirklehmann68/employee-directory). Die Installation direkt aus dem GitHub-VCS-Repository und die Funktionstests in einem frisch eingerichteten TYPO3-14.3.10-Projekt mit Composer und DDEV waren erfolgreich. Getestet wurden das kombinierte Verzeichnis, Filter, Bild- und Anzeigeeinstellungen sowie die Navigation zwischen getrennten LIST-/SHOW-Plugins. Die Veröffentlichung auf Packagist bzw. im TER, ein offizieller Release-Tag und weitere Grenzfalltests stehen noch aus.
+> **Projektstand (07.11.2026):** Version **1.0.1** wurde auf GitHub veröffentlicht und ist im TYPO3 Extension Repository (TER) verfügbar. Version **1.1.0** befindet sich in der Test- und Dokumentationsphase und ist **noch nicht veröffentlicht**. Die optionale Gruppierung nach Abteilungen, die neue FlexForm-Reiteranordnung und kombinierte Suchfilter wurden in einer TYPO3-14.3.6-Composer-Testinstallation auf Mittwald geprüft. Abschließende Release-Tests stehen noch aus.
 
 ## Funktionen
 
-- Mitarbeiterdatensätze mit Anrede/Titel, Vorname, Nachname, Bild, Telefon, E-Mail, Raum, Standort, Sprechzeiten und Beschreibung mit Rich-Text-Editor.
-- Eigene Datensätze für Abteilungen und Funktionen, die Mitarbeitern zugeordnet werden können.
-- Drei Plugin-Varianten: kombiniertes Mitarbeiterverzeichnis (LIST + SHOW), eigenständige Mitarbeiterliste (LIST) und eigenständige Detailansicht (SHOW).
-- Mitarbeiterübersicht mit Profilkarten und individuellen Detailansichten.
-- Suche nach Nachnamen, Filter nach Abteilung und Funktion sowie alphabetischer A–Z-Filter für Nachnamen.
-- In den Auswahllisten erscheinen nur Abteilungen und Funktionen, die Mitarbeiterdatensätzen zugeordnet sind.
-- Deutsche und englische Oberflächenbeschriftungen; zusätzlich ist eine plattdeutsche Übersetzung enthalten.
-- Integration über ein TYPO3 Site Set mit wählbarem eigenständigem CSS oder Bootstrap-orientiertem CSS.
-- Konfigurierbare Filter, Karteninhalte, Bilder, Platzhalter und Frontend-Beschriftungen.
+* Mitarbeiterdatensätze mit Anrede/Titel, Vorname, Nachname, Bild, Telefon, E-Mail, Raum, Standort, Sprechzeiten und Beschreibung mit Rich-Text-Editor.
+* Eigene Datensätze für Abteilungen und Funktionen, die Mitarbeitern zugeordnet werden können.
+* Drei Plugin-Varianten: kombiniertes Mitarbeiterverzeichnis (LIST + SHOW), eigenständige Mitarbeiterliste (LIST) und eigenständige Detailansicht (SHOW).
+* Mitarbeiterübersicht mit Profilkarten und individuellen Detailansichten.
+* **Neu in der geplanten Version 1.1.0:** Wahlweise Standardansicht oder nach Abteilungen gruppierte Mitarbeiterliste. Die Gruppen werden alphabetisch nach Abteilungsnamen angeordnet; Mitarbeiter innerhalb der Gruppen nach Nach- und Vornamen. Mitarbeiter ohne Abteilung erscheinen in einer eigenen Gruppe am Ende.
+* Suche nach Nachnamen, Filter nach Abteilung und Funktion sowie alphabetischer A–Z-Filter für Nachnamen.
+* In den Auswahllisten erscheinen nur Abteilungen und Funktionen, die Mitarbeiterdatensätzen zugeordnet sind.
+* Deutsche und englische Oberflächenbeschriftungen; zusätzlich ist eine plattdeutsche Übersetzung enthalten.
+* Integration über ein TYPO3 Site Set mit wählbarem eigenständigem CSS oder Bootstrap-orientiertem CSS.
+* Konfigurierbare Filter, Karteninhalte, Bilder, Platzhalter und Frontend-Beschriftungen.
 
 ## Vorschau
 
-![Vorschau des Mitarbeiterverzeichnisses mit Suchfiltern und Mitarbeiterkarten](Documentation/Images/employee-preview.png)
+[![Vorschau des Mitarbeiterverzeichnisses mit Suchfiltern und Mitarbeiterkarten](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-preview.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-preview.png)
 
 ## Systemvoraussetzungen
 
-- TYPO3 **ab 14.3 und unterhalb von 15.0** (entsprechend den Composer-Versionsbedingungen).
-- Eine zur TYPO3-Installation passende PHP- und Datenbankversion.
-- TYPO3 Core, Extbase und Fluid (`typo3/cms-core`, `typo3/cms-extbase`, `typo3/cms-fluid`).
-- Eine eingerichtete TYPO3-Website mit Site-Konfiguration, Dateispeicher und funktionierender Bildverarbeitung.
+* TYPO3 **ab 14.3 und unterhalb von 15.0** (entsprechend den Composer-Versionsbedingungen).
+* Eine zur TYPO3-Installation passende PHP- und Datenbankversion.
+* TYPO3 Core, Extbase und Fluid (`typo3/cms-core`, `typo3/cms-extbase`, `typo3/cms-fluid`).
+* Eine eingerichtete TYPO3-Website mit Site-Konfiguration, Dateispeicher und funktionierender Bildverarbeitung.
 
 ## Installation
 
@@ -37,22 +38,22 @@ Der Composer-Paketname lautet `dirk-lehmann/employee-directory`, der TYPO3-Exten
 
 **Erfolgreich getestete Installation über GitHub-VCS (TYPO3 14.3.10, DDEV, 23.10.2026):** Im Hauptverzeichnis des TYPO3-Projekts das öffentliche Git-Repository registrieren und die Entwicklungsversion installieren:
 
-```bash
+```
 composer config repositories.employee-directory vcs https://github.com/dirklehmann68/employee-directory
 composer require "dirk-lehmann/employee-directory:@dev"
 ```
 
 Unter DDEV beiden Befehlen `ddev` voranstellen. Nach der Installation das TYPO3-Extension-/Datenbank-Setup durchführen, beispielsweise:
 
-```bash
+```
 ddev exec vendor/bin/typo3 extension:setup
 ```
 
-Dieser Installationsweg über GitHub wurde in einem frischen Composer-Projekt überprüft. **Das bedeutet nicht, dass das Paket bereits auf Packagist verfügbar ist.**
+Dieser Installationsweg über GitHub wurde in einem frischen Composer-Projekt überprüft. **Dies beschreibt den damals getesteten Entwicklungsweg; für veröffentlichte Versionen ist die reguläre Composer-Installation vorzuziehen.**
 
 **Alternative: lokaler Quellcode-Checkout.** Das Verzeichnis als Composer-Path-Repository in der `composer.json` des **TYPO3-Hauptprojekts** eintragen (Pfad an die eigene Umgebung anpassen):
 
-```json
+```
 {
   "repositories": [
     {
@@ -66,11 +67,11 @@ Dieser Installationsweg über GitHub wurde in einem frischen Composer-Projekt ü
 
 Anschließend im Hauptverzeichnis des TYPO3-Projekts ausführen:
 
-```bash
+```
 composer require dirk-lehmann/employee-directory:@dev
 ```
 
-`@dev` kennzeichnet die aktuelle Entwicklungsversion – sowohl bei GitHub-VCS als auch bei lokalen Path-Repositories. Es ist keine Empfehlung für eine produktive Veröffentlichung. Sobald ein getaggtes Release über ein Composer-Repository veröffentlicht wurde, sollte dessen reguläre Versionsnummer verwendet werden. **Eine Veröffentlichung und Verfügbarkeit über Packagist sind noch nicht bestätigt.**
+`@dev` kennzeichnet die aktuelle Entwicklungsversion – sowohl bei GitHub-VCS als auch bei lokalen Path-Repositories. Es ist keine Empfehlung für eine produktive Veröffentlichung. Sobald ein getaggtes Release über ein Composer-Repository veröffentlicht wurde, sollte dessen reguläre Versionsnummer verwendet werden. **Die oben gezeigten `@dev`-Befehle sind für Entwicklungsinstallationen gedacht.**
 
 Nach der Installation den Datenbank-/Schema-Abgleich über `extension:setup` oder die TYPO3-Backend-Werkzeuge durchführen. Das Hinzufügen des Composer-Pakets allein garantiert nicht, dass alle Tabellen angelegt sind. Beim frischen DDEV-Test wurde anschließend bestätigt, dass das Datenbankschema aktuell ist.
 
@@ -86,8 +87,7 @@ Nach der Installation den Datenbank-/Schema-Abgleich über `extension:setup` ode
 
 **Beobachtung in dieser Testumgebung:** Mit `automaticInstallation = 1` scheiterte der ZIP-Upload sowohl bei `employee_directory` als auch bei der offiziellen Extension `container` mit der Meldung `Extension … is not available`; anschließend war `typo3conf/ext/` wieder leer. Nach Deaktivierung der automatischen Installation wurden beide ZIP-Dateien erfolgreich hochgeladen und in der Extension-Liste angezeigt. Die manuell aktivierte `employee_directory` lieferte wieder zwei bestehende Mitarbeiter-Cards im Frontend.
 
-
-Auch die manuelle Installation per FTP wurde erfolgreich getestet. Der ZIP-Upload ist damit praktisch getestet; eine Installation aus dem **TYPO3 Extension Repository (TER)** wurde noch nicht getestet. Eine TER-Veröffentlichung ist nicht bestätigt.
+Auch die manuelle Installation per FTP wurde erfolgreich getestet. Der ZIP-Upload ist damit praktisch getestet; eine Installation aus dem **TYPO3 Extension Repository (TER)** wurde noch nicht getestet. Version 1.0.1 ist inzwischen im TER veröffentlicht; der hier beschriebene ZIP-Test erfolgte zuvor mit Version 1.0.0.
 
 ## Einrichtung in TYPO3
 
@@ -114,13 +114,14 @@ Für die Navigation zwischen getrennten LIST-/SHOW-Seiten müssen **beide** Seit
 
 ### Anzeige- und Filtereinstellungen
 
-Die folgenden Einstellungen wurden in der frischen TYPO3-Installation überprüft:
+Die folgenden Einstellungen wurden in den beschriebenen Testinstallationen überprüft; die neue Darstellungseinstellung wurde zusätzlich in der Mittwald-Testumgebung mit TYPO3 14.3.6 geprüft:
 
-- **Sites → Settings → Employee Directory → Filter:** Namenssuche, Funktionsfilter, Abteilungsfilter und A–Z-Filter einzeln ein-/ausblenden. Sind alle drei Formularfilter ausgeschaltet, verschwinden auch die Schaltflächen zum Anwenden und Zurücksetzen; der A–Z-Filter ist unabhängig davon.
-- **Sites → Settings → Employee Directory → Appearance:** Zwischen **Standalone CSS** und **Bootstrap CSS** wechseln. Im Test wurde jeweils nur das ausgewählte Stylesheet geladen.
-- **Sites → Settings → Employee Directory:** Frontend-Beschriftungen optional überschreiben. Leere Überschreibungen verwenden wieder die übersetzten Standardbeschriftungen.
-- **Inhaltselement → Plugin → Card content:** Funktion, Abteilung, Telefon, E-Mail, Standort, Raum und Sprechzeiten einzeln ein-/ausblenden.
-- **Inhaltselement → Plugin → Images:** Mitarbeiterfotos und Platzhalter bei fehlendem Foto ein-/ausblenden. Bei deaktivierter Fotoanzeige wird auch kein Platzhalter angezeigt.
+* **Sites → Settings → Employee Directory → Filter:** Namenssuche, Funktionsfilter, Abteilungsfilter und A–Z-Filter einzeln ein-/ausblenden. Sind alle drei Formularfilter ausgeschaltet, verschwinden auch die Schaltflächen zum Anwenden und Zurücksetzen; der A–Z-Filter ist unabhängig davon.
+* **Sites → Settings → Employee Directory → Appearance:** Zwischen **Standalone CSS** und **Bootstrap CSS** wechseln. Im Test wurde jeweils nur das ausgewählte Stylesheet geladen.
+* **Sites → Settings → Employee Directory:** Frontend-Beschriftungen optional überschreiben. Leere Überschreibungen verwenden wieder die übersetzten Standardbeschriftungen.
+* **Inhaltselement → Plugin → Darstellung (Entwicklungsstand 1.1.0):** Unter **Darstellung der Mitarbeiterliste** zwischen **Standardansicht** und **Nach Abteilungen gruppiert** wählen. Die Standardansicht bleibt unverändert. Im Gruppierungsmodus erscheinen Abteilungsüberschriften über den zugehörigen Cards. Der A–Z-Filter bezieht sich weiterhin auf den **Nachnamen**, nicht auf die Abteilung. Der eigene Reiter **Darstellung** wurde im TYPO3-14.3.6-Backend geprüft.
+* **Inhaltselement → Plugin → Card-Inhalte:** Funktion, Abteilung, Telefon, E-Mail, Standort, Raum und Sprechzeiten einzeln ein-/ausblenden.
+* **Inhaltselement → Plugin → Bilder:** Mitarbeiterfotos und Platzhalter bei fehlendem Foto ein-/ausblenden. Bei deaktivierter Fotoanzeige wird auch kein Platzhalter angezeigt.
 
 Die getesteten Schalter für Karteninhalte und Bilder betreffen **nur die LIST-Darstellung**, nicht die Felder in der **SHOW-Detailansicht**. Der Ausgangspunkt für die Datensatzablage muss wie oben beschrieben im Listen-Plugin eingerichtet sein.
 
@@ -130,7 +131,7 @@ TYPO3 erzeugt ohne passende Routing-Konfiguration für Detailansichten gegebenen
 
 Das folgende vollständige Beispiel enthält zwei Varianten: einen Route Enhancer für das kombinierte Plugin auf Seite **3** und einen zweiten für das eigenständige Detail-Plugin auf Seite **5**. **Diese Seiten-IDs sind Beispiele und müssen an die eigene Installation angepasst werden.** Wer nur das kombinierte Plugin verwendet, benötigt nur den ersten Enhancer.
 
-```yaml
+```
 routeEnhancers:
   EmployeeDirectory:
     type: Extbase
@@ -172,11 +173,11 @@ routeEnhancers:
 
 **Wichtige Hinweise:**
 
-- `limitToPages` begrenzt jeden Enhancer auf die tatsächlich zugehörige Plugin-Seite. Ohne diese Begrenzung können sich die beiden Enhancer gegenseitig beeinflussen; im Praxistest führte das bei der getrennten Detailseite zu einer fehlenden `employee`-Action-Argument-Zuordnung.
-- `routeFieldName: slug` verweist auf das Slug-Feld des Mitarbeiterdatensatzes. Das Feld muss für den jeweiligen Datensatz korrekt befüllt sein.
-- Für getrennte LIST-/SHOW-Plugins müssen zusätzlich `detailPageUid` und `listPageUid` in den **Site-Set-Einstellungen** auf die jeweiligen Seiten zeigen.
-- **Mehrere TYPO3-Sites:** In unserem Test konnten Mitarbeiter aus einer Datensatzablage unterhalb einer anderen Site über den konfigurierten Extbase-Ausgangspunkt gelistet werden, während die Slug-Auflösung des `PersistedAliasMapper` zu 404 führte. Ein Mitarbeiter in einer Datensatzablage innerhalb des Demo-Site-Baums ließ sich dagegen per Slug aufrufen. Dies ist eine Beobachtung aus unserer Installation, kein allgemeiner Nachweis über sämtliche TYPO3-Konfigurationen. Prüfe bei 404 daher auch die Site-Zugehörigkeit und den Speicherort der Datensätze.
-- Jede TYPO3-Site benötigt ihre eigene passende Site-Konfiguration und die richtigen `limitToPages`-Werte. Nach Änderungen gegebenenfalls TYPO3-Caches leeren.
+* `limitToPages` begrenzt jeden Enhancer auf die tatsächlich zugehörige Plugin-Seite. Ohne diese Begrenzung können sich die beiden Enhancer gegenseitig beeinflussen; im Praxistest führte das bei der getrennten Detailseite zu einer fehlenden `employee`-Action-Argument-Zuordnung.
+* `routeFieldName: slug` verweist auf das Slug-Feld des Mitarbeiterdatensatzes. Das Feld muss für den jeweiligen Datensatz korrekt befüllt sein.
+* Für getrennte LIST-/SHOW-Plugins müssen zusätzlich `detailPageUid` und `listPageUid` in den **Site-Set-Einstellungen** auf die jeweiligen Seiten zeigen.
+* **Mehrere TYPO3-Sites:** In unserem Test konnten Mitarbeiter aus einer Datensatzablage unterhalb einer anderen Site über den konfigurierten Extbase-Ausgangspunkt gelistet werden, während die Slug-Auflösung des `PersistedAliasMapper` zu 404 führte. Ein Mitarbeiter in einer Datensatzablage innerhalb des Demo-Site-Baums ließ sich dagegen per Slug aufrufen. Dies ist eine Beobachtung aus unserer Installation, kein allgemeiner Nachweis über sämtliche TYPO3-Konfigurationen. Prüfe bei 404 daher auch die Site-Zugehörigkeit und den Speicherort der Datensätze.
+* Jede TYPO3-Site benötigt ihre eigene passende Site-Konfiguration und die richtigen `limitToPages`-Werte. Nach Änderungen gegebenenfalls TYPO3-Caches leeren.
 
 ## Bedienung
 
@@ -192,14 +193,14 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 
 ## Bekannte Einschränkungen
 
-- Der A–Z-Filter bezieht sich auf Nachnamen. Die Suche nach Umlauten kann von der Datenbank-Kollation abhängen.
-- Eine Seitennavigation (Pagination) für umfangreiche Verzeichnisse ist noch nicht vorhanden.
-- Mehrere unabhängig filterbare Plugin-Instanzen auf derselben Seite sind noch nicht getestet.
-- Ein Route Enhancer für sprechende URLs wird nicht automatisch mitgeliefert; ein vollständiges Konfigurationsbeispiel steht oben.
-- Die Rücknavigation zur Liste erhält gesetzte Filter noch nicht.
-- Die Navigation zwischen getrennten LIST-/SHOW-Plugins wurde in der frischen Installation in beide Richtungen erfolgreich getestet. Direktlinks auf verborgene/gelöschte Datensätze, fehlende Zielseiten-IDs, mehrere Instanzen und Cache-Grenzfälle sind noch gesondert zu prüfen.
-- Eine fehlende Listen-Seiten-ID kann beim Rücklink der eigenständigen Detailansicht eine Frontend-Exception auslösen. Deshalb beide Seiten-IDs konfigurieren.
-- Der ZIP-Upload und die manuelle Aktivierung im Classic Mode wurden in einer separaten TYPO3-14.3.7-Installation erfolgreich getestet; eine vollständige Erstinstallation mit neu angelegten Datensätzen und alle Funktionstests stehen noch aus.
+* Der A–Z-Filter bezieht sich auf Nachnamen. Die Suche nach Umlauten kann von der Datenbank-Kollation abhängen.
+* Eine Seitennavigation (Pagination) für umfangreiche Verzeichnisse ist noch nicht vorhanden.
+* Mehrere unabhängig filterbare Plugin-Instanzen auf derselben Seite sind noch nicht getestet.
+* Ein Route Enhancer für sprechende URLs wird nicht automatisch mitgeliefert; ein vollständiges Konfigurationsbeispiel steht oben.
+* Die Rücknavigation zur Liste erhält gesetzte Filter noch nicht.
+* Die Navigation zwischen getrennten LIST-/SHOW-Plugins wurde in der frischen Installation in beide Richtungen erfolgreich getestet. Direktlinks auf verborgene/gelöschte Datensätze, fehlende Zielseiten-IDs, mehrere Instanzen und Cache-Grenzfälle sind noch gesondert zu prüfen.
+* Eine fehlende Listen-Seiten-ID kann beim Rücklink der eigenständigen Detailansicht eine Frontend-Exception auslösen. Deshalb beide Seiten-IDs konfigurieren.
+* Der ZIP-Upload und die manuelle Aktivierung im Classic Mode wurden in einer separaten TYPO3-14.3.7-Installation erfolgreich getestet; eine vollständige Erstinstallation mit neu angelegten Datensätzen und alle Funktionstests stehen noch aus.
 
 ## Fehlerbehebung
 
@@ -215,35 +216,65 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 | Filter gehen beim Wechsel zurück zur Übersicht verloren | Bekannte Einschränkung; Verbesserung für eine spätere Version geplant. |
 | Rücklink der eigenständigen Detailansicht erzeugt `RequiredArgumentMissingException` | **Sites → Settings → Employee Directory → Page linking → Page for employee list** prüfen und die tatsächliche Seiten-ID der eigenständigen Liste eintragen. Der Standardwert `0` ist für diese Konstellation ungeeignet. |
 
-## Checkliste vor der Veröffentlichung
+### Teststand der geplanten Version 1.1.0
 
-- [x] Installation aus dem öffentlichen GitHub-VCS-Repository in einem **unabhängigen TYPO3-14.3.10-Projekt mit Composer/DDEV** (23.10.2026).
-- [x] Composer-Abhängigkeiten und TYPO3-Datenbankschema in diesem Projekt geprüft.
-- [x] Site Set und Auswahl zwischen eigenständigem und Bootstrap-Stylesheet ohne Demo-TypoScript getestet.
-- [x] Abteilung, Funktion und Mitarbeiter in einer neuen Datensatzablage angelegt.
-- [x] Liste, Detailansicht, Bilder, Platzhalter, Richtext, Suche, Filter, Zurücksetzen und Anzeige bei fehlenden Suchergebnissen im frischen Projekt getestet.
-- [x] Einzelne Schalter für Karteninhalte und Bilder sowie Site-Set-Filter und Beschriftungen getestet.
-- [x] Navigation LIST → SHOW → LIST einschließlich erneuten Durchlaufens mit beiden konfigurierten Seiten-IDs geprüft.
-- [x] Deutsche Frontend-Beschriftungen in der frischen Installation überprüft.
-- [x] ZIP-Upload und manuelle Aktivierung im Classic Mode unter TYPO3 14.3.7 erfolgreich getestet (14.10.2026).
-- [ ] Sämtliche Funktionen bei **ausdrücklich aktiviertem Seiten-Cache** und weitere Cache-Grenzfälle prüfen.
-- [ ] Direktlinks auf verborgene/gelöschte Mitarbeiter, fehlende Seiten-ID-Konfiguration und mehrere Plugin-Instanzen testen.
-- [ ] Englische Bedienoberfläche ausdrücklich testen sowie zusätzliche Fälle der Datensatzsichtbarkeit prüfen.
-- [ ] Vollständige Erstinstallation im Classic Mode einschließlich Schema-Abgleich, neuer Datensätze und aller Funktionen testen.
-- [ ] Geprüfte Screenshots und Veröffentlichungsangaben vor der Veröffentlichung ergänzen.
+* **TYPO3 14.3.6, Composer, Mittwald (06.–07.11.2026):** Die lokale Entwicklungsfassung wurde per SSH/SCP in ein separates Staging-Verzeichnis übertragen und anschließend in der Testinstallation eingespielt. Die zuvor aktive Extension wurde gesichert; ein Verzeichnisvergleich bestätigte nach der Übernahme die Übereinstimmung mit dem Staging-Stand.
+* Der geänderte `EmployeeController.php` bestand die PHP-Syntaxprüfung. `EmployeeList.xml`, `locallang.xlf` und `de.locallang.xlf` bestanden die XML-Syntaxprüfung. Diese Prüfungen ersetzen keine funktionalen Tests.
+* Der neue FlexForm-Reiter **Darstellung** wurde im Backend mit deutscher Beschriftung und der Auswahl zwischen **Standardansicht** und **Nach Abteilungen gruppiert** geprüft. Die Reiter **Card-Inhalte** und **Bilder** blieben vorhanden.
+* Die nach Abteilungen gruppierte Mitarbeiterliste wurde im Bootstrap-Modus mit mehreren Abteilungen, ein- und zweispaltigen Card-Reihen sowie in schmaler Darstellung visuell überprüft. Das Ausblenden der Abteilungsangabe innerhalb der Cards wurde über die vorhandene Plugin-Einstellung getestet.
+* **Kombinierte Filterung geprüft:** Die Namenssuche `Dauer` zusammen mit der Funktion `Unfallchirurg` lieferte ausschließlich **Dr. med. Manfred Dauerbruch** unter der Abteilungsüberschrift **Unfallchirurgie**. Auch die Anpassung des A–Z-Filters war sichtbar. Dies belegt die geprüfte Kombination, nicht sämtliche denkbaren Filterkombinationen.
+* Bei einem früheren Test war nach dem Einspielen neuer Extension-Dateien ein Datenbankschema-Abgleich erforderlich (`hidden`-Felder für Abteilungen und Funktionen). Anschließend waren Datensätze und Frontend-Ausgabe wieder erreichbar.
+* **Noch ausstehend:** vollständige Regression der Standardansicht und weiterer Filterkombinationen, Sprachvarianten, Mitarbeiter ohne Abteilung sowie erneuter Test mit dem endgültigen Release-Paket.
+
+## Checkliste vor der Veröffentlichung von 1.1.0
+
+Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x. Sie sind **nicht automatisch als erneute Abnahme von 1.1.0** zu verstehen.
+
+* Installation aus dem öffentlichen GitHub-VCS-Repository in einem **unabhängigen TYPO3-14.3.10-Projekt mit Composer/DDEV** (23.10.2026).
+* Composer-Abhängigkeiten und TYPO3-Datenbankschema in diesem Projekt geprüft.
+* Site Set und Auswahl zwischen eigenständigem und Bootstrap-Stylesheet ohne Demo-TypoScript getestet.
+* Abteilung, Funktion und Mitarbeiter in einer neuen Datensatzablage angelegt.
+* Liste, Detailansicht, Bilder, Platzhalter, Richtext, Suche, Filter, Zurücksetzen und Anzeige bei fehlenden Suchergebnissen im frischen Projekt getestet.
+* Einzelne Schalter für Karteninhalte und Bilder sowie Site-Set-Filter und Beschriftungen getestet.
+* Navigation LIST → SHOW → LIST einschließlich erneuten Durchlaufens mit beiden konfigurierten Seiten-IDs geprüft.
+* Deutsche Frontend-Beschriftungen in der frischen Installation überprüft.
+* ZIP-Upload und manuelle Aktivierung im Classic Mode unter TYPO3 14.3.7 erfolgreich getestet (14.10.2026).
+* Sämtliche Funktionen bei **ausdrücklich aktiviertem Seiten-Cache** und weitere Cache-Grenzfälle prüfen.
+* Direktlinks auf verborgene/gelöschte Mitarbeiter, fehlende Seiten-ID-Konfiguration und mehrere Plugin-Instanzen testen.
+* Englische Bedienoberfläche ausdrücklich testen sowie zusätzliche Fälle der Datensatzsichtbarkeit prüfen.
+* Vollständige Erstinstallation im Classic Mode einschließlich Schema-Abgleich, neuer Datensätze und aller Funktionen testen.
+* Geprüfte Screenshots und Veröffentlichungsangaben vor der Veröffentlichung ergänzen.
+* **1.1.0 – bereits im Entwicklungsstand geprüft:** Gruppierung nach Abteilungen, neue Reiteranordnung mit deutscher Beschriftung, Bootstrap-Layout und eine kombinierte Namens-/Funktionsfilterung.
+* **1.1.0 – noch offen:** vollständige Prüfung beider Ansichten mit weiteren Filterkombinationen, Mitarbeiter ohne Abteilung, Sprachvarianten und erneuter Test des endgültigen Release-Pakets.
+
+## Ausblick und Roadmap
+
+Die Employee Directory wird schrittweise weiterentwickelt. Im Mittelpunkt stehen eine einfache Bedienung, eine übersichtliche Konfiguration und ein bewusst begrenzter Funktionsumfang. **Die folgenden Punkte sind Ideen beziehungsweise Entwicklungsabsichten, keine zugesagten Funktionen oder Veröffentlichungstermine.** Sie sind **nicht Bestandteil der Version 1.1.0**.
+
+* **Facettierte Filterung:** Die verfügbaren Filteroptionen sollen sich an bereits gewählte Suchkriterien anpassen, ohne aktive Auswahlen unzugänglich zu machen.
+* **Alternative Card-Layouts:** Zusätzlich zur bisherigen Card-Darstellung ist ein kompakteres Layout mit reduzierten Profilinformationen denkbar.
+* **Unabhängig wählbare Gruppierung:** Gruppierung (beispielsweise keine, nach Abteilung oder alphabetisch nach Nachnamen) und Card-Layout sollen perspektivisch getrennt konfigurierbar sein.
+* **Individuelle Abteilungssortierung:** Optional festlegbare Reihenfolge der Abteilungen statt ausschließlich alphabetischer Sortierung.
+* **Zeitgesteuerte Sichtbarkeit:** Nutzung der TYPO3-Standardfelder für Veröffentlichungsbeginn und -ende (`starttime`/`endtime`) bei Mitarbeiterdatensätzen, einschließlich Prüfung von TCA, Repository-Verhalten und Caching. Diese Unterstützung ist für die Extension bislang nicht als fertig getestet dokumentiert.
+* **Verbesserte Rücknavigation:** Such- und Filtereinstellungen beim Wechsel von der Detailansicht zurück zur Liste beibehalten.
+* **Pagination:** Seitennavigation für größere Mitarbeiterverzeichnisse.
+* **Optionale Adress- und Kartenanzeige:** Ein Adressfeld mit möglicher Kartenintegration auf der Mitarbeiterdetailseite; technische und datenschutzrechtliche Fragen sind noch zu klären.
+* **CSV-Import:** Import von Mitarbeiterdaten, beispielsweise aus Excel, als **separate, optional installierbare Extension**, damit die Haupt-Extension übersichtlich bleibt.
+
+Reihenfolge, Umfang und Umsetzung können sich im Laufe der Entwicklung ändern. Eine Zuordnung dieser Ideen zu bestimmten Versionsnummern ist derzeit nicht vorgesehen.
 
 ## Screenshots
 
 ### Mitarbeiterverzeichnis (LIST)
 
-![Mitarbeiterverzeichnis mit Suchfiltern und Mitarbeiterkarten](Documentation/Images/employee-list.png)
+[![Mitarbeiterverzeichnis mit Suchfiltern und Mitarbeiterkarten](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-list.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-list.png)
 
 ### Mitarbeiterprofil (SHOW)
 
-![Mitarbeiterprofil mit Kontaktdaten und Beschreibung](Documentation/Images/employee-detail.png)
+[![Mitarbeiterprofil mit Kontaktdaten und Beschreibung](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-detail.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-detail.png)
 
 ## Lizenz
 
 Diese Extension ist unter der GNU General Public License, Version 2 oder einer späteren Version (GPL-2.0-or-later) lizenziert.
 
-Die Lizenz ist in der [`composer.json`](composer.json) angegeben. Den vollständigen Lizenztext findest du in der Datei [LICENSE](LICENSE).
+Die Lizenz ist in der [`composer.json`](https://github.com/dirklehmann68/employee-directory/blob/main/composer.json) angegeben. Den vollständigen Lizenztext findest du in der Datei [LICENSE](https://github.com/dirklehmann68/employee-directory/blob/main/LICENSE).

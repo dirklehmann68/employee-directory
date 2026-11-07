@@ -2,6 +2,25 @@
    Employee Directory – Bootstrap Additions
    ========================================================== */
 
+
+/* A–Z-Navigation */
+.employee-directory .employee-filter-az .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border-radius: var(--bs-border-radius);
+}
+
+/* Alle-Button */
+.employee-directory .employee-filter-az .employee-filter-all {
+    width: auto;
+    padding-right: .75rem;
+    padding-left: .75rem;
+}
+
 /* Kontakt-Icons nebeneinander anordnen */
 .employee-directory .employee-contact-wrap {
     display: flex;
@@ -55,8 +74,9 @@
     outline-offset: 3px;
 }
 
-.employee-directory .employee-filter-az .page-link {
-    border-radius: var(--bs-border-radius);
+/* Abstand vor dem Mehr-erfahren-Button */
+.employee-directory .employee-card-actions {
+    padding-top: 1rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <xliff version="1.2">
     <file source-language="en" datatype="plaintext" original="messages">
         <body>
@@ -85,6 +85,10 @@
                 <source>Overview</source>
             </trans-unit>
             <!-- FlexForm -->
+            <trans-unit id="flexform.sheet.display">
+                <source>Display</source>
+            </trans-unit>
+
             <trans-unit id="flexform.sheet.card_content">
                 <source>Card content</source>
             </trans-unit>
@@ -127,6 +131,22 @@
 
             <trans-unit id="flexform.show_office_hours">
                 <source>Show office hours</source>
+            </trans-unit>
+
+            <trans-unit id="list.withoutDepartment">
+                <source>Without department</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.list_layout">
+                <source>List layout</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.list_layout.default">
+                <source>Standard view</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.list_layout.department">
+                <source>Grouped by department</source>
             </trans-unit>
         </body>
     </file>

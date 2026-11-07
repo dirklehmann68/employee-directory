@@ -105,6 +105,11 @@
                 <target>Übersicht</target>
             </trans-unit>
             <!-- FlexForm -->
+            <trans-unit id="flexform.sheet.display">
+                <source>Display</source>
+                <target>Darstellung</target>
+            </trans-unit>
+
             <trans-unit id="flexform.sheet.card_content">
                 <source>Card content</source>
                 <target>Card-Inhalte</target>
@@ -158,6 +163,26 @@
             <trans-unit id="flexform.show_office_hours">
                 <source>Show office hours</source>
                 <target>Sprechzeiten anzeigen</target>
+            </trans-unit>
+
+            <trans-unit id="list.withoutDepartment">
+                <source>Without department</source>
+                <target>Ohne Abteilung</target>
+            </trans-unit>
+
+            <trans-unit id="flexform.list_layout">
+                <source>List layout</source>
+                <target>Darstellung der Mitarbeiterliste</target>
+            </trans-unit>
+
+            <trans-unit id="flexform.list_layout.default">
+                <source>Standard view</source>
+                <target>Standardansicht</target>
+            </trans-unit>
+
+            <trans-unit id="flexform.list_layout.department">
+                <source>Grouped by department</source>
+                <target>Nach Abteilungen gruppiert</target>
             </trans-unit>
         </body>
     </file>

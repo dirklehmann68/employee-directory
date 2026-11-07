@@ -1,56 +1,57 @@
 # Employee Directory for TYPO3
 
-[English](README.md) | [Deutsch](README.de.md)
+[English](https://github.com/dirklehmann68/employee-directory/blob/main/README.md) | [Deutsch](https://github.com/dirklehmann68/employee-directory/blob/main/README.de.md)
 
-A TYPO3 extension for maintaining employee profiles and displaying a searchable, filterable employee directory.
+A TYPO3 extension for managing employee profiles and displaying a searchable, filterable employee directory.
 
-> **Project status (23 October 2026):** Source code is publicly available on [GitHub](https://github.com/dirklehmann68/employee-directory). Installation directly from the GitHub VCS repository and functional testing were successful in a fresh TYPO3 14.3.10 Composer/DDEV project. Combined directory functionality, filters, image and display settings, and standalone LIST/SHOW navigation were tested. Packagist/TER publication, an official release tag and remaining edge-case tests are still pending.
+> **Project status (7 November 2026):** Version **1.0.1** has been published on GitHub and is available in the TYPO3 Extension Repository (TER). Version **1.1.0** is undergoing testing and documentation updates and has **not yet been released**. Optional grouping by department, the new FlexForm tab layout, and combined search filters have been tested in a TYPO3 14.3.6 Composer installation hosted by Mittwald. Final release tests are still pending.
 
 ## Features
 
-- Employee records with title, first name, last name, photo, phone, email, room, location, office hours and rich-text description.
-- Separate department and job-function records, assignable to employees.
-- Three plugin variants: combined employee directory (LIST + SHOW), standalone employee list (LIST), and standalone employee detail view (SHOW).
-- Employee overview with profile cards and individual detail pages.
-- Search by last name, filters for department and job function, and an A–Z last-name filter.
-- Filter options for departments and job functions are restricted to values currently used by employee records.
-- German and English frontend labels; an additional Low German translation is included.
-- Site Set integration with selectable standalone or Bootstrap-oriented CSS.
-- Configurable filters, card fields, images, placeholder display and frontend labels.
+* Employee records with salutation/title, first and last name, photo, phone number, email, room, location, office hours, and a rich-text description.
+* Separate department and job-function records that can be assigned to employees.
+* Three plugin variants: combined employee directory (LIST + SHOW), standalone employee list (LIST), and standalone employee detail view (SHOW).
+* Employee overview with profile cards and individual detail pages.
+* **New in the planned 1.1.0 release:** Choose between the standard list and a list grouped by department. Groups are sorted alphabetically by department name; employees within each group are sorted by last name and then first name. Employees without an assigned department appear in a separate group at the end.
+* Search by last name, filter by department or job function, and an alphabetical A–Z filter for last names.
+* Filter dropdowns include only departments and job functions assigned to employee records.
+* German and English interface labels, plus an additional Low German translation.
+* Integration through a TYPO3 Site Set, with a choice of standalone CSS or Bootstrap-oriented CSS.
+* Configurable filters, card content, images, placeholders, and frontend labels.
 
 ## Preview
 
-![Employee Directory preview](Documentation/Images/employee-preview.png)
+[![Employee directory preview with search filters and employee cards](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-preview.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-preview.png)
 
 ## Requirements
 
-- TYPO3 **14.3 or later, but below 15.0** (according to the extension's Composer constraints).
-- PHP and database versions supported by your TYPO3 installation.
-- TYPO3 Core, Extbase and Fluid (`typo3/cms-core`, `typo3/cms-extbase`, `typo3/cms-fluid`).
-- A functioning TYPO3 site with an appropriate site configuration, file storage and image processing.
+* TYPO3 **14.3 or later, but below 15.0** (as specified by the Composer version constraints).
+* PHP and database versions compatible with the TYPO3 installation.
+* TYPO3 Core, Extbase, and Fluid (`typo3/cms-core`, `typo3/cms-extbase`, `typo3/cms-fluid`).
+* A configured TYPO3 site with file storage and working image processing.
 
 ## Installation
 
-### Composer installation (intended installation method)
+### Composer installation (preferred method)
 
-The extension package is named `dirk-lehmann/employee-directory` and its extension key is `employee_directory`.
+The Composer package name is `dirk-lehmann/employee-directory`; the TYPO3 extension key is `employee_directory`.
 
-**Verified GitHub VCS installation (TYPO3 14.3.10, DDEV, 23 October 2026):** From the TYPO3 project root, register the public Git repository and require the development version:
+**Successfully tested installation via GitHub VCS (TYPO3 14.3.10, DDEV, 23 October 2026):** Register the public Git repository and install the development version from the TYPO3 project root:
 
 ```bash
 composer config repositories.employee-directory vcs https://github.com/dirklehmann68/employee-directory
 composer require "dirk-lehmann/employee-directory:@dev"
 ```
 
-In DDEV, prefix both commands with `ddev`. After installation, run the TYPO3 extension/database setup as appropriate, for example:
+When using DDEV, prefix both commands with `ddev`. After installation, run the TYPO3 extension/database setup, for example:
 
 ```bash
 ddev exec vendor/bin/typo3 extension:setup
 ```
 
-The GitHub VCS approach above was verified in a fresh Composer project. **It does not mean that the package is already available on Packagist.**
+This GitHub installation method was verified in a fresh Composer project. **It describes the development workflow tested at that time; regular Composer installation is preferable for published versions.**
 
-**Alternative: local source checkout.** Add the directory as a Composer path repository in the **root project's** `composer.json` (adapt the path to your environment):
+**Alternative: local source checkout.** Register the checkout as a Composer path repository in the **main TYPO3 project's** `composer.json` (adjust the path for your environment):
 
 ```json
 {
@@ -70,65 +71,65 @@ Then run from the TYPO3 project root:
 composer require dirk-lehmann/employee-directory:@dev
 ```
 
-The `@dev` constraint is for the current development version (both GitHub VCS and local path installations), not a recommended production release constraint. Once a tagged release is published through a Composer repository, use its published version and normal installation instructions instead. **Publication and Packagist availability are not yet confirmed.**
+`@dev` refers to the current development version, both for GitHub VCS and local path repositories. It is not a recommendation for production deployments. Once a tagged release is available through a Composer repository, use its regular version constraint instead. **The `@dev` commands above are intended for development installations.**
 
-After installing, run the TYPO3 database/schema update appropriate for your environment, using `extension:setup` or the TYPO3 backend maintenance tools. Do not assume that adding the package alone creates all required database tables. In the fresh DDEV test, the schema was subsequently confirmed as up to date.
+After installation, synchronize the database schema using `extension:setup` or the TYPO3 backend tools. Adding the Composer package alone does not guarantee that all database tables have been created. The fresh DDEV test subsequently confirmed that the schema was up to date.
 
-### Classic Mode (without Composer) — ZIP upload tested successfully
+### Installation without Composer (Classic Mode) – ZIP upload successfully tested
 
-**Test environment:** TYPO3 14.3.7, Classic Mode installation without Composer on ALL-INKL, `employee_directory` version 1.0.0 (14 October 2026).
+**Test environment:** TYPO3 14.3.7, Classic Mode on ALL-INKL, `employee_directory` version 1.0.0 (14 October 2026).
 
-1. Create a ZIP archive with `composer.json`, `Classes/`, `Configuration/`, and `Resources/` **at the archive root**, not nested inside an additional `employee_directory/` directory.
-2. In the TYPO3 backend, open **System → Settings → Extension Configuration → extensionmanager**. If necessary, disable **“Install extensions automatically after download from TER or file upload”** (`automaticInstallation`) and save.
-3. In **System → Extension**, use **Upload Extension** to upload `employee_directory.zip`.
-4. Confirm the successful upload and the **Employee Directory** entry (`employee_directory`, version 1.0.0) in the extension list.
-5. Activate the extension manually using the **A/D** column. Then verify configuration and perform the database/schema update if required.
+1. Create a ZIP file with `composer.json`, `Classes/`, `Configuration/`, and `Resources/` **at the archive root**, not inside an additional `employee_directory/` folder.
+2. In the TYPO3 backend, under **System → Settings → Extension Configuration → extensionmanager**, disable **“Install extensions automatically after download from TER or file upload”** (`automaticInstallation`) if needed, and save the setting.
+3. In **System → Extensions**, choose **Upload Extension**, select `employee_directory.zip`, and upload it.
+4. Check the success message and the **Employee Directory** entry (`employee_directory`, version 1.0.0) in the extension list.
+5. Activate the extension manually using the **A/D** column. Then verify the setup and database schema as needed.
 
-**Observed in this test environment:** With `automaticInstallation = 1`, uploading either `employee_directory` or the official `container` extension failed with `Extension … is not available`; `typo3conf/ext/` was empty afterwards. After disabling automatic installation, both ZIP uploads succeeded and the extensions appeared in the list. Once manually activated, `employee_directory` again rendered two existing employee cards in the frontend.
+**Observation in this test environment:** With `automaticInstallation = 1`, ZIP uploads of both `employee_directory` and the official `container` extension failed with `Extension … is not available`; afterward, `typo3conf/ext/` was empty again. After automatic installation was disabled, both ZIP files uploaded successfully and appeared in the extension list. The manually activated `employee_directory` again displayed two existing employee cards in the frontend.
 
+Manual installation via FTP was also tested successfully. The ZIP upload has therefore been tested in practice; installation directly from the **TYPO3 Extension Repository (TER)** has not yet been tested. Version 1.0.1 is now published in TER, but the ZIP test described here was carried out earlier with version 1.0.0.
 
-Manual installation via FTP was also tested successfully. The ZIP upload workflow has been tested. Installation from the **TYPO3 Extension Repository (TER)** has not been tested, and TER publication is not confirmed.
+## TYPO3 setup
 
-## Configuration in TYPO3
+1. Install and activate the extension.
+2. Add the extension's Site Set (`dirk-lehmann/employee-directory`) to the dependencies of the relevant site. The set also includes the extension's CSS.
+3. Create a page or sysfolder to store employee, department, and job-function records.
+4. Create departments and job functions first, then create employee records and assign their relations.
+5. Add the combined **Employee directory** plugin to a frontend page, or place the standalone **Employee list** and **Employee detail** plugins on separate pages.
+6. Select the record storage location in the plugin settings. Related departments and job functions must also be accessible to the repository queries.
+7. For separate LIST/SHOW plugins, configure **detailPageUid** (page containing the standalone detail plugin) and **listPageUid** (page containing the standalone list plugin) in the **Site Set settings**, under page linking. Both default to `0` and must be set to the respective page IDs for navigation between separate pages. These settings are not part of the list plugin's FlexForm.
+8. Flush caches if necessary and verify the frontend output.
 
-1. Install and activate the extension in your TYPO3 installation.
-2. Add the extension's Site Set (`dirk-lehmann/employee-directory`) to the relevant site's set dependencies, using the TYPO3 site configuration UI. The set provides the extension's TypoScript integration, including its stylesheet.
-3. Create a page or sysfolder to hold the employee, department and job-function records.
-4. Create department and job-function records, then create employee records and assign the appropriate relations.
-5. Add the combined **Employee Directory** plugin to a frontend page, or use the standalone **Employee List** and **Employee Detail** plugins on separate pages.
-6. In the plugin's record-storage setting, select the page/sysfolder containing the relevant records. Ensure related records are accessible to the repository queries as well.
-7. If using the separate LIST and SHOW plugins, configure **detailPageUid** (page containing the standalone detail plugin) and **listPageUid** (page containing the standalone list plugin) in the extension's **Site Set settings** under the page-linking category. Both default to `0` and must be set to the appropriate page IDs for separate-page navigation. These settings are not fields in the list plugin's FlexForm.
-8. Clear caches if needed and check the frontend output.
-
-The Site Set imports `Configuration/TypoScript/setup.typoscript`. There is no demo `setup.typoscript` at the extension root.
+The Site Set imports `Configuration/TypoScript/setup.typoscript`. There is no longer a demo `setup.typoscript` in the extension root.
 
 ### Plugin variants
 
 | Plugin | Purpose | Page linking |
 | --- | --- | --- |
-| **Employee directory** | Combined filterable list and detail view | Detail is handled within the combined plugin. |
+| **Employee directory** | Combined filterable list and detail view | The detail view is handled within the combined plugin. |
 | **Employee list** | Standalone employee list | Set **Page for employee profiles** (`detailPageUid`) to the page containing **Employee detail**. |
 | **Employee detail** | Standalone employee profile | Set **Page for employee list** (`listPageUid`) to the page containing **Employee list**. |
 
-For standalone LIST/SHOW navigation, set **both** page IDs under **Sites → Settings → Employee Directory → Page linking**. In the fresh-install test, leaving the list target at `0` caused the **Back to overview** link to reach an `EmployeeController->show` action without the required `employee` argument. Configuring the correct list page ID resolved the problem; this is a configuration requirement, not evidence that the missing-ID case is handled gracefully.
+For navigation between separate LIST/SHOW pages, **both** page IDs must be set under **Sites → Settings → Employee Directory → Page linking**. In the fresh-installation test, leaving the list page ID at `0` caused the **Back to overview** link to call `EmployeeController->show` without the required `employee` argument. Setting the correct list page ID restored navigation. Correct configuration is therefore necessary; the extension does not yet handle a missing ID gracefully.
 
 ### Display and filter settings
 
-The following controls were verified in the fresh TYPO3 installation:
+The following settings were verified in the test installations described above; the new display setting was also tested in the Mittwald environment running TYPO3 14.3.6:
 
-- **Sites → Settings → Employee Directory → Filter:** show/hide name search, job-function filter, department filter and A–Z filter. Apply/reset controls disappear when all three form filters are disabled; the A–Z filter is independent.
-- **Sites → Settings → Employee Directory → Appearance:** choose **Standalone CSS** or **Bootstrap CSS**. Only the selected stylesheet was loaded in the test.
-- **Sites → Settings → Employee Directory:** optional custom frontend labels; empty overrides fall back to translated labels.
-- **Content element → Plugin → Card content:** show/hide job function, department, phone, email, location, room and office hours.
-- **Content element → Plugin → Images:** show/hide employee photos and the placeholder for missing photos. The placeholder respects the photo visibility setting.
+* **Sites → Settings → Employee Directory → Filter:** Toggle name search, job-function filter, department filter, and A–Z filter independently. If all three form filters are disabled, the Apply and Reset buttons disappear as well; the A–Z filter is independent.
+* **Sites → Settings → Employee Directory → Appearance:** Switch between **Standalone CSS** and **Bootstrap CSS**. Only the selected stylesheet was loaded in the test.
+* **Sites → Settings → Employee Directory:** Optionally override frontend labels. Empty overrides fall back to the translated defaults.
+* **Content element → Plugin → Display (1.1.0 development build):** Under **Employee list display**, choose **Standard view** or **Grouped by department**. The standard view remains unchanged. In grouped mode, department headings appear above the relevant cards. The A–Z filter still applies to **last names**, not department names. The dedicated **Display** tab was verified in the TYPO3 14.3.6 backend.
+* **Content element → Plugin → Card content:** Toggle job function, department, phone, email, location, room, and office hours independently.
+* **Content element → Plugin → Images:** Toggle employee photos and placeholders for missing photos. Disabling photo display also disables the placeholder.
 
-The tested card-content and image visibility switches affect the **LIST** presentation; they do **not** control which fields appear in the **SHOW** detail view. The record-storage starting point must be configured for the list as described above.
+The tested card-content and image toggles affect the **LIST view only**, not the fields in the **SHOW detail view**. The record storage starting point must be configured in the list plugin as described above.
 
-## Readable URLs (route enhancers)
+## Human-readable URLs (Route Enhancer)
 
-Without site-specific routing, detail links may contain Extbase query parameters. Add a route enhancer to **each TYPO3 site's own site configuration** (`config/sites/<site-identifier>/config.yaml`, depending on project layout). **The extension does not install this site-specific configuration automatically.**
+Without suitable routing configuration, TYPO3 may generate detail-view URLs containing Extbase query parameters. For readable employee URLs, configure a Route Enhancer in the **site configuration of the relevant website** (`config/sites/<site-identifier>/config.yaml`, depending on the project structure). **The extension does not install this configuration automatically.**
 
-The following complete example handles the combined plugin on page **3** and the standalone detail plugin on page **5**. **Replace both example page UIDs with your own.** If you only use the combined plugin, keep only the first enhancer.
+The following complete example contains two enhancers: one for the combined plugin on page **3**, and another for the standalone detail plugin on page **5**. **These page IDs are examples and must be adjusted to your installation.** If you use only the combined plugin, you need only the first enhancer.
 
 ```yaml
 routeEnhancers:
@@ -172,79 +173,108 @@ routeEnhancers:
 
 **Important notes:**
 
-- `limitToPages` restricts each enhancer to its corresponding plugin page. Without it, overlapping enhancers caused missing required `employee` action arguments on the standalone detail page in our practical test.
-- `routeFieldName: slug` resolves the employee record's slug; ensure that the slug field is populated correctly.
-- For separate LIST/SHOW pages, also set `detailPageUid` and `listPageUid` in the **Site Set settings**.
-- **Multiple TYPO3 sites:** In our test, Extbase could list employee records stored under another site using the configured record-storage starting point, but `PersistedAliasMapper` returned 404 for their slugs. An employee stored within the demo site's own page tree could be resolved. This is an observation from our setup, not a universal statement about all TYPO3 configurations. Check site ownership and record storage when diagnosing slug-related 404s.
-- Each TYPO3 site requires its own route-enhancer configuration and correct page UIDs. Clear TYPO3 caches after changes if necessary.
+* `limitToPages` restricts each enhancer to its corresponding plugin page. Without this restriction, the enhancers may interfere with each other; in our test, the separate detail page then failed to map the required `employee` action argument.
+* `routeFieldName: slug` refers to the employee record's slug field, which must be populated correctly.
+* For separate LIST/SHOW plugins, `detailPageUid` and `listPageUid` must also point to the corresponding pages in the **Site Set settings**.
+* **Multiple TYPO3 sites:** In our test, employees stored under a different site could be listed via the configured Extbase starting point, while slug resolution through `PersistedAliasMapper` returned a 404. An employee stored within the demo site's page tree could be opened by slug. This is an observation from our installation, not a general conclusion for all TYPO3 configurations. If you encounter a 404, also check site ownership and record storage location.
+* Each TYPO3 site requires its own suitable site configuration and correct `limitToPages` values. Flush TYPO3 caches after changes if needed.
 
-## Using the directory
+## Usage
 
-Visitors can filter employees by last name, job function, department and first letter of the last name. Selecting a profile opens its detail view. The current implementation's **“Back to overview”** link returns to the unfiltered overview; preserving the previous filter state is planned for a later release.
+Visitors can search by employee last name and filter by job function, department, or the first letter of the last name. Profile cards link to detail views. The current **Back to overview** link returns to the unfiltered list. Preserving filters when navigating back is planned for a future version.
 
-The employee record's **hidden** toggle controls whether the record is displayed in the frontend. Separate LIST and SHOW plugins were successfully tested with new records in the fresh TYPO3 14.3.10 Composer installation; remaining edge cases are listed below.
+The **Hide record** toggle prevents an employee from appearing in the frontend. Separate LIST and SHOW plugins were successfully tested with newly created records in a fresh TYPO3 14.3.10 Composer installation. Outstanding edge cases are listed below.
 
-In the list template, the **More** button is shown only for employees with a description. With the standalone list plugin, it links to the configured detail page; the standalone detail plugin's **Back to overview** button links to the configured list page.
+The **More** button appears in the list only for employees with a description. In the standalone list plugin, it opens the configured detail page; the **Back to overview** button in the standalone detail view leads to the configured list page.
 
-## Language support
+## Languages
 
-Interface labels are available in English and German, with an additional Low German frontend translation. **Record content is not yet configured for TYPO3's per-record translation workflow**; translated UI labels should not be confused with translated employee, department or job-function data.
+Interface labels are available in German and English; an additional Low German frontend translation is included. **The domain records themselves are not yet configured for TYPO3's translation workflow.** A translated interface does not automatically mean translated employee, department, or job-function records.
 
 ## Known limitations
 
-- The A–Z filter is based on last names. Matching umlauts can depend on the database collation.
-- The directory has no pagination in the current version.
-- Multiple independently filtered instances on the same page have not been validated.
-- No route enhancer is installed automatically; see the complete site-configuration example above.
-- Back-navigation does not preserve active list filters.
-- Standalone LIST/SHOW navigation was verified in both directions on a fresh installation. Direct-link access to hidden/deleted records, unset target page IDs, multiple instances, and caching edge cases still require validation.
-- An unset list-page ID can cause a frontend exception when using the standalone detail view’s back link; configure both page IDs.
-- ZIP upload and manual activation were successful in a separate TYPO3 14.3.7 Classic Mode installation; a full clean-install test with new records and complete functional acceptance tests are still pending.
+* The A–Z filter applies to last names. Searching for umlauts may depend on the database collation.
+* Pagination for large directories is not yet available.
+* Multiple independently filterable plugin instances on the same page have not yet been tested.
+* A Route Enhancer for human-readable URLs is not provided automatically; a complete configuration example appears above.
+* Returning to the list does not preserve active filters.
+* Navigation between separate LIST/SHOW plugins was successfully tested in both directions in the fresh installation. Direct links to hidden/deleted records, missing target page IDs, multiple instances, and caching edge cases require further testing.
+* A missing list page ID may cause a frontend exception when using the standalone detail view's back link. Configure both page IDs.
+* ZIP upload and manual activation in Classic Mode were successfully tested in a separate TYPO3 14.3.7 installation; a complete fresh installation with new records and all functional tests remains outstanding.
 
 ## Troubleshooting
 
-| Symptom | What to check |
+| Problem | What to check |
 | --- | --- |
-| ZIP upload reports `Extension employee_directory is not available` | In the tested TYPO3 14.3.7 Classic Mode setup, disabling `automaticInstallation` under Extension Configuration → extensionmanager, re-uploading the ZIP, and activating manually resolved the issue. This is not a universal diagnosis for other installations. |
-| Slug URL returns 404 | Check `limitToPages`, the slug field, site configuration, and whether employee records belong to the expected site. |
-| No employee records appear | Plugin record-storage page, record visibility, and whether the records are stored in the expected location. |
-| Department or job-function filter is empty | Whether corresponding records exist, are accessible, and are assigned to visible employees. |
-| Styles are missing | Whether the extension Site Set is included in the site's set dependencies. |
-| Images are missing | File references, file storage permissions and TYPO3 image processing. |
-| Rich text is not displayed as expected | Rich-text editor availability and the active TypoScript rendering configuration. |
-| Detail view loses the current filters | Known limitation; improvement planned for a later release. |
-| Standalone detail view back link raises `RequiredArgumentMissingException` | Check **Sites → Settings → Employee Directory → Page linking → Page for employee list**. Set it to the actual standalone list page ID; the default `0` is not suitable for this setup. |
+| ZIP upload reports `Extension employee_directory is not available` | In the tested TYPO3 14.3.7 Classic installation, disabling `automaticInstallation` under Extension Configuration → extensionmanager, uploading again, and manually activating the extension resolved the issue. This has not been established as a general solution for other installations. |
+| Slug URL returns 404 | Check `limitToPages`, slug field, site configuration, and the site associated with the records. |
+| No employees are shown | Check the plugin's record storage starting point, record visibility, and storage location. |
+| Department or job function is missing from a filter | Check that it exists, is accessible, and is assigned to visible employees. |
+| No CSS styling | Check whether the Site Set is included in the website configuration. |
+| Images are missing | Check file references, permissions, and TYPO3 image processing. |
+| Rich text renders unexpectedly | Check the rich-text editor and effective TypoScript configuration. |
+| Filters are lost after returning to the overview | Known limitation; an improvement is planned for a future version. |
+| Standalone detail back link triggers `RequiredArgumentMissingException` | Check **Sites → Settings → Employee Directory → Page linking → Page for employee list** and enter the actual page ID of the standalone list. The default `0` is unsuitable in this setup. |
 
-## Release acceptance checklist
+### Test status of the planned 1.1.0 release
 
-- [x] Install from the public GitHub VCS repository in an **independent TYPO3 14.3.10 Composer/DDEV project** (23 October 2026).
-- [x] Confirm Composer dependency resolution and TYPO3 database schema setup in that project.
-- [x] Confirm Site Set integration and standalone/Bootstrap stylesheet selection without demo TypoScript.
-- [x] Create a department, job function and employee in a new record-storage folder.
-- [x] Test list, detail view, images, placeholder behavior, rich text, search, filters, reset and no-results display in the fresh project.
-- [x] Test individual card-content/image switches and Site Set filter/label controls.
-- [x] Verify standalone LIST → SHOW → LIST navigation, including repeating the cycle, with both page IDs configured.
-- [x] Verify German frontend labels in the fresh installation.
-- [x] Verify ZIP upload and manual activation in TYPO3 14.3.7 Classic Mode (14 October 2026).
-- [ ] Verify all features with **page caching explicitly enabled** and check caching edge cases.
-- [ ] Test direct links to hidden/deleted employee records, missing page-ID configuration and multiple plugin instances.
-- [ ] Complete an explicit English-interface test and additional record-visibility cases.
-- [ ] Perform a complete clean-install acceptance test in Classic Mode, including schema setup, new records and all features.
-- [ ] Add verified screenshots and release metadata before publication.
+* **TYPO3 14.3.6, Composer, Mittwald (6–7 November 2026):** The local development build was transferred via SSH/SCP into a separate staging directory and then deployed to the test installation. The previous active extension was backed up; a directory comparison confirmed that the deployed files matched the staging version.
+* The modified `EmployeeController.php` passed PHP syntax checking. `EmployeeList.xml`, `locallang.xlf`, and `de.locallang.xlf` passed XML syntax checks. These checks do not replace functional testing.
+* The new **Display** FlexForm tab was verified in the backend with its German label and the choices **Standard view** and **Grouped by department**. The **Card content** and **Images** tabs remained available.
+* The department-grouped employee list was visually checked in Bootstrap mode with several departments, rows containing one or two cards, and a narrow layout. Hiding the department field within individual cards was tested using the existing plugin setting.
+* **Combined filtering verified:** Searching for `Dauer` while selecting the job function `Unfallchirurg` returned only **Dr. med. Manfred Dauerbruch** under the **Unfallchirurgie** department heading. The A–Z filter also visibly adjusted. This confirms the tested combination, not every possible filter combination.
+* During an earlier test, deploying new extension files required a database schema update (`hidden` fields for departments and job functions). Afterward, backend records and frontend output were accessible again.
+* **Still pending:** Full regression testing of the standard view and additional filter combinations, language variants, employees without a department, and another test using the final release package.
+
+## Pre-release checklist for 1.1.0
+
+Some of the following items document earlier 1.0.x tests. They **must not automatically be treated as a renewed acceptance test of 1.1.0**.
+
+* Installation from the public GitHub VCS repository in an **independent TYPO3 14.3.10 Composer/DDEV project** (23 October 2026).
+* Composer dependencies and TYPO3 database schema verified in that project.
+* Site Set and selection between standalone and Bootstrap stylesheets tested without demo TypoScript.
+* Department, job function, and employee created in a new record storage location.
+* List, detail view, images, placeholders, rich text, search, filters, reset, and empty-result display tested in the fresh project.
+* Individual card-content and image toggles, Site Set filters, and labels tested.
+* LIST → SHOW → LIST navigation verified, including another run with both page IDs configured.
+* German frontend labels verified in the fresh installation.
+* ZIP upload and manual activation in Classic Mode on TYPO3 14.3.7 successfully tested (14 October 2026).
+* Test all features with **page caching explicitly enabled**, plus additional caching edge cases.
+* Test direct links to hidden/deleted employees, missing page ID configuration, and multiple plugin instances.
+* Explicitly test the English interface and additional record-visibility cases.
+* Test a complete fresh Classic Mode installation, including schema synchronization, new records, and all features.
+* Update verified screenshots and publication details before release.
+* **1.1.0 – already tested in the development build:** Department grouping, new tab arrangement with German labels, Bootstrap layout, and one combined name/job-function filter.
+* **1.1.0 – still pending:** Complete testing of both views with further filter combinations, employees without a department, language variants, and another test of the final release package.
+
+## Outlook and roadmap
+
+Employee Directory will be developed incrementally, with an emphasis on ease of use, clear configuration, and a deliberately manageable feature set. **The following items are ideas or development intentions, not promised features or release dates.** They are **not part of version 1.1.0**.
+
+* **Faceted filtering:** Adapt available filter options to previously selected criteria without making active selections inaccessible.
+* **Alternative card layouts:** Consider a more compact layout with fewer profile details alongside the existing cards.
+* **Independently configurable grouping:** Allow grouping (for example, none, by department, or alphabetically by last name) and card layout to be configured separately in the future.
+* **Custom department ordering:** Optionally define the order of departments instead of relying solely on alphabetical sorting.
+* **Scheduled visibility:** Support TYPO3's standard publication start and end fields (`starttime`/`endtime`) for employee records, including verification of TCA, repository behavior, and caching. This support has not yet been documented as fully implemented and tested in the extension.
+* **Improved back navigation:** Preserve search and filter selections when returning from a detail view to the list.
+* **Pagination:** Add page navigation for larger employee directories.
+* **Optional address and map display:** Consider an address field with a map on employee detail pages; technical and data-protection questions remain to be resolved.
+* **CSV import:** Import employee data, for example from Excel, through a **separate, optional extension** so that the main extension remains focused.
+
+The order, scope, and implementation of these ideas may change. No specific future version numbers have been assigned to them.
 
 ## Screenshots
 
 ### Employee directory (LIST)
 
-![Employee directory with search filters and employee cards](Documentation/Images/employee-list.png)
+[![Employee directory with search filters and employee cards](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-list.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-list.png)
 
 ### Employee profile (SHOW)
 
-![Employee profile with contact details and description](Documentation/Images/employee-detail.png)
+[![Employee profile with contact details and description](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-detail.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-detail.png)
 
 ## License
 
-This extension is licensed under the GNU General Public License, version 2 or any later version (GPL-2.0-or-later).
+This extension is licensed under the GNU General Public License, version 2 or later (GPL-2.0-or-later).
 
-The license is declared in [`composer.json`](composer.json).
-See the [LICENSE](LICENSE) file for the full license text.
+The license is specified in [`composer.json`](https://github.com/dirklehmann68/employee-directory/blob/main/composer.json). See [LICENSE](https://github.com/dirklehmann68/employee-directory/blob/main/LICENSE) for the full license text.

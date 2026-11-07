@@ -8,6 +8,7 @@ use DirkLehmann\EmployeeDirectory\Domain\Repository\JobFunctionRepository;
 use DirkLehmann\EmployeeDirectory\Domain\Repository\DepartmentRepository;
 use DirkLehmann\EmployeeDirectory\Domain\Model\Employee;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class EmployeeController extends ActionController
 {
@@ -58,6 +59,48 @@ class EmployeeController extends ActionController
                 $departments[] = $departmentItem;
             }
         }
+
+        // Prepare department groups from the already filtered employees.
+        // The original employee collection and its ordering remain unchanged.
+        $departmentGroupsByUid = [];
+        $employeesWithoutDepartment = [];
+
+        foreach ($employees as $employeeItem) {
+            $employeeDepartment = $employeeItem->getDepartment();
+
+            if ($employeeDepartment === null) {
+                $employeesWithoutDepartment[] = $employeeItem;
+                continue;
+            }
+
+            $departmentUid = $employeeDepartment->getUid();
+            if (!isset($departmentGroupsByUid[$departmentUid])) {
+                $departmentGroupsByUid[$departmentUid] = [
+                    'title' => $employeeDepartment->getTitle(),
+                    'employees' => [],
+                ];
+            }
+
+            $departmentGroupsByUid[$departmentUid]['employees'][] = $employeeItem;
+        }
+
+        $departmentGroups = array_values($departmentGroupsByUid);
+        usort(
+            $departmentGroups,
+            static fn (array $a, array $b): int => strnatcasecmp($a['title'], $b['title'])
+        );
+
+        if ($employeesWithoutDepartment !== []) {
+            $departmentGroups[] = [
+                'title' => LocalizationUtility::translate(
+                    'list.withoutDepartment',
+                    'EmployeeDirectory'
+                ) ?? 'Without department',
+                'employees' => $employeesWithoutDepartment,
+            ];
+        }
+
+        $this->view->assign('departmentGroups', $departmentGroups);
 
         $this->view->assign('letters', $letters);
         $this->view->assign('availableInitials', $availableInitials);

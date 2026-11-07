@@ -1,11 +1,38 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <T3DataStructure>
     <sheets>
+        <sDisplay>
+            <ROOT>
+                <sheetTitle>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.sheet.display</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.listLayout>
+                        <label>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.list_layout</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0">
+                                    <numIndex index="0">LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.list_layout.default</numIndex>
+                                    <numIndex index="1">default</numIndex>
+                                </numIndex>
+                                <numIndex index="1">
+                                    <numIndex index="0">LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.list_layout.department</numIndex>
+                                    <numIndex index="1">department</numIndex>
+                                </numIndex>
+                            </items>
+                            <default>default</default>
+                        </config>
+                    </settings.listLayout>
+                </el>
+            </ROOT>
+        </sDisplay>
         <sDEF>
             <ROOT>
                 <sheetTitle>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.sheet.card_content</sheetTitle>
                 <type>array</type>
                 <el>
+
                     <settings.showJobFunction>
                         <label>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.show_job_function</label>
                         <config>
