@@ -14,6 +14,15 @@
 
     --employee-directory-primary-hover: rgba(63, 111, 100, .18);
 
+    /* Semantic colors: keep existing visual appearance */
+    --employee-directory-on-primary: #fff;
+    --employee-directory-disabled-text: #7f8b87;
+    --employee-directory-disabled-surface: #f1f4f3;
+    --employee-directory-disabled-border: #d2d9d6;
+    --employee-directory-notice-text: #666;
+    --employee-directory-notice-surface: #f5f5f5;
+    --employee-directory-notice-border: #999;
+
     --employee-directory-meta-label-width: 6rem;
 }
 
@@ -211,15 +220,27 @@
 
 .employee-directory .employee-meta-wrap {
     display: flex;
-    flex-wrap: wrap;
-    gap: .375rem 1rem;
+    flex-direction: column;
+    gap: .125rem;
     margin-top: 1rem;
 }
 
 .employee-directory .employee-meta {
     display: flex;
     gap: .25rem;
+    line-height: 1.35;
     color: var(--employee-directory-text);
+    min-width: 0;
+    width: 100%;
+}
+
+.employee-directory .employee-meta-label {
+    flex: 0 0 var(--employee-directory-meta-label-width);
+}
+
+.employee-directory .employee-meta-value {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .employee-directory .employee-meta-department {
@@ -240,12 +261,11 @@
 .employee-directory .employee-office-hours-label {
     display: block;
     font-weight: 600;
-    white-space: nowrap;
 }
 
 .employee-directory .employee-office-hours-value {
     font-size: .9375rem;
-    line-height: 1.5;
+    line-height: 1.35;
 }
 
 /* 4.5 Card Actions */
@@ -351,20 +371,16 @@
     outline-offset: 2px;
 }
 
-.employee-directory .btn-primary {
-    color: #fff;
-    background-color: var(--employee-directory-primary);
-    border-color: var(--employee-directory-primary);
-}
-
+.employee-directory .btn-primary,
 .employee-directory .btn-secondary {
-    color: #fff;
+    color: var(--employee-directory-on-primary);
     background-color: var(--employee-directory-primary);
     border-color: var(--employee-directory-primary);
 }
 
+.employee-directory .btn-primary:hover,
 .employee-directory .btn-secondary:hover {
-    color: #fff;
+    color: var(--employee-directory-on-primary);
     background-color: var(--employee-directory-primary-strong);
     border-color: var(--employee-directory-primary-strong);
 }
@@ -375,24 +391,18 @@
     border-color: var(--employee-directory-border);
 }
 
-.employee-directory .btn-primary:hover {
-    color: #fff;
-    background-color: var(--employee-directory-primary-strong);
-    border-color: var(--employee-directory-primary-strong);
-}
-
 .employee-directory .btn-outline-secondary:hover {
     color: var(--employee-directory-primary-strong);
     background-color: var(--employee-directory-primary-soft);
     border-color: var(--employee-directory-primary);
 }
 
-.employee-no-results {
+.employee-directory .employee-no-results {
     margin: 1.5rem 0;
     padding: 1rem 1.25rem;
-    color: #666;
-    background-color: #f5f5f5;
-    border-left: 3px solid #999;
+    color: var(--employee-directory-notice-text);
+    background-color: var(--employee-directory-notice-surface);
+    border-left: 3px solid var(--employee-directory-notice-border);
 }
 
 /* ==========================================================
@@ -454,15 +464,15 @@
 }
 
 .employee-directory .page-item.active .page-link {
-    color: #fff;
+    color: var(--employee-directory-on-primary);
     background-color: var(--employee-directory-primary);
     border-color: var(--employee-directory-primary);
 }
 
 .employee-directory .page-item.disabled .page-link {
-    color: #7f8b87;
-    background-color: #f1f4f3;
-    border-color: #d2d9d6;
+    color: var(--employee-directory-disabled-text);
+    background-color: var(--employee-directory-disabled-surface);
+    border-color: var(--employee-directory-disabled-border);
     cursor: default;
 }
 
@@ -565,15 +575,6 @@
 
 /* Optimierung für Smartphones */
 @media (max-width: 575.98px) {
-    /* Einheitliche Labelbreite bei Mitarbeiterangaben */
-    .employee-directory .employee-meta {
-        width: 100%;
-    }
-
-    .employee-directory .employee-meta-label {
-        flex: 0 0 var(--employee-directory-meta-label-width);
-    }
-
     .employee-directory .employee-show-image {
         max-width: 220px;
         margin-inline: auto;

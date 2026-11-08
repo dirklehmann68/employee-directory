@@ -74,6 +74,11 @@
     outline-offset: 3px;
 }
 
+.employee-directory .employee-office-hours-label {
+	display: block;
+	font-weight: 600;
+}
+
 /* Abstand vor dem Mehr-erfahren-Button */
 .employee-directory .employee-card-actions {
     padding-top: 1rem;

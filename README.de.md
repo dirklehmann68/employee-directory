@@ -4,7 +4,7 @@
 
 Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung eines durchsuchbaren und filterbaren Mitarbeiterverzeichnisses.
 
-> **Projektstand (07.11.2026):** Version **1.0.1** wurde auf GitHub veröffentlicht und ist im TYPO3 Extension Repository (TER) verfügbar. Version **1.1.0** befindet sich in der Test- und Dokumentationsphase und ist **noch nicht veröffentlicht**. Die optionale Gruppierung nach Abteilungen, die neue FlexForm-Reiteranordnung und kombinierte Suchfilter wurden in einer TYPO3-14.3.6-Composer-Testinstallation auf Mittwald geprüft. Abschließende Release-Tests stehen noch aus.
+> **Projektstand (07.11.2026):** Version **1.1.0** wurde auf GitHub als Release veröffentlicht und ist im TYPO3 Extension Repository (TER) verfügbar. Die Abteilungsgruppierung, die neue FlexForm-Reiteranordnung und ausgewählte Filterkombinationen wurden in einer TYPO3-14.3.6-Composer-Testinstallation auf Mittwald geprüft. Anschließend wurde die veröffentlichte Version 1.1.0 auf as-sura.de unter TYPO3 14.3.7 im Classic Mode über den Extension Manager erfolgreich aktualisiert und anhand weiterer Frontend-Fälle getestet. Eine vollständige Prüfung aller Konfigurationen und Grenzfälle ist damit nicht verbunden.
 
 ## Funktionen
 
@@ -12,7 +12,7 @@ Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung 
 * Eigene Datensätze für Abteilungen und Funktionen, die Mitarbeitern zugeordnet werden können.
 * Drei Plugin-Varianten: kombiniertes Mitarbeiterverzeichnis (LIST + SHOW), eigenständige Mitarbeiterliste (LIST) und eigenständige Detailansicht (SHOW).
 * Mitarbeiterübersicht mit Profilkarten und individuellen Detailansichten.
-* **Neu in der geplanten Version 1.1.0:** Wahlweise Standardansicht oder nach Abteilungen gruppierte Mitarbeiterliste. Die Gruppen werden alphabetisch nach Abteilungsnamen angeordnet; Mitarbeiter innerhalb der Gruppen nach Nach- und Vornamen. Mitarbeiter ohne Abteilung erscheinen in einer eigenen Gruppe am Ende.
+* **Neu in Version 1.1.0:** Wahlweise Standardansicht oder nach Abteilungen gruppierte Mitarbeiterliste. Die Gruppen werden alphabetisch nach Abteilungsnamen angeordnet; Mitarbeiter innerhalb der Gruppen nach Nach- und Vornamen. Mitarbeiter ohne Abteilung erscheinen in einer eigenen Gruppe am Ende.
 * Suche nach Nachnamen, Filter nach Abteilung und Funktion sowie alphabetischer A–Z-Filter für Nachnamen.
 * In den Auswahllisten erscheinen nur Abteilungen und Funktionen, die Mitarbeiterdatensätzen zugeordnet sind.
 * Deutsche und englische Oberflächenbeschriftungen; zusätzlich ist eine plattdeutsche Übersetzung enthalten.
@@ -77,7 +77,7 @@ Nach der Installation den Datenbank-/Schema-Abgleich über `extension:setup` ode
 
 ### Installation ohne Composer (Classic Mode) – ZIP-Upload erfolgreich getestet
 
-**Getestete Umgebung:** TYPO3 14.3.7, klassische Installation ohne Composer auf ALL-INKL, Extension `employee_directory` Version 1.0.0 (14.10.2026).
+**Ursprünglicher ZIP-Installationstest:** TYPO3 14.3.7, klassische Installation ohne Composer auf ALL-INKL, Extension `employee_directory` Version 1.0.0 (14.10.2026). **Zusätzlicher Aktualisierungstest:** Am 07.11.2026 wurde eine vorhandene Version 1.0.1 auf as-sura.de über den TYPO3 Extension Manager direkt aus dem TER erfolgreich auf **1.1.0** aktualisiert.
 
 1. Eine ZIP-Datei erstellen, in der `composer.json`, `Classes/`, `Configuration/` und `Resources/` **direkt auf der obersten Archivebene** liegen – nicht innerhalb eines zusätzlichen Ordners `employee_directory/`.
 2. Im TYPO3-Backend unter **System → Einstellungen → Extension Configuration → extensionmanager** die Option **„Install extensions automatically after download from TER or file upload“** (`automaticInstallation`) bei Bedarf deaktivieren und die Einstellung speichern.
@@ -87,7 +87,7 @@ Nach der Installation den Datenbank-/Schema-Abgleich über `extension:setup` ode
 
 **Beobachtung in dieser Testumgebung:** Mit `automaticInstallation = 1` scheiterte der ZIP-Upload sowohl bei `employee_directory` als auch bei der offiziellen Extension `container` mit der Meldung `Extension … is not available`; anschließend war `typo3conf/ext/` wieder leer. Nach Deaktivierung der automatischen Installation wurden beide ZIP-Dateien erfolgreich hochgeladen und in der Extension-Liste angezeigt. Die manuell aktivierte `employee_directory` lieferte wieder zwei bestehende Mitarbeiter-Cards im Frontend.
 
-Auch die manuelle Installation per FTP wurde erfolgreich getestet. Der ZIP-Upload ist damit praktisch getestet; eine Installation aus dem **TYPO3 Extension Repository (TER)** wurde noch nicht getestet. Version 1.0.1 ist inzwischen im TER veröffentlicht; der hier beschriebene ZIP-Test erfolgte zuvor mit Version 1.0.0.
+Auch die manuelle Installation per FTP wurde erfolgreich getestet. Der ZIP-Upload wurde ursprünglich mit Version 1.0.0 geprüft. **Neu:** Das Update einer bestehenden Classic-Mode-Installation von Version 1.0.1 auf **1.1.0 direkt über den TYPO3 Extension Manager / TER** verlief ohne Fehlermeldung. Vor dem Update wurden ein SQL-Export und eine lokale Sicherung des Webspaces erstellt. Dies belegt ein erfolgreiches Update, jedoch keine vollständige Neuinstallation der Version 1.1.0 aus dem TER.
 
 ## Einrichtung in TYPO3
 
@@ -114,12 +114,12 @@ Für die Navigation zwischen getrennten LIST-/SHOW-Seiten müssen **beide** Seit
 
 ### Anzeige- und Filtereinstellungen
 
-Die folgenden Einstellungen wurden in den beschriebenen Testinstallationen überprüft; die neue Darstellungseinstellung wurde zusätzlich in der Mittwald-Testumgebung mit TYPO3 14.3.6 geprüft:
+Die folgenden Einstellungen wurden in den beschriebenen Testinstallationen überprüft; die neue Darstellungseinstellung wurde sowohl in der Mittwald-Testumgebung mit TYPO3 14.3.6 als auch auf as-sura.de mit TYPO3 14.3.7 geprüft:
 
 * **Sites → Settings → Employee Directory → Filter:** Namenssuche, Funktionsfilter, Abteilungsfilter und A–Z-Filter einzeln ein-/ausblenden. Sind alle drei Formularfilter ausgeschaltet, verschwinden auch die Schaltflächen zum Anwenden und Zurücksetzen; der A–Z-Filter ist unabhängig davon.
 * **Sites → Settings → Employee Directory → Appearance:** Zwischen **Standalone CSS** und **Bootstrap CSS** wechseln. Im Test wurde jeweils nur das ausgewählte Stylesheet geladen.
 * **Sites → Settings → Employee Directory:** Frontend-Beschriftungen optional überschreiben. Leere Überschreibungen verwenden wieder die übersetzten Standardbeschriftungen.
-* **Inhaltselement → Plugin → Darstellung (Entwicklungsstand 1.1.0):** Unter **Darstellung der Mitarbeiterliste** zwischen **Standardansicht** und **Nach Abteilungen gruppiert** wählen. Die Standardansicht bleibt unverändert. Im Gruppierungsmodus erscheinen Abteilungsüberschriften über den zugehörigen Cards. Der A–Z-Filter bezieht sich weiterhin auf den **Nachnamen**, nicht auf die Abteilung. Der eigene Reiter **Darstellung** wurde im TYPO3-14.3.6-Backend geprüft.
+* **Inhaltselement → Plugin → Darstellung (ab Version 1.1.0):** Unter **Darstellung der Mitarbeiterliste** zwischen **Standardansicht** und **Nach Abteilungen gruppiert** wählen. Die Standardansicht bleibt unverändert. Im Gruppierungsmodus erscheinen Abteilungsüberschriften über den zugehörigen Cards. Der A–Z-Filter bezieht sich weiterhin auf den **Nachnamen**, nicht auf die Abteilung. Der eigene Reiter **Darstellung** wurde in TYPO3 14.3.6 und 14.3.7 im Backend geprüft.
 * **Inhaltselement → Plugin → Card-Inhalte:** Funktion, Abteilung, Telefon, E-Mail, Standort, Raum und Sprechzeiten einzeln ein-/ausblenden.
 * **Inhaltselement → Plugin → Bilder:** Mitarbeiterfotos und Platzhalter bei fehlendem Foto ein-/ausblenden. Bei deaktivierter Fotoanzeige wird auch kein Platzhalter angezeigt.
 
@@ -200,7 +200,7 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 * Die Rücknavigation zur Liste erhält gesetzte Filter noch nicht.
 * Die Navigation zwischen getrennten LIST-/SHOW-Plugins wurde in der frischen Installation in beide Richtungen erfolgreich getestet. Direktlinks auf verborgene/gelöschte Datensätze, fehlende Zielseiten-IDs, mehrere Instanzen und Cache-Grenzfälle sind noch gesondert zu prüfen.
 * Eine fehlende Listen-Seiten-ID kann beim Rücklink der eigenständigen Detailansicht eine Frontend-Exception auslösen. Deshalb beide Seiten-IDs konfigurieren.
-* Der ZIP-Upload und die manuelle Aktivierung im Classic Mode wurden in einer separaten TYPO3-14.3.7-Installation erfolgreich getestet; eine vollständige Erstinstallation mit neu angelegten Datensätzen und alle Funktionstests stehen noch aus.
+* Der ZIP-Upload und die manuelle Aktivierung im Classic Mode wurden unter TYPO3 14.3.7 erfolgreich getestet (Version 1.0.0). Ein späteres **TER-Update von 1.0.1 auf 1.1.0** gelang in derselben TYPO3-Version ohne Fehler; eine vollständige Erstinstallation der 1.1.0 mit allen Funktionstests steht noch aus.
 
 ## Fehlerbehebung
 
@@ -216,7 +216,7 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 | Filter gehen beim Wechsel zurück zur Übersicht verloren | Bekannte Einschränkung; Verbesserung für eine spätere Version geplant. |
 | Rücklink der eigenständigen Detailansicht erzeugt `RequiredArgumentMissingException` | **Sites → Settings → Employee Directory → Page linking → Page for employee list** prüfen und die tatsächliche Seiten-ID der eigenständigen Liste eintragen. Der Standardwert `0` ist für diese Konstellation ungeeignet. |
 
-### Teststand der geplanten Version 1.1.0
+### Teststand der veröffentlichten Version 1.1.0
 
 * **TYPO3 14.3.6, Composer, Mittwald (06.–07.11.2026):** Die lokale Entwicklungsfassung wurde per SSH/SCP in ein separates Staging-Verzeichnis übertragen und anschließend in der Testinstallation eingespielt. Die zuvor aktive Extension wurde gesichert; ein Verzeichnisvergleich bestätigte nach der Übernahme die Übereinstimmung mit dem Staging-Stand.
 * Der geänderte `EmployeeController.php` bestand die PHP-Syntaxprüfung. `EmployeeList.xml`, `locallang.xlf` und `de.locallang.xlf` bestanden die XML-Syntaxprüfung. Diese Prüfungen ersetzen keine funktionalen Tests.
@@ -224,11 +224,13 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 * Die nach Abteilungen gruppierte Mitarbeiterliste wurde im Bootstrap-Modus mit mehreren Abteilungen, ein- und zweispaltigen Card-Reihen sowie in schmaler Darstellung visuell überprüft. Das Ausblenden der Abteilungsangabe innerhalb der Cards wurde über die vorhandene Plugin-Einstellung getestet.
 * **Kombinierte Filterung geprüft:** Die Namenssuche `Dauer` zusammen mit der Funktion `Unfallchirurg` lieferte ausschließlich **Dr. med. Manfred Dauerbruch** unter der Abteilungsüberschrift **Unfallchirurgie**. Auch die Anpassung des A–Z-Filters war sichtbar. Dies belegt die geprüfte Kombination, nicht sämtliche denkbaren Filterkombinationen.
 * Bei einem früheren Test war nach dem Einspielen neuer Extension-Dateien ein Datenbankschema-Abgleich erforderlich (`hidden`-Felder für Abteilungen und Funktionen). Anschließend waren Datensätze und Frontend-Ausgabe wieder erreichbar.
-* **Noch ausstehend:** vollständige Regression der Standardansicht und weiterer Filterkombinationen, Sprachvarianten, Mitarbeiter ohne Abteilung sowie erneuter Test mit dem endgültigen Release-Paket.
+* **TYPO3 14.3.7, Classic Mode, ALL-INKL / as-sura.de (07.11.2026):** Das veröffentlichte Release **1.1.0** wurde über den Extension Manager aus dem TER von Version 1.0.1 aus aktualisiert. Die Erfolgsmeldung erschien ohne Fehler; im Backend wurden die drei FlexForm-Reiter und die Darstellungswahl geprüft.
+* **Frontend-Prüfungen auf as-sura.de:** Die nach Abteilungen gruppierte Liste zeigte die Mitarbeiter in den erwarteten Gruppen und mit korrekten Cards. Ausgewählte Such- und Filterfälle, die Anzeige ohne Suchtreffer sowie die Darstellung eines eigens angelegten Mitarbeiters **ohne Abteilung** wurden geprüft. Die Gruppe **„Ohne Abteilung“** erschien nach den regulären Abteilungen; auch die Card mit Platzhalterbild wurde angezeigt.
+* **Noch ausstehend:** systematische Regression sämtlicher Filter- und Anzeigeoptionen, Sprachvarianten, Cache- und Routing-Grenzfälle sowie eine vollständige Neuinstallation der veröffentlichten 1.1.0. Die erfolgreichen Einzeltests sind keine vollständige Abnahme.
 
-## Checkliste vor der Veröffentlichung von 1.1.0
+## Testhistorie und weitere Prüfpunkte
 
-Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x. Sie sind **nicht automatisch als erneute Abnahme von 1.1.0** zu verstehen.
+Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x und teils Prüfungen der veröffentlichten 1.1.0. **Frühere Tests sind nicht automatisch als erneute Abnahme von 1.1.0 zu verstehen.**
 
 * Installation aus dem öffentlichen GitHub-VCS-Repository in einem **unabhängigen TYPO3-14.3.10-Projekt mit Composer/DDEV** (23.10.2026).
 * Composer-Abhängigkeiten und TYPO3-Datenbankschema in diesem Projekt geprüft.
@@ -243,9 +245,9 @@ Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x. Sie sind **ni
 * Direktlinks auf verborgene/gelöschte Mitarbeiter, fehlende Seiten-ID-Konfiguration und mehrere Plugin-Instanzen testen.
 * Englische Bedienoberfläche ausdrücklich testen sowie zusätzliche Fälle der Datensatzsichtbarkeit prüfen.
 * Vollständige Erstinstallation im Classic Mode einschließlich Schema-Abgleich, neuer Datensätze und aller Funktionen testen.
-* Geprüfte Screenshots und Veröffentlichungsangaben vor der Veröffentlichung ergänzen.
-* **1.1.0 – bereits im Entwicklungsstand geprüft:** Gruppierung nach Abteilungen, neue Reiteranordnung mit deutscher Beschriftung, Bootstrap-Layout und eine kombinierte Namens-/Funktionsfilterung.
-* **1.1.0 – noch offen:** vollständige Prüfung beider Ansichten mit weiteren Filterkombinationen, Mitarbeiter ohne Abteilung, Sprachvarianten und erneuter Test des endgültigen Release-Pakets.
+* Screenshots bei Bedarf auf den veröffentlichten Funktionsstand aktualisieren.
+* **1.1.0 – geprüft:** Gruppierung nach Abteilungen, neue Reiteranordnung mit deutscher Beschriftung, Bootstrap-Layout und ausgewählte Filterkombinationen (Mittwald); außerdem TER-Update, Backend-Darstellungswahl, gruppierte Frontend-Liste, leere Suchergebnisse und Mitarbeiter ohne Abteilung (as-sura.de).
+* **1.1.0 – noch offen:** vollständige Prüfung beider Ansichten mit allen Filterkombinationen, Sprachvarianten, mehreren Plugin-Instanzen, Cache-Grenzfällen und vollständiger Neuinstallation des Release-Pakets.
 
 ## Ausblick und Roadmap
 

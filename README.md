@@ -4,7 +4,7 @@
 
 A TYPO3 extension for managing employee profiles and displaying a searchable, filterable employee directory.
 
-> **Project status (7 November 2026):** Version **1.0.1** has been published on GitHub and is available in the TYPO3 Extension Repository (TER). Version **1.1.0** is undergoing testing and documentation updates and has **not yet been released**. Optional grouping by department, the new FlexForm tab layout, and combined search filters have been tested in a TYPO3 14.3.6 Composer installation hosted by Mittwald. Final release tests are still pending.
+> **Project status (7 November 2026):** Version **1.1.0** has been published as a GitHub release and is available in the TYPO3 Extension Repository (TER). Department grouping, the new FlexForm tabs, and selected filter combinations were tested in a TYPO3 14.3.6 Composer installation hosted by Mittwald. The published 1.1.0 release was subsequently updated successfully through the Extension Manager on as-sura.de, running TYPO3 14.3.7 in Classic Mode, and further frontend cases were checked. This does not constitute exhaustive testing of every configuration and edge case.
 
 ## Features
 
@@ -12,7 +12,7 @@ A TYPO3 extension for managing employee profiles and displaying a searchable, fi
 * Separate department and job-function records that can be assigned to employees.
 * Three plugin variants: combined employee directory (LIST + SHOW), standalone employee list (LIST), and standalone employee detail view (SHOW).
 * Employee overview with profile cards and individual detail pages.
-* **New in the planned 1.1.0 release:** Choose between the standard list and a list grouped by department. Groups are sorted alphabetically by department name; employees within each group are sorted by last name and then first name. Employees without an assigned department appear in a separate group at the end.
+* **New in version 1.1.0:** Choose between the standard list and a list grouped by department. Groups are sorted alphabetically by department name; employees within each group are sorted by last name and then first name. Employees without an assigned department appear in a separate group at the end.
 * Search by last name, filter by department or job function, and an alphabetical A–Z filter for last names.
 * Filter dropdowns include only departments and job functions assigned to employee records.
 * German and English interface labels, plus an additional Low German translation.
@@ -77,7 +77,7 @@ After installation, synchronize the database schema using `extension:setup` or t
 
 ### Installation without Composer (Classic Mode) – ZIP upload successfully tested
 
-**Test environment:** TYPO3 14.3.7, Classic Mode on ALL-INKL, `employee_directory` version 1.0.0 (14 October 2026).
+**Original ZIP installation test:** TYPO3 14.3.7, Classic Mode on ALL-INKL, `employee_directory` version 1.0.0 (14 October 2026). **Additional update test:** On 7 November 2026, an existing version 1.0.1 installation on as-sura.de was successfully updated to **1.1.0** directly from TER through the TYPO3 Extension Manager.
 
 1. Create a ZIP file with `composer.json`, `Classes/`, `Configuration/`, and `Resources/` **at the archive root**, not inside an additional `employee_directory/` folder.
 2. In the TYPO3 backend, under **System → Settings → Extension Configuration → extensionmanager**, disable **“Install extensions automatically after download from TER or file upload”** (`automaticInstallation`) if needed, and save the setting.
@@ -87,7 +87,7 @@ After installation, synchronize the database schema using `extension:setup` or t
 
 **Observation in this test environment:** With `automaticInstallation = 1`, ZIP uploads of both `employee_directory` and the official `container` extension failed with `Extension … is not available`; afterward, `typo3conf/ext/` was empty again. After automatic installation was disabled, both ZIP files uploaded successfully and appeared in the extension list. The manually activated `employee_directory` again displayed two existing employee cards in the frontend.
 
-Manual installation via FTP was also tested successfully. The ZIP upload has therefore been tested in practice; installation directly from the **TYPO3 Extension Repository (TER)** has not yet been tested. Version 1.0.1 is now published in TER, but the ZIP test described here was carried out earlier with version 1.0.0.
+Manual installation via FTP was also tested successfully. The original ZIP upload test used version 1.0.0. **New:** Updating an existing Classic Mode installation from 1.0.1 to **1.1.0 directly through the TYPO3 Extension Manager / TER** succeeded without errors. A SQL export and a local webspace backup were created before updating. This confirms a successful update, not a complete fresh installation of version 1.1.0 from TER.
 
 ## TYPO3 setup
 
@@ -114,12 +114,12 @@ For navigation between separate LIST/SHOW pages, **both** page IDs must be set u
 
 ### Display and filter settings
 
-The following settings were verified in the test installations described above; the new display setting was also tested in the Mittwald environment running TYPO3 14.3.6:
+The following settings were verified in the test installations described above; the new display setting was tested both in the Mittwald environment running TYPO3 14.3.6 and on as-sura.de running TYPO3 14.3.7:
 
 * **Sites → Settings → Employee Directory → Filter:** Toggle name search, job-function filter, department filter, and A–Z filter independently. If all three form filters are disabled, the Apply and Reset buttons disappear as well; the A–Z filter is independent.
 * **Sites → Settings → Employee Directory → Appearance:** Switch between **Standalone CSS** and **Bootstrap CSS**. Only the selected stylesheet was loaded in the test.
 * **Sites → Settings → Employee Directory:** Optionally override frontend labels. Empty overrides fall back to the translated defaults.
-* **Content element → Plugin → Display (1.1.0 development build):** Under **Employee list display**, choose **Standard view** or **Grouped by department**. The standard view remains unchanged. In grouped mode, department headings appear above the relevant cards. The A–Z filter still applies to **last names**, not department names. The dedicated **Display** tab was verified in the TYPO3 14.3.6 backend.
+* **Content element → Plugin → Display (since version 1.1.0):** Under **Employee list display**, choose **Standard view** or **Grouped by department**. The standard view remains unchanged. In grouped mode, department headings appear above the relevant cards. The A–Z filter still applies to **last names**, not department names. The dedicated **Display** tab was verified in the TYPO3 14.3.6 and 14.3.7 backends.
 * **Content element → Plugin → Card content:** Toggle job function, department, phone, email, location, room, and office hours independently.
 * **Content element → Plugin → Images:** Toggle employee photos and placeholders for missing photos. Disabling photo display also disables the placeholder.
 
@@ -200,7 +200,7 @@ Interface labels are available in German and English; an additional Low German f
 * Returning to the list does not preserve active filters.
 * Navigation between separate LIST/SHOW plugins was successfully tested in both directions in the fresh installation. Direct links to hidden/deleted records, missing target page IDs, multiple instances, and caching edge cases require further testing.
 * A missing list page ID may cause a frontend exception when using the standalone detail view's back link. Configure both page IDs.
-* ZIP upload and manual activation in Classic Mode were successfully tested in a separate TYPO3 14.3.7 installation; a complete fresh installation with new records and all functional tests remains outstanding.
+* ZIP upload and manual activation in Classic Mode were successfully tested on TYPO3 14.3.7 (version 1.0.0). A subsequent **TER update from 1.0.1 to 1.1.0** succeeded on the same TYPO3 version; a complete fresh 1.1.0 installation with all functional tests remains outstanding.
 
 ## Troubleshooting
 
@@ -216,7 +216,7 @@ Interface labels are available in German and English; an additional Low German f
 | Filters are lost after returning to the overview | Known limitation; an improvement is planned for a future version. |
 | Standalone detail back link triggers `RequiredArgumentMissingException` | Check **Sites → Settings → Employee Directory → Page linking → Page for employee list** and enter the actual page ID of the standalone list. The default `0` is unsuitable in this setup. |
 
-### Test status of the planned 1.1.0 release
+### Test status of the published 1.1.0 release
 
 * **TYPO3 14.3.6, Composer, Mittwald (6–7 November 2026):** The local development build was transferred via SSH/SCP into a separate staging directory and then deployed to the test installation. The previous active extension was backed up; a directory comparison confirmed that the deployed files matched the staging version.
 * The modified `EmployeeController.php` passed PHP syntax checking. `EmployeeList.xml`, `locallang.xlf`, and `de.locallang.xlf` passed XML syntax checks. These checks do not replace functional testing.
@@ -224,11 +224,13 @@ Interface labels are available in German and English; an additional Low German f
 * The department-grouped employee list was visually checked in Bootstrap mode with several departments, rows containing one or two cards, and a narrow layout. Hiding the department field within individual cards was tested using the existing plugin setting.
 * **Combined filtering verified:** Searching for `Dauer` while selecting the job function `Unfallchirurg` returned only **Dr. med. Manfred Dauerbruch** under the **Unfallchirurgie** department heading. The A–Z filter also visibly adjusted. This confirms the tested combination, not every possible filter combination.
 * During an earlier test, deploying new extension files required a database schema update (`hidden` fields for departments and job functions). Afterward, backend records and frontend output were accessible again.
-* **Still pending:** Full regression testing of the standard view and additional filter combinations, language variants, employees without a department, and another test using the final release package.
+* **TYPO3 14.3.7, Classic Mode, ALL-INKL / as-sura.de (7 November 2026):** The published **1.1.0** release was installed as an update from version 1.0.1 through the TER-backed Extension Manager. The update completed without errors; all three FlexForm tabs and the display selection were checked in the backend.
+* **Frontend checks on as-sura.de:** The grouped list displayed employee cards under the expected department headings. Selected search/filter cases, the empty-results message, and a newly created employee **without a department** were checked. The **Without department** group appeared after the regular departments; the card and placeholder image also rendered.
+* **Still pending:** systematic regression testing of all filter and display combinations, language variants, caching and routing edge cases, and a complete fresh installation of the published 1.1.0 release. Successful individual checks are not exhaustive acceptance testing.
 
-## Pre-release checklist for 1.1.0
+## Test history and further checks
 
-Some of the following items document earlier 1.0.x tests. They **must not automatically be treated as a renewed acceptance test of 1.1.0**.
+Some items below document earlier 1.0.x tests, while others cover the published 1.1.0 release. **Earlier tests must not automatically be treated as a renewed acceptance test of 1.1.0.**
 
 * Installation from the public GitHub VCS repository in an **independent TYPO3 14.3.10 Composer/DDEV project** (23 October 2026).
 * Composer dependencies and TYPO3 database schema verified in that project.
@@ -243,9 +245,9 @@ Some of the following items document earlier 1.0.x tests. They **must not automa
 * Test direct links to hidden/deleted employees, missing page ID configuration, and multiple plugin instances.
 * Explicitly test the English interface and additional record-visibility cases.
 * Test a complete fresh Classic Mode installation, including schema synchronization, new records, and all features.
-* Update verified screenshots and publication details before release.
-* **1.1.0 – already tested in the development build:** Department grouping, new tab arrangement with German labels, Bootstrap layout, and one combined name/job-function filter.
-* **1.1.0 – still pending:** Complete testing of both views with further filter combinations, employees without a department, language variants, and another test of the final release package.
+* Update screenshots as needed to reflect the published feature set.
+* **1.1.0 – verified:** Department grouping, new tabs with German labels, Bootstrap layout, and selected filter combinations (Mittwald); plus TER update, backend display selection, grouped frontend list, empty results, and an employee without a department (as-sura.de).
+* **1.1.0 – still pending:** exhaustive checks of both views and all filter combinations, language variants, multiple plugin instances, caching edge cases, and a complete fresh installation of the published release package.
 
 ## Outlook and roadmap
 
