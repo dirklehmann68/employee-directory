@@ -4,7 +4,7 @@
 
 A TYPO3 extension for managing employee profiles and displaying a searchable, filterable employee directory.
 
-> **Project status (7 November 2026):** Version **1.1.0** has been published as a GitHub release and is available in the TYPO3 Extension Repository (TER). Department grouping, the new FlexForm tabs, and selected filter combinations were tested in a TYPO3 14.3.6 Composer installation hosted by Mittwald. The published 1.1.0 release was subsequently updated successfully through the Extension Manager on as-sura.de, running TYPO3 14.3.7 in Classic Mode, and further frontend cases were checked. This does not constitute exhaustive testing of every configuration and edge case.
+> **Project status (8 November 2026):** Version **1.1.1** is prepared for release. Version **1.1.0** is available as a GitHub release and in the TYPO3 Extension Repository (TER). Department grouping, the new FlexForm tabs, and selected filter combinations were tested in a TYPO3 14.3.6 Composer installation hosted by Mittwald. The published 1.1.0 release was subsequently updated successfully through the Extension Manager on as-sura.de, running TYPO3 14.3.7 in Classic Mode, and further frontend cases were checked. This does not constitute exhaustive testing of every configuration and edge case.
 
 ## Features
 

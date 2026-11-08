@@ -4,7 +4,7 @@
 
 Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung eines durchsuchbaren und filterbaren Mitarbeiterverzeichnisses.
 
-> **Projektstand (07.11.2026):** Version **1.1.0** wurde auf GitHub als Release veröffentlicht und ist im TYPO3 Extension Repository (TER) verfügbar. Die Abteilungsgruppierung, die neue FlexForm-Reiteranordnung und ausgewählte Filterkombinationen wurden in einer TYPO3-14.3.6-Composer-Testinstallation auf Mittwald geprüft. Anschließend wurde die veröffentlichte Version 1.1.0 auf as-sura.de unter TYPO3 14.3.7 im Classic Mode über den Extension Manager erfolgreich aktualisiert und anhand weiterer Frontend-Fälle getestet. Eine vollständige Prüfung aller Konfigurationen und Grenzfälle ist damit nicht verbunden.
+> **Projektstatus (8. November 2026):** Version **1.1.1** ist für die Veröffentlichung vorbereitet. Version **1.1.0** ist als GitHub-Release und im TYPO3 Extension Repository (TER) verfügbar. Die Abteilungsgruppierung, die neue FlexForm-Reiteranordnung und ausgewählte Filterkombinationen wurden in einer TYPO3-14.3.6-Composer-Testinstallation auf Mittwald geprüft. Anschließend wurde die veröffentlichte Version 1.1.0 auf as-sura.de unter TYPO3 14.3.7 im Classic Mode über den Extension Manager erfolgreich aktualisiert und anhand weiterer Frontend-Fälle getestet. Eine vollständige Prüfung aller Konfigurationen und Grenzfälle ist damit nicht verbunden.
 
 ## Funktionen
 
