@@ -4,7 +4,7 @@
 
 A TYPO3 extension for managing employee profiles and displaying a searchable, filterable employee directory.
 
-> **Project status (11 November 2026):** Version **1.2.0** is being prepared for release; it has **not yet been published**. It adds configurable department ordering to the department-grouped LIST view. Selected departments appear first in the specified order, remaining departments follow alphabetically, and employees without a department remain at the end. The new backend configuration and its German/English labels were tested in TYPO3 14.3.6 (Composer, Mittwald). A final regression test and release packaging are still pending. Earlier version **1.1.0** was published to the TYPO3 Extension Repository (TER), and the existing **v1.1.1** Git tag is available on GitHub. The tests described below cover particular environments and cases, not every configuration or edge case.
+> **Project status (11 November 2026):** Version **1.2.0** was published on GitHub and in the TYPO3 Extension Repository (TER) on 11 November 2026 (`v1.2.0`, commit `4fca60b`). It adds configurable department ordering to the department-grouped LIST view: selected departments appear first in the specified order, remaining departments follow alphabetically, and employees without a department remain last. The configuration and German/English labels were tested in TYPO3 14.3.6 (Composer, Mittwald). After the TER update on as-sura.de (TYPO3 14.3.7, Classic Mode), a full TYPO3 and PHP cache flush was required; the plugin could then be edited again. The checks described below cover specific environments and use cases, not a full regression across all configurations.
 
 ## Features
 
@@ -13,7 +13,7 @@ A TYPO3 extension for managing employee profiles and displaying a searchable, fi
 * Three plugin variants: combined employee directory (LIST + SHOW), standalone employee list (LIST), and standalone employee detail view (SHOW).
 * Employee overview with profile cards and individual detail pages.
 * **New in version 1.1.0:** Choose between the standard list and a list grouped by department. Groups are sorted alphabetically by department name; employees within each group are sorted by last name and then first name. Employees without an assigned department appear in a separate group at the end.
-* **New in version 1.2.0 (release in preparation):** In department-grouped LIST mode, optionally prioritize selected departments using a sortable selection in the plugin settings. Departments not selected remain visible in alphabetical order; employees without a department stay at the end. The standard list and SHOW view are unaffected.
+* **New in version 1.2.0:** In department-grouped LIST mode, optionally prioritize selected departments using a sortable selection in the plugin settings. Departments not selected remain visible in alphabetical order; employees without a department stay at the end. The standard list and SHOW view are unaffected.
 * Search by last name, filter by department or job function, and an alphabetical A–Z filter for last names.
 * Filter dropdowns include only departments and job functions assigned to employee records.
 * German and English interface labels, plus an additional Low German translation.
@@ -89,6 +89,19 @@ After installation, synchronize the database schema using `extension:setup` or t
 **Observation in this test environment:** With `automaticInstallation = 1`, ZIP uploads of both `employee_directory` and the official `container` extension failed with `Extension … is not available`; afterward, `typo3conf/ext/` was empty again. After automatic installation was disabled, both ZIP files uploaded successfully and appeared in the extension list. The manually activated `employee_directory` again displayed two existing employee cards in the frontend.
 
 Manual installation via FTP was also tested successfully. The original ZIP upload test used version 1.0.0. **New:** Updating an existing Classic Mode installation from 1.0.1 to **1.1.0 directly through the TYPO3 Extension Manager / TER** succeeded without errors. A SQL export and a local webspace backup were created before updating. This confirms a successful update, not a complete fresh installation of version 1.1.0 from TER.
+
+## Updating to version 1.2.0
+
+After updating from an earlier version to **1.2.0**,
+the TYPO3 and PHP caches must be fully cleared:
+
+**Admin Tools → Maintenance → Flush TYPO3 and PHP Cache**
+
+This rebuilds the dependency injection container.
+Otherwise, an error involving `DepartmentItemsProvider`
+may occur when editing an Employee Directory plugin.
+
+After clearing the caches, the plugin can be edited as usual.
 
 ## TYPO3 setup
 
@@ -208,6 +221,7 @@ Interface labels are available in German and English; an additional Low German f
 
 | Problem | What to check |
 | --- | --- |
+| After updating to 1.2.0: `DepartmentItemsProvider::__construct()` / `Too few arguments` when editing the plugin | Run **Admin Tools → Maintenance → Flush TYPO3 and PHP Cache** to rebuild the dependency injection container. This resolved the error on as-sura.de (TYPO3 14.3.7). |
 | ZIP upload reports `Extension employee_directory is not available` | In the tested TYPO3 14.3.7 Classic installation, disabling `automaticInstallation` under Extension Configuration → extensionmanager, uploading again, and manually activating the extension resolved the issue. This has not been established as a general solution for other installations. |
 | Slug URL returns 404 | Check `limitToPages`, slug field, site configuration, and the site associated with the records. |
 | No employees are shown | Check the plugin's record storage starting point, record visibility, and storage location. |
@@ -230,11 +244,14 @@ Interface labels are available in German and English; an additional Low German f
 * **Frontend checks on as-sura.de:** The grouped list displayed employee cards under the expected department headings. Selected search/filter cases, the empty-results message, and a newly created employee **without a department** were checked. The **Without department** group appeared after the regular departments; the card and placeholder image also rendered.
 * **Still pending:** systematic regression testing of all filter and display combinations, language variants, caching and routing edge cases, and a complete fresh installation of the published 1.1.0 release. Successful individual checks are not exhaustive acceptance testing.
 
-## Version 1.2.0 development checks (11 November 2026)
+## Version 1.2.0 tests and publication (11 November 2026)
 
 * **TYPO3 14.3.6, Composer, Mittwald:** The optional department-order selector was populated from departments in the configured record storage and saved successfully. The selected department order was checked in the grouped frontend list. Unselected departments continued alphabetically; employees without a department remained last.
 * The list configuration was tested with German and English backend labels, including the new descriptions for the three FlexForm tabs and department ordering.
-* **Still pending before the 1.2.0 release:** A focused regression test of the standard and grouped LIST modes, filters, both list plugin variants, and SHOW navigation, plus release packaging. These development checks are not a complete acceptance test.
+* **Styling:** The alignment of the “More” action buttons at the bottom of employee cards was visually verified in standalone mode on Mittwald after a CSS adjustment.
+* **Release:** Commit `4fca60b` was pushed to GitHub, tag `v1.2.0` was created, and version 1.2.0 was published as the latest stable version in TER.
+* **TYPO3 14.3.7, Classic Mode, ALL-INKL / as-sura.de:** After updating to 1.2.0, editing the plugin initially triggered a constructor error involving `DepartmentItemsProvider`. Running **Admin Tools → Maintenance → Flush TYPO3 and PHP Cache** resolved the issue.
+* **Still pending:** systematic regression testing across all views, filter combinations, languages, routing, and caching edge cases. These successful individual checks are not a complete acceptance test.
 
 ## Test history and further checks
 
@@ -259,7 +276,7 @@ Some items below document earlier 1.0.x tests, while others cover the published 
 
 ## Outlook and roadmap
 
-Employee Directory will be developed incrementally, with an emphasis on ease of use, clear configuration, and a deliberately manageable feature set. **The following items are ideas or development intentions, not promised features or release dates.** They are **not part of the planned version 1.2.0**.
+Employee Directory will be developed incrementally, with an emphasis on ease of use, clear configuration, and a deliberately manageable feature set. **The following items are ideas or development intentions, not promised features or release dates.** They are **not part of the published version 1.2.0**.
 
 * **Faceted filtering:** Adapt available filter options to previously selected criteria without making active selections inaccessible.
 * **Alternative card layouts:** Consider a more compact layout with fewer profile details alongside the existing cards.

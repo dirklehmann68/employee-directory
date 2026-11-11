@@ -4,7 +4,7 @@
 
 Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung eines durchsuchbaren und filterbaren Mitarbeiterverzeichnisses.
 
-> **Projektstand (11.11.2026):** Version **1.2.0** wird für die Veröffentlichung vorbereitet und ist **noch nicht veröffentlicht**. Neu ist die individuell festlegbare Reihenfolge der Abteilungen in der gruppierten LIST-Ansicht: Ausgewählte Abteilungen erscheinen zuerst in der vorgegebenen Reihenfolge, alle übrigen folgen alphabetisch; Mitarbeiter ohne Abteilung stehen weiterhin am Ende. Die neue Backend-Konfiguration und ihre deutschen und englischen Beschriftungen wurden unter TYPO3 14.3.6 (Composer, Mittwald) getestet. Ein abschließender Regressionstest und die Release-Vorbereitung stehen noch aus. Version **1.1.0** wurde bereits im TYPO3 Extension Repository (TER) veröffentlicht; der Git-Tag **v1.1.1** ist auf GitHub vorhanden. Die beschriebenen Tests betreffen bestimmte Umgebungen und Anwendungsfälle, nicht sämtliche Konfigurationen und Grenzfälle.
+> **Projektstand (11.11.2026):** Version **1.2.0** wurde am 11.11.2026 auf GitHub und im TYPO3 Extension Repository (TER) veröffentlicht (`v1.2.0`, Commit `4fca60b`). Neu ist die individuell festlegbare Reihenfolge der Abteilungen in der gruppierten LIST-Ansicht: Ausgewählte Abteilungen erscheinen zuerst in der vorgegebenen Reihenfolge, alle übrigen folgen alphabetisch; Mitarbeiter ohne Abteilung stehen weiterhin am Ende. Die Konfiguration und die deutschen und englischen Beschriftungen wurden unter TYPO3 14.3.6 (Composer, Mittwald) getestet. Nach dem TER-Update auf as-sura.de (TYPO3 14.3.7, Classic Mode) war ein vollständiger TYPO3- und PHP-Cache-Flush erforderlich; anschließend ließ sich das Plugin wieder bearbeiten. Die beschriebenen Tests decken konkrete Umgebungen und Anwendungsfälle ab, keine vollständige Regression sämtlicher Konfigurationen.
 
 ## Funktionen
 
@@ -13,7 +13,7 @@ Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung 
 * Drei Plugin-Varianten: kombiniertes Mitarbeiterverzeichnis (LIST + SHOW), eigenständige Mitarbeiterliste (LIST) und eigenständige Detailansicht (SHOW).
 * Mitarbeiterübersicht mit Profilkarten und individuellen Detailansichten.
 * **Neu in Version 1.1.0:** Wahlweise Standardansicht oder nach Abteilungen gruppierte Mitarbeiterliste. Die Gruppen werden alphabetisch nach Abteilungsnamen angeordnet; Mitarbeiter innerhalb der Gruppen nach Nach- und Vornamen. Mitarbeiter ohne Abteilung erscheinen in einer eigenen Gruppe am Ende.
-* **Neu in Version 1.2.0 (Release in Vorbereitung):** In der nach Abteilungen gruppierten LIST-Ansicht lassen sich ausgewählte Abteilungen über eine sortierbare Auswahl in den Plugin-Einstellungen priorisieren. Nicht ausgewählte Abteilungen bleiben sichtbar und folgen alphabetisch; Mitarbeiter ohne Abteilung stehen weiterhin am Ende. Die Standardansicht und die SHOW-Detailansicht bleiben unverändert.
+* **Neu in Version 1.2.0:** In der nach Abteilungen gruppierten LIST-Ansicht lassen sich ausgewählte Abteilungen über eine sortierbare Auswahl in den Plugin-Einstellungen priorisieren. Nicht ausgewählte Abteilungen bleiben sichtbar und folgen alphabetisch; Mitarbeiter ohne Abteilung stehen weiterhin am Ende. Die Standardansicht und die SHOW-Detailansicht bleiben unverändert.
 * Suche nach Nachnamen, Filter nach Abteilung und Funktion sowie alphabetischer A–Z-Filter für Nachnamen.
 * In den Auswahllisten erscheinen nur Abteilungen und Funktionen, die Mitarbeiterdatensätzen zugeordnet sind.
 * Deutsche und englische Oberflächenbeschriftungen; zusätzlich ist eine plattdeutsche Übersetzung enthalten.
@@ -89,6 +89,19 @@ Nach der Installation den Datenbank-/Schema-Abgleich über `extension:setup` ode
 **Beobachtung in dieser Testumgebung:** Mit `automaticInstallation = 1` scheiterte der ZIP-Upload sowohl bei `employee_directory` als auch bei der offiziellen Extension `container` mit der Meldung `Extension … is not available`; anschließend war `typo3conf/ext/` wieder leer. Nach Deaktivierung der automatischen Installation wurden beide ZIP-Dateien erfolgreich hochgeladen und in der Extension-Liste angezeigt. Die manuell aktivierte `employee_directory` lieferte wieder zwei bestehende Mitarbeiter-Cards im Frontend.
 
 Auch die manuelle Installation per FTP wurde erfolgreich getestet. Der ZIP-Upload wurde ursprünglich mit Version 1.0.0 geprüft. **Neu:** Das Update einer bestehenden Classic-Mode-Installation von Version 1.0.1 auf **1.1.0 direkt über den TYPO3 Extension Manager / TER** verlief ohne Fehlermeldung. Vor dem Update wurden ein SQL-Export und eine lokale Sicherung des Webspaces erstellt. Dies belegt ein erfolgreiches Update, jedoch keine vollständige Neuinstallation der Version 1.1.0 aus dem TER.
+
+## Aktualisierung auf Version 1.2.0
+
+Nach der Aktualisierung von einer älteren Version auf **1.2.0**
+muss der TYPO3- und PHP-Cache vollständig geleert werden:
+
+**Admin Tools → Maintenance → Flush TYPO3 and PHP Cache**
+
+Dadurch wird der Dependency-Injection-Container neu aufgebaut.
+Andernfalls kann beim Bearbeiten eines Employee-Directory-Plugins
+ein Fehler im Zusammenhang mit dem `DepartmentItemsProvider` auftreten.
+
+Nach dem Leeren des Caches kann das Plugin wie gewohnt bearbeitet werden.
 
 ## Einrichtung in TYPO3
 
@@ -208,6 +221,7 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 
 | Problem | Prüfen |
 | --- | --- |
+| Nach Update auf 1.2.0: `DepartmentItemsProvider::__construct()` / `Too few arguments` beim Bearbeiten des Plugins | Unter **Admin Tools → Maintenance → Flush TYPO3 and PHP Cache** den TYPO3- und PHP-Cache vollständig leeren, damit der Dependency-Injection-Container neu aufgebaut wird. So wurde der Fehler auf as-sura.de (TYPO3 14.3.7) behoben. |
 | ZIP-Upload meldet `Extension employee_directory is not available` | In der getesteten TYPO3-14.3.7-Classic-Installation half es, unter Extension Configuration → extensionmanager `automaticInstallation` zu deaktivieren, die ZIP-Datei erneut hochzuladen und die Extension anschließend manuell zu aktivieren. Kein allgemeiner Nachweis für andere Installationen. |
 | Slug-URL führt zu 404 | `limitToPages`, Slug-Feld, Site-Konfiguration und Site-Zugehörigkeit der Datensätze kontrollieren. |
 | Keine Mitarbeiter sichtbar | Datensatzablage im Plugin, Sichtbarkeit der Datensätze und Speicherort. |
@@ -230,11 +244,14 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 * **Frontend-Prüfungen auf as-sura.de:** Die nach Abteilungen gruppierte Liste zeigte die Mitarbeiter in den erwarteten Gruppen und mit korrekten Cards. Ausgewählte Such- und Filterfälle, die Anzeige ohne Suchtreffer sowie die Darstellung eines eigens angelegten Mitarbeiters **ohne Abteilung** wurden geprüft. Die Gruppe **„Ohne Abteilung“** erschien nach den regulären Abteilungen; auch die Card mit Platzhalterbild wurde angezeigt.
 * **Noch ausstehend:** systematische Regression sämtlicher Filter- und Anzeigeoptionen, Sprachvarianten, Cache- und Routing-Grenzfälle sowie eine vollständige Neuinstallation der veröffentlichten 1.1.0. Die erfolgreichen Einzeltests sind keine vollständige Abnahme.
 
-## Entwicklungstests der Version 1.2.0 (11.11.2026)
+## Tests und Veröffentlichung der Version 1.2.0 (11.11.2026)
 
 * **TYPO3 14.3.6, Composer, Mittwald:** Die optionale Abteilungsauswahl wurde mit den Abteilungen aus der konfigurierten Datensatzablage befüllt und erfolgreich gespeichert. Die gewählte Reihenfolge wurde in der gruppierten Frontend-Liste geprüft. Nicht ausgewählte Abteilungen folgten alphabetisch; Mitarbeiter ohne Abteilung blieben am Ende.
 * Die Listenkonfiguration wurde mit deutschen und englischen Backend-Beschriftungen getestet, einschließlich der neuen Hinweise zu den drei FlexForm-Reitern und zur Abteilungssortierung.
-* **Vor der Veröffentlichung von 1.2.0 noch ausstehend:** gezielter Regressionstest der Standardansicht und gruppierten LIST-Ansicht, der Filter, beider Listen-Pluginvarianten und der SHOW-Navigation sowie die Release-Erstellung. Diese Entwicklungstests ersetzen keine vollständige Abnahme.
+* **Darstellung:** Die Ausrichtung der „Mehr erfahren“-Buttons am unteren Rand der Cards wurde im Standalone-Modus auf Mittwald nach einer CSS-Anpassung visuell geprüft.
+* **Release:** Der Commit `4fca60b` wurde auf GitHub veröffentlicht, das Tag `v1.2.0` gesetzt und Version 1.2.0 im TER als stabile aktuelle Version bereitgestellt.
+* **TYPO3 14.3.7, Classic Mode, ALL-INKL / as-sura.de:** Nach dem Update auf 1.2.0 trat beim Bearbeiten des Plugins zunächst ein Konstruktorfehler im `DepartmentItemsProvider` auf. Nach **Admin Tools → Maintenance → Flush TYPO3 and PHP Cache** ließ sich das Plugin wieder bearbeiten.
+* **Weiterhin offen:** ein systematischer Regressionstest aller Ansichten, Filterkombinationen, Sprachvarianten, Routing- und Cache-Grenzfälle. Die erfolgreichen Einzeltests ersetzen keine vollständige Abnahme.
 
 ## Testhistorie und weitere Prüfpunkte
 
@@ -259,7 +276,7 @@ Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x und teils Prü
 
 ## Ausblick und Roadmap
 
-Die Employee Directory wird schrittweise weiterentwickelt. Im Mittelpunkt stehen eine einfache Bedienung, eine übersichtliche Konfiguration und ein bewusst begrenzter Funktionsumfang. **Die folgenden Punkte sind Ideen beziehungsweise Entwicklungsabsichten, keine zugesagten Funktionen oder Veröffentlichungstermine.** Sie sind **nicht Bestandteil der geplanten Version 1.2.0**.
+Die Employee Directory wird schrittweise weiterentwickelt. Im Mittelpunkt stehen eine einfache Bedienung, eine übersichtliche Konfiguration und ein bewusst begrenzter Funktionsumfang. **Die folgenden Punkte sind Ideen beziehungsweise Entwicklungsabsichten, keine zugesagten Funktionen oder Veröffentlichungstermine.** Sie sind **nicht Bestandteil der veröffentlichten Version 1.2.0**.
 
 * **Facettierte Filterung:** Die verfügbaren Filteroptionen sollen sich an bereits gewählte Suchkriterien anpassen, ohne aktive Auswahlen unzugänglich zu machen.
 * **Alternative Card-Layouts:** Zusätzlich zur bisherigen Card-Darstellung ist ein kompakteres Layout mit reduzierten Profilinformationen denkbar.
