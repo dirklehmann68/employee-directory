@@ -1,10 +1,10 @@
 # Mitarbeiterverzeichnis für TYPO3
 
-[English](https://github.com/dirklehmann68/employee-directory/blob/main/README.md) | [Deutsch](https://github.com/dirklehmann68/employee-directory/blob/main/README.de.md)
+[English](README.md) | [Deutsch](README.de.md)
 
 Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung eines durchsuchbaren und filterbaren Mitarbeiterverzeichnisses.
 
-> **Projektstatus (8. November 2026):** Version **1.1.1** ist für die Veröffentlichung vorbereitet. Version **1.1.0** ist als GitHub-Release und im TYPO3 Extension Repository (TER) verfügbar. Die Abteilungsgruppierung, die neue FlexForm-Reiteranordnung und ausgewählte Filterkombinationen wurden in einer TYPO3-14.3.6-Composer-Testinstallation auf Mittwald geprüft. Anschließend wurde die veröffentlichte Version 1.1.0 auf as-sura.de unter TYPO3 14.3.7 im Classic Mode über den Extension Manager erfolgreich aktualisiert und anhand weiterer Frontend-Fälle getestet. Eine vollständige Prüfung aller Konfigurationen und Grenzfälle ist damit nicht verbunden.
+> **Projektstand (11.11.2026):** Version **1.2.0** wird für die Veröffentlichung vorbereitet und ist **noch nicht veröffentlicht**. Neu ist die individuell festlegbare Reihenfolge der Abteilungen in der gruppierten LIST-Ansicht: Ausgewählte Abteilungen erscheinen zuerst in der vorgegebenen Reihenfolge, alle übrigen folgen alphabetisch; Mitarbeiter ohne Abteilung stehen weiterhin am Ende. Die neue Backend-Konfiguration und ihre deutschen und englischen Beschriftungen wurden unter TYPO3 14.3.6 (Composer, Mittwald) getestet. Ein abschließender Regressionstest und die Release-Vorbereitung stehen noch aus. Version **1.1.0** wurde bereits im TYPO3 Extension Repository (TER) veröffentlicht; der Git-Tag **v1.1.1** ist auf GitHub vorhanden. Die beschriebenen Tests betreffen bestimmte Umgebungen und Anwendungsfälle, nicht sämtliche Konfigurationen und Grenzfälle.
 
 ## Funktionen
 
@@ -13,6 +13,7 @@ Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung 
 * Drei Plugin-Varianten: kombiniertes Mitarbeiterverzeichnis (LIST + SHOW), eigenständige Mitarbeiterliste (LIST) und eigenständige Detailansicht (SHOW).
 * Mitarbeiterübersicht mit Profilkarten und individuellen Detailansichten.
 * **Neu in Version 1.1.0:** Wahlweise Standardansicht oder nach Abteilungen gruppierte Mitarbeiterliste. Die Gruppen werden alphabetisch nach Abteilungsnamen angeordnet; Mitarbeiter innerhalb der Gruppen nach Nach- und Vornamen. Mitarbeiter ohne Abteilung erscheinen in einer eigenen Gruppe am Ende.
+* **Neu in Version 1.2.0 (Release in Vorbereitung):** In der nach Abteilungen gruppierten LIST-Ansicht lassen sich ausgewählte Abteilungen über eine sortierbare Auswahl in den Plugin-Einstellungen priorisieren. Nicht ausgewählte Abteilungen bleiben sichtbar und folgen alphabetisch; Mitarbeiter ohne Abteilung stehen weiterhin am Ende. Die Standardansicht und die SHOW-Detailansicht bleiben unverändert.
 * Suche nach Nachnamen, Filter nach Abteilung und Funktion sowie alphabetischer A–Z-Filter für Nachnamen.
 * In den Auswahllisten erscheinen nur Abteilungen und Funktionen, die Mitarbeiterdatensätzen zugeordnet sind.
 * Deutsche und englische Oberflächenbeschriftungen; zusätzlich ist eine plattdeutsche Übersetzung enthalten.
@@ -21,7 +22,7 @@ Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung 
 
 ## Vorschau
 
-[![Vorschau des Mitarbeiterverzeichnisses mit Suchfiltern und Mitarbeiterkarten](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-preview.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-preview.png)
+[![Vorschau des Mitarbeiterverzeichnisses mit Suchfiltern und Mitarbeiterkarten](Documentation/Images/employee-preview.png)](Documentation/Images/employee-preview.png)
 
 ## Systemvoraussetzungen
 
@@ -114,12 +115,13 @@ Für die Navigation zwischen getrennten LIST-/SHOW-Seiten müssen **beide** Seit
 
 ### Anzeige- und Filtereinstellungen
 
-Die folgenden Einstellungen wurden in den beschriebenen Testinstallationen überprüft; die neue Darstellungseinstellung wurde sowohl in der Mittwald-Testumgebung mit TYPO3 14.3.6 als auch auf as-sura.de mit TYPO3 14.3.7 geprüft:
+Die folgenden Einstellungen wurden in den beschriebenen Testumgebungen überprüft. Die Abteilungsgruppierung wurde auf Mittwald (TYPO3 14.3.6) und as-sura.de (TYPO3 14.3.7) getestet; die neue Sortierfunktion der Version 1.2.0 wurde auf Mittwald geprüft:
 
 * **Sites → Settings → Employee Directory → Filter:** Namenssuche, Funktionsfilter, Abteilungsfilter und A–Z-Filter einzeln ein-/ausblenden. Sind alle drei Formularfilter ausgeschaltet, verschwinden auch die Schaltflächen zum Anwenden und Zurücksetzen; der A–Z-Filter ist unabhängig davon.
 * **Sites → Settings → Employee Directory → Appearance:** Zwischen **Standalone CSS** und **Bootstrap CSS** wechseln. Im Test wurde jeweils nur das ausgewählte Stylesheet geladen.
 * **Sites → Settings → Employee Directory:** Frontend-Beschriftungen optional überschreiben. Leere Überschreibungen verwenden wieder die übersetzten Standardbeschriftungen.
 * **Inhaltselement → Plugin → Darstellung (ab Version 1.1.0):** Unter **Darstellung der Mitarbeiterliste** zwischen **Standardansicht** und **Nach Abteilungen gruppiert** wählen. Die Standardansicht bleibt unverändert. Im Gruppierungsmodus erscheinen Abteilungsüberschriften über den zugehörigen Cards. Der A–Z-Filter bezieht sich weiterhin auf den **Nachnamen**, nicht auf die Abteilung. Der eigene Reiter **Darstellung** wurde in TYPO3 14.3.6 und 14.3.7 im Backend geprüft.
+* **Inhaltselement → Plugin → Darstellung (neu in 1.2.0):** Bei Auswahl von **Nach Abteilungen gruppiert** lassen sich unter **Reihenfolge der Abteilungen** Abteilungen aus der gewählten Datensatzablage auswählen und in eine gewünschte Reihenfolge bringen. Ausgewählte Abteilungen erscheinen zuerst, nicht ausgewählte anschließend alphabetisch. Gruppen ohne sichtbare Mitarbeiter werden nicht ausgegeben; Mitarbeiter ohne Abteilung stehen in der letzten Gruppe. Bleibt die individuelle Reihenfolge leer, werden die Abteilungen alphabetisch sortiert. Die Einstellung betrifft ausschließlich LIST, nicht SHOW.
 * **Inhaltselement → Plugin → Card-Inhalte:** Funktion, Abteilung, Telefon, E-Mail, Standort, Raum und Sprechzeiten einzeln ein-/ausblenden.
 * **Inhaltselement → Plugin → Bilder:** Mitarbeiterfotos und Platzhalter bei fehlendem Foto ein-/ausblenden. Bei deaktivierter Fotoanzeige wird auch kein Platzhalter angezeigt.
 
@@ -228,6 +230,12 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 * **Frontend-Prüfungen auf as-sura.de:** Die nach Abteilungen gruppierte Liste zeigte die Mitarbeiter in den erwarteten Gruppen und mit korrekten Cards. Ausgewählte Such- und Filterfälle, die Anzeige ohne Suchtreffer sowie die Darstellung eines eigens angelegten Mitarbeiters **ohne Abteilung** wurden geprüft. Die Gruppe **„Ohne Abteilung“** erschien nach den regulären Abteilungen; auch die Card mit Platzhalterbild wurde angezeigt.
 * **Noch ausstehend:** systematische Regression sämtlicher Filter- und Anzeigeoptionen, Sprachvarianten, Cache- und Routing-Grenzfälle sowie eine vollständige Neuinstallation der veröffentlichten 1.1.0. Die erfolgreichen Einzeltests sind keine vollständige Abnahme.
 
+## Entwicklungstests der Version 1.2.0 (11.11.2026)
+
+* **TYPO3 14.3.6, Composer, Mittwald:** Die optionale Abteilungsauswahl wurde mit den Abteilungen aus der konfigurierten Datensatzablage befüllt und erfolgreich gespeichert. Die gewählte Reihenfolge wurde in der gruppierten Frontend-Liste geprüft. Nicht ausgewählte Abteilungen folgten alphabetisch; Mitarbeiter ohne Abteilung blieben am Ende.
+* Die Listenkonfiguration wurde mit deutschen und englischen Backend-Beschriftungen getestet, einschließlich der neuen Hinweise zu den drei FlexForm-Reitern und zur Abteilungssortierung.
+* **Vor der Veröffentlichung von 1.2.0 noch ausstehend:** gezielter Regressionstest der Standardansicht und gruppierten LIST-Ansicht, der Filter, beider Listen-Pluginvarianten und der SHOW-Navigation sowie die Release-Erstellung. Diese Entwicklungstests ersetzen keine vollständige Abnahme.
+
 ## Testhistorie und weitere Prüfpunkte
 
 Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x und teils Prüfungen der veröffentlichten 1.1.0. **Frühere Tests sind nicht automatisch als erneute Abnahme von 1.1.0 zu verstehen.**
@@ -251,12 +259,11 @@ Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x und teils Prü
 
 ## Ausblick und Roadmap
 
-Die Employee Directory wird schrittweise weiterentwickelt. Im Mittelpunkt stehen eine einfache Bedienung, eine übersichtliche Konfiguration und ein bewusst begrenzter Funktionsumfang. **Die folgenden Punkte sind Ideen beziehungsweise Entwicklungsabsichten, keine zugesagten Funktionen oder Veröffentlichungstermine.** Sie sind **nicht Bestandteil der Version 1.1.0**.
+Die Employee Directory wird schrittweise weiterentwickelt. Im Mittelpunkt stehen eine einfache Bedienung, eine übersichtliche Konfiguration und ein bewusst begrenzter Funktionsumfang. **Die folgenden Punkte sind Ideen beziehungsweise Entwicklungsabsichten, keine zugesagten Funktionen oder Veröffentlichungstermine.** Sie sind **nicht Bestandteil der geplanten Version 1.2.0**.
 
 * **Facettierte Filterung:** Die verfügbaren Filteroptionen sollen sich an bereits gewählte Suchkriterien anpassen, ohne aktive Auswahlen unzugänglich zu machen.
 * **Alternative Card-Layouts:** Zusätzlich zur bisherigen Card-Darstellung ist ein kompakteres Layout mit reduzierten Profilinformationen denkbar.
 * **Unabhängig wählbare Gruppierung:** Gruppierung (beispielsweise keine, nach Abteilung oder alphabetisch nach Nachnamen) und Card-Layout sollen perspektivisch getrennt konfigurierbar sein.
-* **Individuelle Abteilungssortierung:** Optional festlegbare Reihenfolge der Abteilungen statt ausschließlich alphabetischer Sortierung.
 * **Zeitgesteuerte Sichtbarkeit:** Nutzung der TYPO3-Standardfelder für Veröffentlichungsbeginn und -ende (`starttime`/`endtime`) bei Mitarbeiterdatensätzen, einschließlich Prüfung von TCA, Repository-Verhalten und Caching. Diese Unterstützung ist für die Extension bislang nicht als fertig getestet dokumentiert.
 * **Verbesserte Rücknavigation:** Such- und Filtereinstellungen beim Wechsel von der Detailansicht zurück zur Liste beibehalten.
 * **Pagination:** Seitennavigation für größere Mitarbeiterverzeichnisse.
@@ -269,14 +276,14 @@ Reihenfolge, Umfang und Umsetzung können sich im Laufe der Entwicklung ändern.
 
 ### Mitarbeiterverzeichnis (LIST)
 
-[![Mitarbeiterverzeichnis mit Suchfiltern und Mitarbeiterkarten](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-list.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-list.png)
+[![Mitarbeiterverzeichnis mit Suchfiltern und Mitarbeiterkarten](Documentation/Images/employee-list.png)](Documentation/Images/employee-list.png)
 
 ### Mitarbeiterprofil (SHOW)
 
-[![Mitarbeiterprofil mit Kontaktdaten und Beschreibung](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-detail.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-detail.png)
+[![Mitarbeiterprofil mit Kontaktdaten und Beschreibung](Documentation/Images/employee-detail.png)](Documentation/Images/employee-detail.png)
 
 ## Lizenz
 
 Diese Extension ist unter der GNU General Public License, Version 2 oder einer späteren Version (GPL-2.0-or-later) lizenziert.
 
-Die Lizenz ist in der [`composer.json`](https://github.com/dirklehmann68/employee-directory/blob/main/composer.json) angegeben. Den vollständigen Lizenztext findest du in der Datei [LICENSE](https://github.com/dirklehmann68/employee-directory/blob/main/LICENSE).
+Die Lizenz ist in der [`composer.json`](composer.json) angegeben. Den vollständigen Lizenztext findest du in der Datei [LICENSE](LICENSE).

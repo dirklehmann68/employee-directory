@@ -2,6 +2,26 @@
 <xliff version="1.2">
     <file source-language="en" datatype="plaintext" original="messages">
         <body>
+            <!-- List view settings -->
+            <trans-unit id="flexform.department_order">
+                <source>Department order</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.department_order.description">
+                <source>Selected departments appear first in the specified order. Departments not selected follow automatically in alphabetical order.</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.sheet.display.description">
+                <source>The following options affect only the employee list (LIST). The detail view (SHOW) remains unchanged.</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.sheet.card_content.description">
+                <source>Choose which information is displayed in the employee cards of the list view (LIST). The detail view (SHOW) remains unchanged.</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.sheet.images.description">
+                <source>Configure how employee images are displayed in the list view (LIST). The detail view (SHOW) remains unchanged.</source>
+            </trans-unit>
             <!-- Filter -->
             <trans-unit id="filter.name">
                 <source>Name</source>

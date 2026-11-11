@@ -1,10 +1,10 @@
 # Employee Directory for TYPO3
 
-[English](https://github.com/dirklehmann68/employee-directory/blob/main/README.md) | [Deutsch](https://github.com/dirklehmann68/employee-directory/blob/main/README.de.md)
+[English](README.md) | [Deutsch](README.de.md)
 
 A TYPO3 extension for managing employee profiles and displaying a searchable, filterable employee directory.
 
-> **Project status (8 November 2026):** Version **1.1.1** is prepared for release. Version **1.1.0** is available as a GitHub release and in the TYPO3 Extension Repository (TER). Department grouping, the new FlexForm tabs, and selected filter combinations were tested in a TYPO3 14.3.6 Composer installation hosted by Mittwald. The published 1.1.0 release was subsequently updated successfully through the Extension Manager on as-sura.de, running TYPO3 14.3.7 in Classic Mode, and further frontend cases were checked. This does not constitute exhaustive testing of every configuration and edge case.
+> **Project status (11 November 2026):** Version **1.2.0** is being prepared for release; it has **not yet been published**. It adds configurable department ordering to the department-grouped LIST view. Selected departments appear first in the specified order, remaining departments follow alphabetically, and employees without a department remain at the end. The new backend configuration and its German/English labels were tested in TYPO3 14.3.6 (Composer, Mittwald). A final regression test and release packaging are still pending. Earlier version **1.1.0** was published to the TYPO3 Extension Repository (TER), and the existing **v1.1.1** Git tag is available on GitHub. The tests described below cover particular environments and cases, not every configuration or edge case.
 
 ## Features
 
@@ -13,6 +13,7 @@ A TYPO3 extension for managing employee profiles and displaying a searchable, fi
 * Three plugin variants: combined employee directory (LIST + SHOW), standalone employee list (LIST), and standalone employee detail view (SHOW).
 * Employee overview with profile cards and individual detail pages.
 * **New in version 1.1.0:** Choose between the standard list and a list grouped by department. Groups are sorted alphabetically by department name; employees within each group are sorted by last name and then first name. Employees without an assigned department appear in a separate group at the end.
+* **New in version 1.2.0 (release in preparation):** In department-grouped LIST mode, optionally prioritize selected departments using a sortable selection in the plugin settings. Departments not selected remain visible in alphabetical order; employees without a department stay at the end. The standard list and SHOW view are unaffected.
 * Search by last name, filter by department or job function, and an alphabetical A–Z filter for last names.
 * Filter dropdowns include only departments and job functions assigned to employee records.
 * German and English interface labels, plus an additional Low German translation.
@@ -21,7 +22,7 @@ A TYPO3 extension for managing employee profiles and displaying a searchable, fi
 
 ## Preview
 
-[![Employee directory preview with search filters and employee cards](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-preview.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-preview.png)
+[![Employee directory preview with search filters and employee cards](Documentation/Images/employee-preview.png)](Documentation/Images/employee-preview.png)
 
 ## Requirements
 
@@ -114,12 +115,13 @@ For navigation between separate LIST/SHOW pages, **both** page IDs must be set u
 
 ### Display and filter settings
 
-The following settings were verified in the test installations described above; the new display setting was tested both in the Mittwald environment running TYPO3 14.3.6 and on as-sura.de running TYPO3 14.3.7:
+The settings below were checked in the test environments described in this document. Department grouping was tested on Mittwald (TYPO3 14.3.6) and as-sura.de (TYPO3 14.3.7); the new 1.2.0 ordering control was tested on Mittwald:
 
 * **Sites → Settings → Employee Directory → Filter:** Toggle name search, job-function filter, department filter, and A–Z filter independently. If all three form filters are disabled, the Apply and Reset buttons disappear as well; the A–Z filter is independent.
 * **Sites → Settings → Employee Directory → Appearance:** Switch between **Standalone CSS** and **Bootstrap CSS**. Only the selected stylesheet was loaded in the test.
 * **Sites → Settings → Employee Directory:** Optionally override frontend labels. Empty overrides fall back to the translated defaults.
 * **Content element → Plugin → Display (since version 1.1.0):** Under **Employee list display**, choose **Standard view** or **Grouped by department**. The standard view remains unchanged. In grouped mode, department headings appear above the relevant cards. The A–Z filter still applies to **last names**, not department names. The dedicated **Display** tab was verified in the TYPO3 14.3.6 and 14.3.7 backends.
+* **Content element → Plugin → Display (new in 1.2.0):** When **Grouped by department** is selected, **Department order** lets editors choose and arrange departments from the configured record storage. Selected departments are displayed first in the chosen order; unselected departments follow alphabetically. Groups without visible employees are not shown, and employees without an assigned department remain in the final group. Leaving the custom order empty preserves alphabetical department sorting. This affects LIST only, not SHOW.
 * **Content element → Plugin → Card content:** Toggle job function, department, phone, email, location, room, and office hours independently.
 * **Content element → Plugin → Images:** Toggle employee photos and placeholders for missing photos. Disabling photo display also disables the placeholder.
 
@@ -228,6 +230,12 @@ Interface labels are available in German and English; an additional Low German f
 * **Frontend checks on as-sura.de:** The grouped list displayed employee cards under the expected department headings. Selected search/filter cases, the empty-results message, and a newly created employee **without a department** were checked. The **Without department** group appeared after the regular departments; the card and placeholder image also rendered.
 * **Still pending:** systematic regression testing of all filter and display combinations, language variants, caching and routing edge cases, and a complete fresh installation of the published 1.1.0 release. Successful individual checks are not exhaustive acceptance testing.
 
+## Version 1.2.0 development checks (11 November 2026)
+
+* **TYPO3 14.3.6, Composer, Mittwald:** The optional department-order selector was populated from departments in the configured record storage and saved successfully. The selected department order was checked in the grouped frontend list. Unselected departments continued alphabetically; employees without a department remained last.
+* The list configuration was tested with German and English backend labels, including the new descriptions for the three FlexForm tabs and department ordering.
+* **Still pending before the 1.2.0 release:** A focused regression test of the standard and grouped LIST modes, filters, both list plugin variants, and SHOW navigation, plus release packaging. These development checks are not a complete acceptance test.
+
 ## Test history and further checks
 
 Some items below document earlier 1.0.x tests, while others cover the published 1.1.0 release. **Earlier tests must not automatically be treated as a renewed acceptance test of 1.1.0.**
@@ -251,12 +259,11 @@ Some items below document earlier 1.0.x tests, while others cover the published 
 
 ## Outlook and roadmap
 
-Employee Directory will be developed incrementally, with an emphasis on ease of use, clear configuration, and a deliberately manageable feature set. **The following items are ideas or development intentions, not promised features or release dates.** They are **not part of version 1.1.0**.
+Employee Directory will be developed incrementally, with an emphasis on ease of use, clear configuration, and a deliberately manageable feature set. **The following items are ideas or development intentions, not promised features or release dates.** They are **not part of the planned version 1.2.0**.
 
 * **Faceted filtering:** Adapt available filter options to previously selected criteria without making active selections inaccessible.
 * **Alternative card layouts:** Consider a more compact layout with fewer profile details alongside the existing cards.
 * **Independently configurable grouping:** Allow grouping (for example, none, by department, or alphabetically by last name) and card layout to be configured separately in the future.
-* **Custom department ordering:** Optionally define the order of departments instead of relying solely on alphabetical sorting.
 * **Scheduled visibility:** Support TYPO3's standard publication start and end fields (`starttime`/`endtime`) for employee records, including verification of TCA, repository behavior, and caching. This support has not yet been documented as fully implemented and tested in the extension.
 * **Improved back navigation:** Preserve search and filter selections when returning from a detail view to the list.
 * **Pagination:** Add page navigation for larger employee directories.
@@ -269,14 +276,14 @@ The order, scope, and implementation of these ideas may change. No specific futu
 
 ### Employee directory (LIST)
 
-[![Employee directory with search filters and employee cards](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-list.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-list.png)
+[![Employee directory with search filters and employee cards](Documentation/Images/employee-list.png)](Documentation/Images/employee-list.png)
 
 ### Employee profile (SHOW)
 
-[![Employee profile with contact details and description](https://github.com/dirklehmann68/employee-directory/raw/main/Documentation/Images/employee-detail.png)](https://github.com/dirklehmann68/employee-directory/blob/main/Documentation/Images/employee-detail.png)
+[![Employee profile with contact details and description](Documentation/Images/employee-detail.png)](Documentation/Images/employee-detail.png)
 
 ## License
 
 This extension is licensed under the GNU General Public License, version 2 or later (GPL-2.0-or-later).
 
-The license is specified in [`composer.json`](https://github.com/dirklehmann68/employee-directory/blob/main/composer.json). See [LICENSE](https://github.com/dirklehmann68/employee-directory/blob/main/LICENSE) for the full license text.
+The license is specified in [`composer.json`](composer.json). See [LICENSE](LICENSE) for the full license text.

@@ -84,11 +84,40 @@ class EmployeeController extends ActionController
             $departmentGroupsByUid[$departmentUid]['employees'][] = $employeeItem;
         }
 
-        $departmentGroups = array_values($departmentGroupsByUid);
-        usort(
-            $departmentGroups,
-            static fn (array $a, array $b): int => strnatcasecmp($a['title'], $b['title'])
+        // Individuelle Abteilungsreihenfolge aus den FlexForm-Einstellungen lesen.
+        $departmentOrder = $this->settings['departmentOrder'] ?? '';
+
+        // Gespeicherte Abteilungs-UIDs in eine Reihenfolge umwandeln.
+        $orderedDepartmentIds = array_values(array_filter(
+            array_map('intval', explode(',', (string)$departmentOrder)),
+            static fn (int $uid): bool => $uid > 0
+        ));
+
+        $departmentPositions = array_flip($orderedDepartmentIds);
+
+        // Abteilungen nach individueller Reihenfolge sortieren.
+        // Nicht ausgewählte Abteilungen bleiben alphabetisch.
+        uksort(
+            $departmentGroupsByUid,
+            static function (int|string $uidA, int|string $uidB) use (
+                $departmentPositions,
+                $departmentGroupsByUid
+            ): int {
+                $positionA = $departmentPositions[(int)$uidA] ?? PHP_INT_MAX;
+                $positionB = $departmentPositions[(int)$uidB] ?? PHP_INT_MAX;
+
+                if ($positionA !== $positionB) {
+                    return $positionA <=> $positionB;
+                }
+
+                return strnatcasecmp(
+                    $departmentGroupsByUid[$uidA]['title'],
+                    $departmentGroupsByUid[$uidB]['title']
+                );
+            }
         );
+
+        $departmentGroups = array_values($departmentGroupsByUid);
 
         if ($employeesWithoutDepartment !== []) {
             $departmentGroups[] = [

@@ -4,6 +4,7 @@
         <sDisplay>
             <ROOT>
                 <sheetTitle>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.sheet.display</sheetTitle>
+                <sheetDescription>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.sheet.display.description</sheetDescription>
                 <type>array</type>
                 <el>
                     <settings.listLayout>
@@ -24,12 +25,30 @@
                             <default>default</default>
                         </config>
                     </settings.listLayout>
+                    <settings.departmentOrder>
+                        <label>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.department_order</label>
+                        <description>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.department_order.description</description>
+                        <displayCond>FIELD:settings.listLayout:=:department</displayCond>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectMultipleSideBySide</renderType>
+                            <size>8</size>
+                            <minitems>0</minitems>
+                            <maxitems>100</maxitems>
+                            <itemsProcessors>
+                                <numIndex index="0">
+                                    <class>DirkLehmann\EmployeeDirectory\Backend\Form\DepartmentItemsProvider</class>
+                                </numIndex>
+                            </itemsProcessors>
+                        </config>
+                    </settings.departmentOrder>
                 </el>
             </ROOT>
         </sDisplay>
         <sDEF>
             <ROOT>
                 <sheetTitle>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.sheet.card_content</sheetTitle>
+                <sheetDescription>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.sheet.card_content.description</sheetDescription>
                 <type>array</type>
                 <el>
 
@@ -95,6 +114,7 @@
         <sImages>
             <ROOT>
                 <sheetTitle>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.sheet.images</sheetTitle>
+                <sheetDescription>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.sheet.images.description</sheetDescription>
                 <type>array</type>
                 <el>
                     <settings.showImage>

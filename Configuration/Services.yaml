@@ -6,3 +6,6 @@ services:
 
   DirkLehmann\EmployeeDirectory\:
     resource: '../Classes/*'
+
+  DirkLehmann\EmployeeDirectory\Backend\Form\DepartmentItemsProvider:
+    public: true
