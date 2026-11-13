@@ -581,6 +581,10 @@
 
 /* Optimierung für Smartphones */
 @media (max-width: 575.98px) {
+    .employee-directory .employee-list-grid .card > .row.g-0 > div {
+        width: 100%;
+    }
+
     .employee-directory .employee-show-image {
         max-width: 220px;
         margin-inline: auto;
