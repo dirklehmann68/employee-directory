@@ -77,6 +77,7 @@ class EmployeeController extends ActionController
             if (!isset($departmentGroupsByUid[$departmentUid])) {
                 $departmentGroupsByUid[$departmentUid] = [
                     'title' => $employeeDepartment->getTitle(),
+                    'department' => $employeeDepartment,
                     'employees' => [],
                 ];
             }

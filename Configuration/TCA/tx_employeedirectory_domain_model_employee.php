@@ -8,6 +8,9 @@ return [
         'hideAtCopy' => true,
         'enablecolumns' => [
             'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+            'fe_group' => 'fe_group',
         ],
         'security' => [
             'ignorePageTypeRestriction' => true,
@@ -15,7 +18,7 @@ return [
     ],
     'types' => [
         '1' => [
-            'showitem' => 'hidden, image, title, first_name, last_name, slug, phone, email, room, location, office_hours, description, department, job_function',
+            'showitem' => 'hidden, image, title, first_name, last_name, slug, phone, email, room, location, office_hours, description, department, job_function, --div--;Zugriff, starttime, endtime, fe_group',
         ],
     ],
     'columns' => [
@@ -24,6 +27,42 @@ return [
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
+            ],
+        ],
+        'starttime' => [
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
+            'config' => [
+                'type' => 'datetime',
+                'default' => 0,
+            ],
+        ],
+        'endtime' => [
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
+            'config' => [
+                'type' => 'datetime',
+                'default' => 0,
+            ],
+        ],
+        'fe_group' => [
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'foreign_table' => 'fe_groups',
+                'size' => 5,
+                'autoSizeMax' => 20,
+                'minitems' => 0,
+                'maxitems' => 100,
+                'items' => [
+                    [
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
+                        'value' => -1,
+                    ],
+                    [
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
+                        'value' => -2,
+                    ],
+                ],
             ],
         ],
         'image' => [

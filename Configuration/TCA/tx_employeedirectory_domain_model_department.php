@@ -15,7 +15,7 @@ return [
     ],
     'types' => [
         '1' => [
-            'showitem' => 'title, hidden',
+            'showitem' => 'title, description, description_display, detail_link, hidden',
         ],
     ],
     'columns' => [
@@ -33,6 +33,40 @@ return [
                 'type' => 'input',
                 'max' => 255,
                 'required' => true,
+            ],
+        ],
+        'description' => [
+            'label' => 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_db.xlf:department.description',
+            'description' => 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_db.xlf:department.description.help',
+            'config' => [
+                'type' => 'text',
+                'rows' => 4,
+            ],
+        ],
+        'description_display' => [
+            'label' => 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_db.xlf:department.description_display',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        'label' => 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_db.xlf:department.description_display.subline',
+                        'value' => 'subline',
+                    ],
+                    [
+                        'label' => 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_db.xlf:department.description_display.text',
+                        'value' => 'text',
+                    ],
+                ],
+                'default' => 'subline',
+            ],
+        ],
+        'detail_link' => [
+            'label' => 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_db.xlf:department.detail_link',
+            'description' => 'LLL:EXT:employee_directory/Resources/Private/Language/locallang_db.xlf:department.detail_link.help',
+            'config' => [
+                'type' => 'link',
+                'allowedTypes' => ['page'],
             ],
         ],
     ],

@@ -72,6 +72,10 @@
                 <source>Write email:</source>
             </trans-unit>
 
+            <trans-unit id="accessibility.department_details">
+                <source>More information about department %s</source>
+            </trans-unit>
+
             <!-- Employee card -->
             <trans-unit id="employee.phone">
                 <source>Phone:</source>

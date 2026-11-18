@@ -4,7 +4,7 @@
 
 A TYPO3 extension for managing employee profiles and displaying a searchable, filterable employee directory.
 
-> **Project status (11 November 2026):** Version **1.2.0** was published on GitHub and in the TYPO3 Extension Repository (TER) on 11 November 2026 (`v1.2.0`, commit `4fca60b`). It adds configurable department ordering to the department-grouped LIST view: selected departments appear first in the specified order, remaining departments follow alphabetically, and employees without a department remain last. The configuration and German/English labels were tested in TYPO3 14.3.6 (Composer, Mittwald). After the TER update on as-sura.de (TYPO3 14.3.7, Classic Mode), a full TYPO3 and PHP cache flush was required; the plugin could then be edited again. The checks described below cover specific environments and use cases, not a full regression across all configurations.
+> **Project status:** Version **1.3.0** is available on [GitHub](https://github.com/dirklehmann68/employee-directory/releases) and in the [TYPO3 Extension Repository (TER)](https://extensions.typo3.org/extension/employee_directory). This release adds optional department information and links, scheduled employee visibility, and frontend user group restrictions. The development build was tested with TYPO3 14.3.6 (Composer, Mittwald). The documented checks do not constitute a full regression test.
 
 ## Features
 
@@ -14,6 +14,8 @@ A TYPO3 extension for managing employee profiles and displaying a searchable, fi
 * Employee overview with profile cards and individual detail pages.
 * **New in version 1.1.0:** Choose between the standard list and a list grouped by department. Groups are sorted alphabetically by department name; employees within each group are sorted by last name and then first name. Employees without an assigned department appear in a separate group at the end.
 * **New in version 1.2.0:** In department-grouped LIST mode, optionally prioritize selected departments using a sortable selection in the plugin settings. Departments not selected remain visible in alphabetical order; employees without a department stay at the end. The standard list and SHOW view are unaffected.
+* **New in version 1.3.0:** Optional department description displayed as a subline or paragraph, and an optional department link in the grouped LIST view.
+* **New in version 1.3.0:** Employee publication start and end (`starttime`, `endtime`) and access restrictions using TYPO3 frontend user groups (`fe_group`).
 * Search by last name, filter by department or job function, and an alphabetical A–Z filter for last names.
 * Filter dropdowns include only departments and job functions assigned to employee records.
 * German and English interface labels, plus an additional Low German translation.
@@ -90,6 +92,10 @@ After installation, synchronize the database schema using `extension:setup` or t
 
 Manual installation via FTP was also tested successfully. The original ZIP upload test used version 1.0.0. **New:** Updating an existing Classic Mode installation from 1.0.1 to **1.1.0 directly through the TYPO3 Extension Manager / TER** succeeded without errors. A SQL export and a local webspace backup were created before updating. This confirms a successful update, not a complete fresh installation of version 1.1.0 from TER.
 
+## Updating to version 1.3.0
+
+Back up files and the database before updating. After the update, synchronize the database schema using the TYPO3 maintenance tools or `vendor/bin/typo3 extension:setup` (Composer), and flush TYPO3 and PHP caches. The new fields concern department information and employee access. Verify LIST, SHOW, and the selected CSS mode afterward.
+
 ## Updating to version 1.2.0
 
 After updating from an earlier version to **1.2.0**,
@@ -139,6 +145,10 @@ The settings below were checked in the test environments described in this docum
 * **Content element → Plugin → Images:** Toggle employee photos and placeholders for missing photos. Disabling photo display also disables the placeholder.
 
 The tested card-content and image toggles affect the **LIST view only**, not the fields in the **SHOW detail view**. The record storage starting point must be configured in the list plugin as described above.
+
+### Department information (since version 1.3.0)
+
+A department record can contain an optional description displayed as a subline or paragraph, and an optional link to further information. Both appear above the associated cards in the department-grouped LIST view; the standard list is unaffected. The link uses an arrow icon with a visible keyboard focus indicator.
 
 ## Human-readable URLs (Route Enhancer)
 
@@ -202,6 +212,12 @@ The **Hide record** toggle prevents an employee from appearing in the frontend. 
 
 The **More** button appears in the list only for employees with a description. In the standalone list plugin, it opens the configured detail page; the **Back to overview** button in the standalone detail view leads to the configured list page.
 
+### Employee visibility and access (since version 1.3.0)
+
+In the **Access** tab, editors can configure publication start, publication end, and frontend user groups in addition to hiding a record. Restrictions apply to LIST and SHOW. In the tested cases, inaccessible employees were excluded from the list and direct detail URLs returned a 404 response.
+
+In the test installation, the frontend user group selector became visible only after at least one frontend user group had been created. The same behavior was observed in a TYPO3 core content element.
+
 ## Languages
 
 Interface labels are available in German and English; an additional Low German frontend translation is included. **The domain records themselves are not yet configured for TYPO3's translation workflow.** A translated interface does not automatically mean translated employee, department, or job-function records.
@@ -213,7 +229,7 @@ Interface labels are available in German and English; an additional Low German f
 * Multiple independently filterable plugin instances on the same page have not yet been tested.
 * A Route Enhancer for human-readable URLs is not provided automatically; a complete configuration example appears above.
 * Returning to the list does not preserve active filters.
-* Navigation between separate LIST/SHOW plugins was successfully tested in both directions in the fresh installation. Direct links to hidden/deleted records, missing target page IDs, multiple instances, and caching edge cases require further testing.
+* Navigation between separate LIST/SHOW plugins was successfully tested in both directions in the fresh installation. Direct links to hidden/deleted records, missing target page IDs, multiple instances, and caching edge cases require further testing; scheduled visibility and group access tests for 1.3.0 are documented below.
 * A missing list page ID may cause a frontend exception when using the standalone detail view's back link. Configure both page IDs.
 * ZIP upload and manual activation in Classic Mode were successfully tested on TYPO3 14.3.7 (version 1.0.0). A subsequent **TER update from 1.0.1 to 1.1.0** succeeded on the same TYPO3 version; a complete fresh 1.1.0 installation with all functional tests remains outstanding.
 
@@ -226,7 +242,8 @@ Interface labels are available in German and English; an additional Low German f
 | Slug URL returns 404 | Check `limitToPages`, slug field, site configuration, and the site associated with the records. |
 | No employees are shown | Check the plugin's record storage starting point, record visibility, and storage location. |
 | Department or job function is missing from a filter | Check that it exists, is accessible, and is assigned to visible employees. |
-| No CSS styling | Check whether the Site Set is included in the website configuration. |
+| No CSS styling | Check Site Set dependencies and the selected CSS mode. Bootstrap itself must be included separately. In one test site, the Clear options for Constants and Setup in an additional TypoScript record prevented the extension stylesheet from loading; disabling both restored it. |
+| Frontend user group selector is missing | Check whether at least one frontend user group exists. |
 | Images are missing | Check file references, permissions, and TYPO3 image processing. |
 | Rich text renders unexpectedly | Check the rich-text editor and effective TypoScript configuration. |
 | Filters are lost after returning to the overview | Known limitation; an improvement is planned for a future version. |
@@ -253,6 +270,14 @@ Interface labels are available in German and English; an additional Low German f
 * **TYPO3 14.3.7, Classic Mode, ALL-INKL / as-sura.de:** After updating to 1.2.0, editing the plugin initially triggered a constructor error involving `DepartmentItemsProvider`. Running **Admin Tools → Maintenance → Flush TYPO3 and PHP Cache** resolved the issue.
 * **Still pending:** systematic regression testing across all views, filter combinations, languages, routing, and caching edge cases. These successful individual checks are not a complete acceptance test.
 
+## Version 1.3.0 tests (16–18 November 2026)
+
+* **TYPO3 14.3.6, Composer, Mittwald:** The development build was deployed, four changed PHP files passed syntax checks, and six new database fields were added.
+* Department descriptions as sublines and paragraphs, and optional department links, were checked in the frontend.
+* **Styling:** Standalone and Bootstrap modes were checked with and without department grouping on desktop and at 390 pixels. The department link arrow and keyboard focus were checked in both modes.
+* **Frontend access:** An employee restricted to a frontend user group was inaccessible without login (LIST and SHOW) and accessible after login as a member of the permitted group.
+* **Test scope:** These checks concern the development build. Installation of the published package, full regression testing, caching edge cases, and further access combinations (e.g. login with an unauthorized group) have not yet been documented.
+
 ## Test history and further checks
 
 Some items below document earlier 1.0.x tests, while others cover the published 1.1.0 release. **Earlier tests must not automatically be treated as a renewed acceptance test of 1.1.0.**
@@ -276,12 +301,11 @@ Some items below document earlier 1.0.x tests, while others cover the published 
 
 ## Outlook and roadmap
 
-Employee Directory will be developed incrementally, with an emphasis on ease of use, clear configuration, and a deliberately manageable feature set. **The following items are ideas or development intentions, not promised features or release dates.** They are **not part of the published version 1.2.0**.
+Employee Directory will be developed incrementally, with an emphasis on ease of use, clear configuration, and a deliberately manageable feature set. **The following items are ideas or development intentions, not promised features or release dates.** They are **not part of the published version 1.3.0**.
 
 * **Faceted filtering:** Adapt available filter options to previously selected criteria without making active selections inaccessible.
 * **Alternative card layouts:** Consider a more compact layout with fewer profile details alongside the existing cards.
 * **Independently configurable grouping:** Allow grouping (for example, none, by department, or alphabetically by last name) and card layout to be configured separately in the future.
-* **Scheduled visibility:** Support TYPO3's standard publication start and end fields (`starttime`/`endtime`) for employee records, including verification of TCA, repository behavior, and caching. This support has not yet been documented as fully implemented and tested in the extension.
 * **Improved back navigation:** Preserve search and filter selections when returning from a detail view to the list.
 * **Pagination:** Add page navigation for larger employee directories.
 * **Optional address and map display:** Consider an address field with a map on employee detail pages; technical and data-protection questions remain to be resolved.

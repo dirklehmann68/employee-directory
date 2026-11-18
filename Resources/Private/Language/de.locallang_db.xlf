@@ -112,6 +112,41 @@
                 <target>Name der Abteilung</target>
             </trans-unit>
 
+            <trans-unit id="department.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+
+            <trans-unit id="department.description.help">
+                <source>Optional description of the department.</source>
+                <target>Optionaler Text zur Abteilung.</target>
+            </trans-unit>
+
+            <trans-unit id="department.description_display">
+                <source>Description display</source>
+                <target>Darstellung des Beschreibungstextes</target>
+            </trans-unit>
+
+            <trans-unit id="department.description_display.subline">
+                <source>Subline</source>
+                <target>Subline</target>
+            </trans-unit>
+
+            <trans-unit id="department.description_display.text">
+                <source>Body text</source>
+                <target>Fließtext</target>
+            </trans-unit>
+
+            <trans-unit id="department.detail_link">
+                <source>Further information</source>
+                <target>Weiterführender Link</target>
+            </trans-unit>
+
+            <trans-unit id="department.detail_link.help">
+                <source>Optional page with further information about the department.</source>
+                <target>Optionale Seite mit weiteren Informationen zur Abteilung.</target>
+            </trans-unit>
+
             <trans-unit id="job_function.record">
                 <source>Job function</source>
                 <target>Funktion</target>

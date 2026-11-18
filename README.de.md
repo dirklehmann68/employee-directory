@@ -4,7 +4,7 @@
 
 Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung eines durchsuchbaren und filterbaren Mitarbeiterverzeichnisses.
 
-> **Projektstand (11.11.2026):** Version **1.2.0** wurde am 11.11.2026 auf GitHub und im TYPO3 Extension Repository (TER) veröffentlicht (`v1.2.0`, Commit `4fca60b`). Neu ist die individuell festlegbare Reihenfolge der Abteilungen in der gruppierten LIST-Ansicht: Ausgewählte Abteilungen erscheinen zuerst in der vorgegebenen Reihenfolge, alle übrigen folgen alphabetisch; Mitarbeiter ohne Abteilung stehen weiterhin am Ende. Die Konfiguration und die deutschen und englischen Beschriftungen wurden unter TYPO3 14.3.6 (Composer, Mittwald) getestet. Nach dem TER-Update auf as-sura.de (TYPO3 14.3.7, Classic Mode) war ein vollständiger TYPO3- und PHP-Cache-Flush erforderlich; anschließend ließ sich das Plugin wieder bearbeiten. Die beschriebenen Tests decken konkrete Umgebungen und Anwendungsfälle ab, keine vollständige Regression sämtlicher Konfigurationen.
+> **Projektstand:** Version **1.3.0** ist auf [GitHub](https://github.com/dirklehmann68/employee-directory/releases) und im [TYPO3 Extension Repository (TER)](https://extensions.typo3.org/extension/employee_directory) verfügbar. Neu sind optionale Abteilungsinformationen und weiterführende Abteilungslinks sowie die zeit- und gruppenabhängige Sichtbarkeit von Mitarbeiterdatensätzen. Die Entwicklungsfassung wurde unter TYPO3 14.3.6 (Composer, Mittwald) geprüft. Die dokumentierten Einzeltests ersetzen keine vollständige Regression.
 
 ## Funktionen
 
@@ -14,6 +14,8 @@ Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung 
 * Mitarbeiterübersicht mit Profilkarten und individuellen Detailansichten.
 * **Neu in Version 1.1.0:** Wahlweise Standardansicht oder nach Abteilungen gruppierte Mitarbeiterliste. Die Gruppen werden alphabetisch nach Abteilungsnamen angeordnet; Mitarbeiter innerhalb der Gruppen nach Nach- und Vornamen. Mitarbeiter ohne Abteilung erscheinen in einer eigenen Gruppe am Ende.
 * **Neu in Version 1.2.0:** In der nach Abteilungen gruppierten LIST-Ansicht lassen sich ausgewählte Abteilungen über eine sortierbare Auswahl in den Plugin-Einstellungen priorisieren. Nicht ausgewählte Abteilungen bleiben sichtbar und folgen alphabetisch; Mitarbeiter ohne Abteilung stehen weiterhin am Ende. Die Standardansicht und die SHOW-Detailansicht bleiben unverändert.
+* **Neu in Version 1.3.0:** Optionale Abteilungsbeschreibung als Unterzeile oder Absatz sowie ein optionaler weiterführender Link in der gruppierten LIST-Ansicht.
+* **Neu in Version 1.3.0:** Veröffentlichungsbeginn und -ende (`starttime`, `endtime`) sowie Zugriffsbeschränkung über TYPO3-Frontend-Benutzergruppen (`fe_group`) für Mitarbeiterdatensätze.
 * Suche nach Nachnamen, Filter nach Abteilung und Funktion sowie alphabetischer A–Z-Filter für Nachnamen.
 * In den Auswahllisten erscheinen nur Abteilungen und Funktionen, die Mitarbeiterdatensätzen zugeordnet sind.
 * Deutsche und englische Oberflächenbeschriftungen; zusätzlich ist eine plattdeutsche Übersetzung enthalten.
@@ -90,6 +92,10 @@ Nach der Installation den Datenbank-/Schema-Abgleich über `extension:setup` ode
 
 Auch die manuelle Installation per FTP wurde erfolgreich getestet. Der ZIP-Upload wurde ursprünglich mit Version 1.0.0 geprüft. **Neu:** Das Update einer bestehenden Classic-Mode-Installation von Version 1.0.1 auf **1.1.0 direkt über den TYPO3 Extension Manager / TER** verlief ohne Fehlermeldung. Vor dem Update wurden ein SQL-Export und eine lokale Sicherung des Webspaces erstellt. Dies belegt ein erfolgreiches Update, jedoch keine vollständige Neuinstallation der Version 1.1.0 aus dem TER.
 
+## Aktualisierung auf Version 1.3.0
+
+Vor dem Update Dateien und Datenbank sichern. Nach dem Update das Datenbankschema über die TYPO3-Wartungswerkzeuge oder `vendor/bin/typo3 extension:setup` (Composer) abgleichen und TYPO3- sowie PHP-Caches leeren. Die neuen Felder betreffen Abteilungsinformationen und den Zugriff auf Mitarbeiterdatensätze. Anschließend LIST und SHOW sowie die gewählte CSS-Variante prüfen.
+
 ## Aktualisierung auf Version 1.2.0
 
 Nach der Aktualisierung von einer älteren Version auf **1.2.0**
@@ -139,6 +145,10 @@ Die folgenden Einstellungen wurden in den beschriebenen Testumgebungen überprü
 * **Inhaltselement → Plugin → Bilder:** Mitarbeiterfotos und Platzhalter bei fehlendem Foto ein-/ausblenden. Bei deaktivierter Fotoanzeige wird auch kein Platzhalter angezeigt.
 
 Die getesteten Schalter für Karteninhalte und Bilder betreffen **nur die LIST-Darstellung**, nicht die Felder in der **SHOW-Detailansicht**. Der Ausgangspunkt für die Datensatzablage muss wie oben beschrieben im Listen-Plugin eingerichtet sein.
+
+### Abteilungsinformationen (ab Version 1.3.0)
+
+Im Abteilungsdatensatz kann optional eine Beschreibung hinterlegt und als Unterzeile oder Absatz dargestellt werden. Ein optionaler Link führt zu weiterführenden Informationen. Beschreibung und Link erscheinen in der nach Abteilungen gruppierten LIST-Ansicht oberhalb der zugehörigen Cards; die ungegliederte Liste bleibt davon unberührt. Der Link verwendet ein Pfeilsymbol mit sichtbarem Tastaturfokus.
 
 ## Sprechende URLs (Route Enhancer)
 
@@ -202,6 +212,12 @@ Mit dem Schalter **„Datensatz verbergen“** lässt sich die Anzeige eines Mit
 
 Der **„Mehr“**-Button erscheint in der Liste nur bei Mitarbeitern mit einer Beschreibung. Im eigenständigen Listen-Plugin führt er zur konfigurierten Detailseite; der **„Zurück zur Übersicht“**-Button der eigenständigen Detailansicht führt zur konfigurierten Listenseite.
 
+### Sichtbarkeit und Zugriff auf Mitarbeiterdatensätze (ab Version 1.3.0)
+
+Im Reiter **Zugriff** können zusätzlich zum Verbergen eines Datensatzes der Veröffentlichungsbeginn, das Veröffentlichungsende und Frontend-Benutzergruppen eingestellt werden. Die Einschränkungen gelten für LIST und SHOW. Im Test wurden nicht zugängliche Mitarbeiter nicht gelistet; direkte Detailaufrufe lieferten einen 404-Fehler.
+
+Die Auswahl der Frontend-Benutzergruppen war in der Testinstallation erst sichtbar, nachdem mindestens eine Frontend-Benutzergruppe angelegt worden war. Dieses Verhalten wurde auch bei einem TYPO3-Core-Inhaltselement beobachtet.
+
 ## Sprachen
 
 Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich gibt es eine plattdeutsche Frontend-Übersetzung. **Die Fachdatensätze selbst sind bislang nicht für den TYPO3-Übersetzungsworkflow eingerichtet.** Eine übersetzte Bedienoberfläche bedeutet also nicht automatisch übersetzte Mitarbeiter-, Abteilungs- oder Funktionsdatensätze.
@@ -213,7 +229,7 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 * Mehrere unabhängig filterbare Plugin-Instanzen auf derselben Seite sind noch nicht getestet.
 * Ein Route Enhancer für sprechende URLs wird nicht automatisch mitgeliefert; ein vollständiges Konfigurationsbeispiel steht oben.
 * Die Rücknavigation zur Liste erhält gesetzte Filter noch nicht.
-* Die Navigation zwischen getrennten LIST-/SHOW-Plugins wurde in der frischen Installation in beide Richtungen erfolgreich getestet. Direktlinks auf verborgene/gelöschte Datensätze, fehlende Zielseiten-IDs, mehrere Instanzen und Cache-Grenzfälle sind noch gesondert zu prüfen.
+* Die Navigation zwischen getrennten LIST-/SHOW-Plugins wurde in der frischen Installation in beide Richtungen erfolgreich getestet. Direktlinks auf verborgene/gelöschte Datensätze, fehlende Zielseiten-IDs, mehrere Instanzen und Cache-Grenzfälle sind noch gesondert zu prüfen; die Prüfungen zur Zeitsteuerung und zum Gruppenzugriff in 1.3.0 sind unten dokumentiert.
 * Eine fehlende Listen-Seiten-ID kann beim Rücklink der eigenständigen Detailansicht eine Frontend-Exception auslösen. Deshalb beide Seiten-IDs konfigurieren.
 * Der ZIP-Upload und die manuelle Aktivierung im Classic Mode wurden unter TYPO3 14.3.7 erfolgreich getestet (Version 1.0.0). Ein späteres **TER-Update von 1.0.1 auf 1.1.0** gelang in derselben TYPO3-Version ohne Fehler; eine vollständige Erstinstallation der 1.1.0 mit allen Funktionstests steht noch aus.
 
@@ -226,7 +242,8 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 | Slug-URL führt zu 404 | `limitToPages`, Slug-Feld, Site-Konfiguration und Site-Zugehörigkeit der Datensätze kontrollieren. |
 | Keine Mitarbeiter sichtbar | Datensatzablage im Plugin, Sichtbarkeit der Datensätze und Speicherort. |
 | Abteilung oder Funktion fehlt im Filter | Existenz, Erreichbarkeit und Zuordnung zu sichtbaren Mitarbeitern. |
-| Darstellung ohne CSS | Ist das Site Set in der Website-Konfiguration eingebunden? |
+| Darstellung ohne CSS | Site-Set-Abhängigkeiten und gewählte CSS-Variante prüfen. Bei Bootstrap muss das Framework separat eingebunden sein. In einer Test-Site verhinderten die Optionen „Löschen“ für Constants und Setup im zusätzlichen TypoScript-Datensatz die Einbindung des Extension-CSS; nach Deaktivierung beider Optionen war das Stylesheet wieder vorhanden. |
+| Frontend-Benutzergruppen fehlen im Reiter Zugriff | Prüfen, ob mindestens eine Frontend-Benutzergruppe existiert. |
 | Bilder fehlen | Dateireferenzen, Zugriffsrechte und TYPO3-Bildverarbeitung. |
 | Richtext wird unerwartet dargestellt | Rich-Text-Editor und wirksame TypoScript-Konfiguration. |
 | Filter gehen beim Wechsel zurück zur Übersicht verloren | Bekannte Einschränkung; Verbesserung für eine spätere Version geplant. |
@@ -253,6 +270,15 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 * **TYPO3 14.3.7, Classic Mode, ALL-INKL / as-sura.de:** Nach dem Update auf 1.2.0 trat beim Bearbeiten des Plugins zunächst ein Konstruktorfehler im `DepartmentItemsProvider` auf. Nach **Admin Tools → Maintenance → Flush TYPO3 and PHP Cache** ließ sich das Plugin wieder bearbeiten.
 * **Weiterhin offen:** ein systematischer Regressionstest aller Ansichten, Filterkombinationen, Sprachvarianten, Routing- und Cache-Grenzfälle. Die erfolgreichen Einzeltests ersetzen keine vollständige Abnahme.
 
+## Tests der Version 1.3.0 (16.–18.11.2026)
+
+* **TYPO3 14.3.6, Composer, Mittwald:** Entwicklungsfassung eingespielt, vier geänderte PHP-Dateien auf Syntax geprüft und sechs neue Datenbankfelder ergänzt.
+* Abteilungsbeschreibung als Unterzeile und Absatz sowie optionalen Abteilungslink im Frontend geprüft.
+* **Darstellung:** Standalone- und Bootstrap-CSS jeweils mit und ohne Abteilungsgruppierung auf Desktop und bei 390 Pixeln geprüft. Pfeilsymbol und Tastaturfokus des Abteilungslinks in beiden Varianten kontrolliert.
+* **Zeitsteuerung:** Ein zukünftiger Veröffentlichungsbeginn wurde beim kombinierten Plugin und bei getrennten LIST-/SHOW-Plugins geprüft; der Mitarbeiter war nicht gelistet und der Detailaufruf lieferte 404. Ein abgelaufenes Veröffentlichungsende wurde beim kombinierten Plugin geprüft.
+* **Frontend-Zugriff:** Ein einer Frontend-Benutzergruppe zugeordneter Mitarbeiter war ohne Anmeldung nicht sichtbar (LIST und SHOW); nach Anmeldung als Mitglied der berechtigten Gruppe war er erreichbar.
+* **Testumfang:** Die Prüfungen beziehen sich auf die Entwicklungsfassung. Eine erneute Installation des veröffentlichten Pakets, vollständige Regression, Cache-Grenzfälle und weitere Zugriffskombinationen (z. B. Anmeldung mit einer nicht berechtigten Gruppe) sind noch nicht dokumentiert.
+
 ## Testhistorie und weitere Prüfpunkte
 
 Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x und teils Prüfungen der veröffentlichten 1.1.0. **Frühere Tests sind nicht automatisch als erneute Abnahme von 1.1.0 zu verstehen.**
@@ -276,12 +302,11 @@ Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x und teils Prü
 
 ## Ausblick und Roadmap
 
-Die Employee Directory wird schrittweise weiterentwickelt. Im Mittelpunkt stehen eine einfache Bedienung, eine übersichtliche Konfiguration und ein bewusst begrenzter Funktionsumfang. **Die folgenden Punkte sind Ideen beziehungsweise Entwicklungsabsichten, keine zugesagten Funktionen oder Veröffentlichungstermine.** Sie sind **nicht Bestandteil der veröffentlichten Version 1.2.0**.
+Die Employee Directory wird schrittweise weiterentwickelt. Im Mittelpunkt stehen eine einfache Bedienung, eine übersichtliche Konfiguration und ein bewusst begrenzter Funktionsumfang. **Die folgenden Punkte sind Ideen beziehungsweise Entwicklungsabsichten, keine zugesagten Funktionen oder Veröffentlichungstermine.** Sie sind **nicht Bestandteil der veröffentlichten Version 1.3.0**.
 
 * **Facettierte Filterung:** Die verfügbaren Filteroptionen sollen sich an bereits gewählte Suchkriterien anpassen, ohne aktive Auswahlen unzugänglich zu machen.
 * **Alternative Card-Layouts:** Zusätzlich zur bisherigen Card-Darstellung ist ein kompakteres Layout mit reduzierten Profilinformationen denkbar.
 * **Unabhängig wählbare Gruppierung:** Gruppierung (beispielsweise keine, nach Abteilung oder alphabetisch nach Nachnamen) und Card-Layout sollen perspektivisch getrennt konfigurierbar sein.
-* **Zeitgesteuerte Sichtbarkeit:** Nutzung der TYPO3-Standardfelder für Veröffentlichungsbeginn und -ende (`starttime`/`endtime`) bei Mitarbeiterdatensätzen, einschließlich Prüfung von TCA, Repository-Verhalten und Caching. Diese Unterstützung ist für die Extension bislang nicht als fertig getestet dokumentiert.
 * **Verbesserte Rücknavigation:** Such- und Filtereinstellungen beim Wechsel von der Detailansicht zurück zur Liste beibehalten.
 * **Pagination:** Seitennavigation für größere Mitarbeiterverzeichnisse.
 * **Optionale Adress- und Kartenanzeige:** Ein Adressfeld mit möglicher Kartenintegration auf der Mitarbeiterdetailseite; technische und datenschutzrechtliche Fragen sind noch zu klären.

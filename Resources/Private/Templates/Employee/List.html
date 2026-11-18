@@ -148,8 +148,41 @@
         <f:then>
             <f:for each="{departmentGroups}" as="group">
                 <section class="employee-department-group mb-5">
-                    <h2 class="employee-department-heading mb-4">{group.title}</h2>
-                    <div class="row employee-list-grid row-cols-1 row-cols-lg-2 g-4">
+                    <h2 class="employee-department-heading">{group.title}</h2>
+
+                    <f:if condition="{group.department}">
+                        <f:if condition="{group.department.description} || {group.department.detailLink}">
+                            <div class="employee-department-info">
+
+                                <f:if condition="{group.department.description}">
+                                    <f:if condition="{group.department.descriptionDisplay} == 'text'">
+                                        <f:then>
+                                            <p class="employee-department-description">
+                                                {group.department.description}
+                                            </p>
+                                        </f:then>
+                                        <f:else>
+                                            <p class="employee-department-subline">
+                                                {group.department.description}
+                                            </p>
+                                        </f:else>
+                                    </f:if>
+                                </f:if>
+
+                                <f:if condition="{group.department.detailLink}">
+                                    <f:link.typolink
+                                        parameter="{group.department.detailLink}"
+                                        class="employee-department-link"
+                                        additionalAttributes="{aria-label: '{f:translate(key: \'accessibility.department_details\', extensionName: \'EmployeeDirectory\', arguments: {0: group.title})}'}"
+                                    >
+                                        <span class="employee-department-link-icon" aria-hidden="true"></span>
+                                    </f:link.typolink>
+                                </f:if>
+
+                            </div>
+                        </f:if>
+                    </f:if>
+                    <div class="row employee-list-grid employee-department-grid row-cols-1 row-cols-lg-2 g-4">
                         <f:for each="{group.employees}" as="employee">
                             <f:render partial="Employee/Card" arguments="{_all}" />
                         </f:for>

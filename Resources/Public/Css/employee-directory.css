@@ -31,10 +31,10 @@
    ========================================================== */
 
 .employee-directory {
-	--gutter-x: 1.5rem;
-	--gutter-y: 0;
+    --gutter-x: 1.5rem;
+    --gutter-y: 0;
     padding-right: calc(var(--gutter-x) * .5);
-	padding-left: calc(var(--gutter-x) * .5);
+    padding-left: calc(var(--gutter-x) * .5);
 }
 
 .employee-directory,
@@ -49,8 +49,8 @@
 }
 
 .employee-directory .img-fluid {
-	max-width: 100%;
-	height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 /* ==========================================================
@@ -59,42 +59,42 @@
 
 .employee-directory .employee-list-grid .card > .row.g-0 {
     --gutter-x: 0 !important;
-	--gutter-y: 0 !important;
+    --gutter-y: 0 !important;
 }
 
 .employee-directory .employee-list-grid.g-4 {
     --gutter-x: 1.5rem !important;
-	--gutter-y: 1.5rem !important;
+    --gutter-y: 1.5rem !important;
 }
 
 .employee-directory .employee-list-grid .card > .row.g-0 > .p-3 {
-	padding: 1rem !important;
+    padding: 1rem !important;
 }
 
 .employee-directory .employee-list-grid,
 .employee-directory .employee-show-profile {
-	--gutter-x: 1.5rem;
-	--gutter-y: 0;
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: 1.5rem;
-	margin-right: calc(-.5 * var(--gutter-x));
-	margin-left: calc(-.5 * var(--gutter-x));
+    --gutter-x: 1.5rem;
+    --gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    margin-right: calc(-.5 * var(--gutter-x));
+    margin-left: calc(-.5 * var(--gutter-x));
 }
 
 .employee-directory .employee-list-grid > *,
 .employee-directory .employee-show-profile > * {
-	flex-shrink: 0;
-	width: 100%;
-	max-width: 100%;
-	padding-right: calc(var(--gutter-x) * .5);
-	padding-left: calc(var(--gutter-x) * .5);
-	margin-top: var(--gutter-y);
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--gutter-x) * .5);
+    padding-left: calc(var(--gutter-x) * .5);
+    margin-top: var(--gutter-y);
 }
 
 .employee-directory .employee-list-grid.row-cols-1 > * {
-	flex: 0 0 auto;
-	width: 100%;
+    flex: 0 0 auto;
+    width: 100%;
 }
 
 .employee-directory .employee-list-grid .card > .row.g-0 {
@@ -111,6 +111,89 @@
     .employee-directory .employee-list-grid .card > .row.g-0 > .col-sm-9 {
         width: 75%;
     }
+}
+
+/* ==========================================================
+   3.1 Department Information
+   ========================================================== */
+
+.employee-directory .employee-department-group {
+    margin-bottom: 2.5rem;
+}
+
+.employee-directory .employee-department-group .employee-list-grid {
+    margin-top: 0;
+}
+
+.employee-directory .employee-department-heading {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: var(--employee-directory-primary-strong);
+}
+
+.employee-directory .employee-department-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: .25rem;
+}
+
+.employee-directory .employee-department-subline,
+.employee-directory .employee-department-description {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    color: var(--employee-directory-text);
+    overflow-wrap: anywhere;
+}
+
+.employee-directory .employee-department-subline {
+    font-size: 1.15rem;
+    line-height: 1.35;
+    color: var(--employee-directory-primary);
+}
+
+.employee-directory .employee-department-description {
+    font-size: 1rem;
+    line-height: 1.35;
+}
+
+.employee-directory .employee-department-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-top: .25rem;
+    color: var(--employee-directory-primary);
+    text-decoration: none;
+    background-color: var(--employee-directory-primary-soft);
+    border: 1px solid var(--employee-directory-border);
+    border-radius: .375rem;
+    transition:
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out;
+}
+
+.employee-directory .employee-department-link:hover {
+    color: var(--employee-directory-primary-strong);
+    background-color: var(--employee-directory-primary-hover);
+    border-color: var(--employee-directory-primary);
+}
+
+.employee-directory .employee-department-link:focus-visible {
+    outline: 2px solid var(--employee-directory-primary);
+    outline-offset: 2px;
+}
+
+.employee-directory .employee-department-link-icon {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background-color: currentColor;
+    mask: url(../Svg/select-arrow.svg) center / contain no-repeat;
+    transform: rotate(-90deg);
 }
 
 /* ==========================================================

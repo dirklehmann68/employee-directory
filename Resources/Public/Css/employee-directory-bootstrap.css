@@ -89,3 +89,82 @@
         transition: none;
     }
 }
+
+/* ==========================================================
+   Department Information
+   ========================================================== */
+
+.employee-directory .employee-department-group {
+    margin-bottom: 2.5rem;
+}
+
+.employee-directory .employee-department-group .employee-list-grid {
+    margin-top: 0;
+}
+
+.employee-directory .employee-department-heading {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.employee-directory .employee-department-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: .25rem;
+}
+
+.employee-directory .employee-department-subline,
+.employee-directory .employee-department-description {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.employee-directory .employee-department-subline {
+    font-size: 1.15rem;
+    line-height: 1.35;
+    color: var(--bs-secondary-color);
+}
+
+.employee-directory .employee-department-description {
+    font-size: 1rem;
+    line-height: 1.35;
+}
+
+.employee-directory .employee-department-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-top: .25rem;
+    color: var(--bs-primary);
+    text-decoration: none;
+    background-color: var(--bs-tertiary-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: background-color .15s ease-in-out;
+}
+
+.employee-directory .employee-department-link:hover {
+    color: var(--bs-primary);
+    background-color: var(--bs-secondary-bg);
+    border-color: var(--bs-primary);
+}
+
+.employee-directory .employee-department-link:focus-visible {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
+
+.employee-directory .employee-department-link-icon {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background-color: currentColor;
+    mask: url(../Svg/select-arrow.svg) center / contain no-repeat;
+    transform: rotate(-90deg);
+}

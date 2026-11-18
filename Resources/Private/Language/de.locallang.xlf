@@ -89,6 +89,11 @@
                 <target>E-Mail schreiben:</target>
             </trans-unit>
 
+            <trans-unit id="accessibility.department_details">
+                <source>More information about department %s</source>
+                <target>Weitere Informationen zur Abteilung %s</target>
+            </trans-unit>
+
             <!-- Employee card -->
             <trans-unit id="employee.phone">
                 <source>Phone:</source>

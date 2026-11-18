@@ -74,6 +74,34 @@
                 <source>Department name</source>
             </trans-unit>
 
+            <trans-unit id="department.description">
+                <source>Description</source>
+            </trans-unit>
+
+            <trans-unit id="department.description.help">
+                <source>Optional description of the department.</source>
+            </trans-unit>
+
+            <trans-unit id="department.description_display">
+                <source>Description display</source>
+            </trans-unit>
+
+            <trans-unit id="department.description_display.subline">
+                <source>Subline</source>
+            </trans-unit>
+
+            <trans-unit id="department.description_display.text">
+                <source>Body text</source>
+            </trans-unit>
+
+            <trans-unit id="department.detail_link">
+                <source>Further information</source>
+            </trans-unit>
+
+            <trans-unit id="department.detail_link.help">
+                <source>Optional page with further information about the department.</source>
+            </trans-unit>
+
             <trans-unit id="job_function.record">
                 <source>Job function</source>
             </trans-unit>
