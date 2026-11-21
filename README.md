@@ -4,7 +4,7 @@
 
 A TYPO3 extension for managing employee profiles and displaying a searchable, filterable employee directory.
 
-> **Project status:** Version **1.3.0** is available on [GitHub](https://github.com/dirklehmann68/employee-directory/releases) and in the [TYPO3 Extension Repository (TER)](https://extensions.typo3.org/extension/employee_directory). This release adds optional department information and links, scheduled employee visibility, and frontend user group restrictions. The development build was tested with TYPO3 14.3.6 (Composer, Mittwald). The documented checks do not constitute a full regression test.
+> **Project status:** Version **1.4.0** is published on [GitHub](https://github.com/dirklehmann68/employee-directory/releases/tag/v1.4.0). The new option hides department headings in the department-grouped LIST view and displays employees in one continuous card grid. Publication of version 1.4.0 in the [TYPO3 Extension Repository (TER)](https://extensions.typo3.org/extension/employee_directory) is still pending. The development build was tested with TYPO3 14.3.6 (Composer, Mittwald). The documented checks do not constitute a full regression test.
 
 ## Features
 
@@ -16,6 +16,7 @@ A TYPO3 extension for managing employee profiles and displaying a searchable, fi
 * **New in version 1.2.0:** In department-grouped LIST mode, optionally prioritize selected departments using a sortable selection in the plugin settings. Departments not selected remain visible in alphabetical order; employees without a department stay at the end. The standard list and SHOW view are unaffected.
 * **New in version 1.3.0:** Optional department description displayed as a subline or paragraph, and an optional department link in the grouped LIST view.
 * **New in version 1.3.0:** Employee publication start and end (`starttime`, `endtime`) and access restrictions using TYPO3 frontend user groups (`fe_group`).
+* **New in version 1.4.0:** Optionally hide department headings, descriptions, and links in the department-grouped LIST view. All employees appear in one continuous card grid while the configured department order is preserved.
 * Search by last name, filter by department or job function, and an alphabetical A–Z filter for last names.
 * Filter dropdowns include only departments and job functions assigned to employee records.
 * German and English interface labels, plus an additional Low German translation.
@@ -92,6 +93,10 @@ After installation, synchronize the database schema using `extension:setup` or t
 
 Manual installation via FTP was also tested successfully. The original ZIP upload test used version 1.0.0. **New:** Updating an existing Classic Mode installation from 1.0.1 to **1.1.0 directly through the TYPO3 Extension Manager / TER** succeeded without errors. A SQL export and a local webspace backup were created before updating. This confirms a successful update, not a complete fresh installation of version 1.1.0 from TER.
 
+## Updating to version 1.4.0
+
+Back up files and the database before updating, then flush TYPO3 caches. The new display option requires no database schema changes. The switch is disabled by default, so existing department-grouped layouts remain unchanged.
+
 ## Updating to version 1.3.0
 
 Back up files and the database before updating. After the update, synchronize the database schema using the TYPO3 maintenance tools or `vendor/bin/typo3 extension:setup` (Composer), and flush TYPO3 and PHP caches. The new fields concern department information and employee access. Verify LIST, SHOW, and the selected CSS mode afterward.
@@ -141,6 +146,7 @@ The settings below were checked in the test environments described in this docum
 * **Sites → Settings → Employee Directory:** Optionally override frontend labels. Empty overrides fall back to the translated defaults.
 * **Content element → Plugin → Display (since version 1.1.0):** Under **Employee list display**, choose **Standard view** or **Grouped by department**. The standard view remains unchanged. In grouped mode, department headings appear above the relevant cards. The A–Z filter still applies to **last names**, not department names. The dedicated **Display** tab was verified in the TYPO3 14.3.6 and 14.3.7 backends.
 * **Content element → Plugin → Display (new in 1.2.0):** When **Grouped by department** is selected, **Department order** lets editors choose and arrange departments from the configured record storage. Selected departments are displayed first in the chosen order; unselected departments follow alphabetically. Groups without visible employees are not shown, and employees without an assigned department remain in the final group. Leaving the custom order empty preserves alphabetical department sorting. This affects LIST only, not SHOW.
+* **Content element → Plugin → Display (new in 1.4.0):** With **Grouped by department** selected, the **Hide department headings** switch becomes available. When enabled, department headings, descriptions, and links are omitted, and all employee cards appear in one continuous grid. The configured **Department order** is preserved. The switch is disabled by default and affects LIST only, not SHOW.
 * **Content element → Plugin → Card content:** Toggle job function, department, phone, email, location, room, and office hours independently.
 * **Content element → Plugin → Images:** Toggle employee photos and placeholders for missing photos. Disabling photo display also disables the placeholder.
 
@@ -278,6 +284,13 @@ Interface labels are available in German and English; an additional Low German f
 * **Frontend access:** An employee restricted to a frontend user group was inaccessible without login (LIST and SHOW) and accessible after login as a member of the permitted group.
 * **Test scope:** These checks concern the development build. Installation of the published package, full regression testing, caching edge cases, and further access combinations (e.g. login with an unauthorized group) have not yet been documented.
 
+## Version 1.4.0 tests (21 November 2026)
+
+* **TYPO3 14.3.6, Composer, Mittwald:** The new FlexForm option was verified in the backend. German labels and descriptions appeared correctly after re-uploading the language file and flushing TYPO3 caches.
+* **Standalone mode:** With the switch enabled, a continuous card grid appeared without department headings, descriptions, or links. The configured department order was preserved. Disabling the switch restored the previous grouping, including department descriptions and links.
+* **Bootstrap mode:** The heading-free layout was visually checked with separate LIST/SHOW plugins. Language files were also checked.
+* **Test scope:** The modified controller passed PHP syntax checking; `git diff --check` reported no issues. A full regression test and a fresh installation of the published release package have not been performed.
+
 ## Test history and further checks
 
 Some items below document earlier 1.0.x tests, while others cover the published 1.1.0 release. **Earlier tests must not automatically be treated as a renewed acceptance test of 1.1.0.**
@@ -301,7 +314,7 @@ Some items below document earlier 1.0.x tests, while others cover the published 
 
 ## Outlook and roadmap
 
-Employee Directory will be developed incrementally, with an emphasis on ease of use, clear configuration, and a deliberately manageable feature set. **The following items are ideas or development intentions, not promised features or release dates.** They are **not part of the published version 1.3.0**.
+Employee Directory will be developed incrementally, with an emphasis on ease of use, clear configuration, and a deliberately manageable feature set. **The following items are ideas or development intentions, not promised features or release dates.** They are **not part of the published version 1.4.0**.
 
 * **Faceted filtering:** Adapt available filter options to previously selected criteria without making active selections inaccessible.
 * **Alternative card layouts:** Consider a more compact layout with fewer profile details alongside the existing cards.

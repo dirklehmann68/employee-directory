@@ -4,7 +4,7 @@
 
 Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung eines durchsuchbaren und filterbaren Mitarbeiterverzeichnisses.
 
-> **Projektstand:** Version **1.3.0** ist auf [GitHub](https://github.com/dirklehmann68/employee-directory/releases) und im [TYPO3 Extension Repository (TER)](https://extensions.typo3.org/extension/employee_directory) verfügbar. Neu sind optionale Abteilungsinformationen und weiterführende Abteilungslinks sowie die zeit- und gruppenabhängige Sichtbarkeit von Mitarbeiterdatensätzen. Die Entwicklungsfassung wurde unter TYPO3 14.3.6 (Composer, Mittwald) geprüft. Die dokumentierten Einzeltests ersetzen keine vollständige Regression.
+> **Projektstand:** Version **1.4.0** ist auf [GitHub](https://github.com/dirklehmann68/employee-directory/releases/tag/v1.4.0) veröffentlicht. Neu ist die Möglichkeit, Abteilungsüberschriften in der gruppierten LIST-Ansicht auszublenden und alle Mitarbeiter in einem durchgehenden Kartenraster anzuzeigen. Die Veröffentlichung von 1.4.0 im [TYPO3 Extension Repository (TER)](https://extensions.typo3.org/extension/employee_directory) steht noch aus. Die Entwicklungsfassung wurde unter TYPO3 14.3.6 (Composer, Mittwald) geprüft. Die dokumentierten Einzeltests ersetzen keine vollständige Regression.
 
 ## Funktionen
 
@@ -16,6 +16,7 @@ Eine TYPO3-Extension zur Verwaltung von Mitarbeiterprofilen und zur Darstellung 
 * **Neu in Version 1.2.0:** In der nach Abteilungen gruppierten LIST-Ansicht lassen sich ausgewählte Abteilungen über eine sortierbare Auswahl in den Plugin-Einstellungen priorisieren. Nicht ausgewählte Abteilungen bleiben sichtbar und folgen alphabetisch; Mitarbeiter ohne Abteilung stehen weiterhin am Ende. Die Standardansicht und die SHOW-Detailansicht bleiben unverändert.
 * **Neu in Version 1.3.0:** Optionale Abteilungsbeschreibung als Unterzeile oder Absatz sowie ein optionaler weiterführender Link in der gruppierten LIST-Ansicht.
 * **Neu in Version 1.3.0:** Veröffentlichungsbeginn und -ende (`starttime`, `endtime`) sowie Zugriffsbeschränkung über TYPO3-Frontend-Benutzergruppen (`fe_group`) für Mitarbeiterdatensätze.
+* **Neu in Version 1.4.0:** In der nach Abteilungen gruppierten LIST-Ansicht lassen sich Abteilungsüberschriften, Beschreibungen und Links ausblenden. Alle Mitarbeiter erscheinen dann in einem durchgehenden Kartenraster, die konfigurierte Abteilungsreihenfolge bleibt erhalten.
 * Suche nach Nachnamen, Filter nach Abteilung und Funktion sowie alphabetischer A–Z-Filter für Nachnamen.
 * In den Auswahllisten erscheinen nur Abteilungen und Funktionen, die Mitarbeiterdatensätzen zugeordnet sind.
 * Deutsche und englische Oberflächenbeschriftungen; zusätzlich ist eine plattdeutsche Übersetzung enthalten.
@@ -92,6 +93,10 @@ Nach der Installation den Datenbank-/Schema-Abgleich über `extension:setup` ode
 
 Auch die manuelle Installation per FTP wurde erfolgreich getestet. Der ZIP-Upload wurde ursprünglich mit Version 1.0.0 geprüft. **Neu:** Das Update einer bestehenden Classic-Mode-Installation von Version 1.0.1 auf **1.1.0 direkt über den TYPO3 Extension Manager / TER** verlief ohne Fehlermeldung. Vor dem Update wurden ein SQL-Export und eine lokale Sicherung des Webspaces erstellt. Dies belegt ein erfolgreiches Update, jedoch keine vollständige Neuinstallation der Version 1.1.0 aus dem TER.
 
+## Aktualisierung auf Version 1.4.0
+
+Vor der Aktualisierung Dateien und Datenbank sichern und anschließend den TYPO3-Cache leeren. Für die neue Darstellungsoption sind keine Datenbankschemaänderungen erforderlich. Der Schalter ist standardmäßig deaktiviert; bestehende Abteilungsansichten bleiben dadurch unverändert.
+
 ## Aktualisierung auf Version 1.3.0
 
 Vor dem Update Dateien und Datenbank sichern. Nach dem Update das Datenbankschema über die TYPO3-Wartungswerkzeuge oder `vendor/bin/typo3 extension:setup` (Composer) abgleichen und TYPO3- sowie PHP-Caches leeren. Die neuen Felder betreffen Abteilungsinformationen und den Zugriff auf Mitarbeiterdatensätze. Anschließend LIST und SHOW sowie die gewählte CSS-Variante prüfen.
@@ -141,6 +146,7 @@ Die folgenden Einstellungen wurden in den beschriebenen Testumgebungen überprü
 * **Sites → Settings → Employee Directory:** Frontend-Beschriftungen optional überschreiben. Leere Überschreibungen verwenden wieder die übersetzten Standardbeschriftungen.
 * **Inhaltselement → Plugin → Darstellung (ab Version 1.1.0):** Unter **Darstellung der Mitarbeiterliste** zwischen **Standardansicht** und **Nach Abteilungen gruppiert** wählen. Die Standardansicht bleibt unverändert. Im Gruppierungsmodus erscheinen Abteilungsüberschriften über den zugehörigen Cards. Der A–Z-Filter bezieht sich weiterhin auf den **Nachnamen**, nicht auf die Abteilung. Der eigene Reiter **Darstellung** wurde in TYPO3 14.3.6 und 14.3.7 im Backend geprüft.
 * **Inhaltselement → Plugin → Darstellung (neu in 1.2.0):** Bei Auswahl von **Nach Abteilungen gruppiert** lassen sich unter **Reihenfolge der Abteilungen** Abteilungen aus der gewählten Datensatzablage auswählen und in eine gewünschte Reihenfolge bringen. Ausgewählte Abteilungen erscheinen zuerst, nicht ausgewählte anschließend alphabetisch. Gruppen ohne sichtbare Mitarbeiter werden nicht ausgegeben; Mitarbeiter ohne Abteilung stehen in der letzten Gruppe. Bleibt die individuelle Reihenfolge leer, werden die Abteilungen alphabetisch sortiert. Die Einstellung betrifft ausschließlich LIST, nicht SHOW.
+* **Inhaltselement → Plugin → Darstellung (neu in 1.4.0):** Bei **Nach Abteilungen gruppiert** erscheint der Schalter **Abteilungsüberschriften ausblenden**. Ist er aktiviert, entfallen die Überschriften, Beschreibungen und Links der Abteilungen. Alle Mitarbeiterkarten bilden ein durchgehendes Raster; die unter **Reihenfolge der Abteilungen** festgelegte Sortierung bleibt bestehen. Standardmäßig ist der Schalter deaktiviert. Die Einstellung betrifft ausschließlich LIST, nicht SHOW.
 * **Inhaltselement → Plugin → Card-Inhalte:** Funktion, Abteilung, Telefon, E-Mail, Standort, Raum und Sprechzeiten einzeln ein-/ausblenden.
 * **Inhaltselement → Plugin → Bilder:** Mitarbeiterfotos und Platzhalter bei fehlendem Foto ein-/ausblenden. Bei deaktivierter Fotoanzeige wird auch kein Platzhalter angezeigt.
 
@@ -279,6 +285,13 @@ Die Oberflächenbeschriftungen liegen auf Deutsch und Englisch vor; zusätzlich 
 * **Frontend-Zugriff:** Ein einer Frontend-Benutzergruppe zugeordneter Mitarbeiter war ohne Anmeldung nicht sichtbar (LIST und SHOW); nach Anmeldung als Mitglied der berechtigten Gruppe war er erreichbar.
 * **Testumfang:** Die Prüfungen beziehen sich auf die Entwicklungsfassung. Eine erneute Installation des veröffentlichten Pakets, vollständige Regression, Cache-Grenzfälle und weitere Zugriffskombinationen (z. B. Anmeldung mit einer nicht berechtigten Gruppe) sind noch nicht dokumentiert.
 
+## Tests der Version 1.4.0 (21.11.2026)
+
+* **TYPO3 14.3.6, Composer, Mittwald:** Die neue FlexForm-Option wurde im Backend geprüft. Die deutsche Beschriftung und Beschreibung wurden nach erneuter Übertragung der Sprachdatei und Leeren des TYPO3-Caches korrekt angezeigt.
+* **Standalone-Modus:** Bei aktiviertem Schalter erschien ein durchgehendes Kartenraster ohne Abteilungsüberschriften, Beschreibungen und Links. Die konfigurierte Abteilungsreihenfolge blieb erhalten. Nach Deaktivierung wurden die bisherigen Gruppen einschließlich Beschreibung und Link wieder angezeigt.
+* **Bootstrap-Modus:** Die Darstellung ohne Abteilungsüberschriften wurde mit getrennten LIST-/SHOW-Plugins visuell geprüft. Auch die Sprachdateien wurden überprüft.
+* **Prüfumfang:** Der geänderte Controller bestand die PHP-Syntaxprüfung; `git diff --check` ergab keine Beanstandungen. Eine vollständige Regression und eine Neuinstallation des veröffentlichten Release-Pakets wurden nicht durchgeführt.
+
 ## Testhistorie und weitere Prüfpunkte
 
 Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x und teils Prüfungen der veröffentlichten 1.1.0. **Frühere Tests sind nicht automatisch als erneute Abnahme von 1.1.0 zu verstehen.**
@@ -302,7 +315,7 @@ Die folgenden Punkte dokumentieren teils frühere Tests von 1.0.x und teils Prü
 
 ## Ausblick und Roadmap
 
-Die Employee Directory wird schrittweise weiterentwickelt. Im Mittelpunkt stehen eine einfache Bedienung, eine übersichtliche Konfiguration und ein bewusst begrenzter Funktionsumfang. **Die folgenden Punkte sind Ideen beziehungsweise Entwicklungsabsichten, keine zugesagten Funktionen oder Veröffentlichungstermine.** Sie sind **nicht Bestandteil der veröffentlichten Version 1.3.0**.
+Die Employee Directory wird schrittweise weiterentwickelt. Im Mittelpunkt stehen eine einfache Bedienung, eine übersichtliche Konfiguration und ein bewusst begrenzter Funktionsumfang. **Die folgenden Punkte sind Ideen beziehungsweise Entwicklungsabsichten, keine zugesagten Funktionen oder Veröffentlichungstermine.** Sie sind **nicht Bestandteil der veröffentlichten Version 1.4.0**.
 
 * **Facettierte Filterung:** Die verfügbaren Filteroptionen sollen sich an bereits gewählte Suchkriterien anpassen, ohne aktive Auswahlen unzugänglich zu machen.
 * **Alternative Card-Layouts:** Zusätzlich zur bisherigen Card-Darstellung ist ein kompakteres Layout mit reduzierten Profilinformationen denkbar.
