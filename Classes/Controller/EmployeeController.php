@@ -129,9 +129,17 @@ class EmployeeController extends ActionController
                 'employees' => $employeesWithoutDepartment,
             ];
         }
+        // Create a flat employee list in the configured department order.
+        $prioritizedEmployees = [];
 
+        foreach ($departmentGroups as $group) {
+            foreach ($group['employees'] as $employeeItem) {
+                $prioritizedEmployees[] = $employeeItem;
+            }
+        }
+
+        $this->view->assign('prioritizedEmployees', $prioritizedEmployees);
         $this->view->assign('departmentGroups', $departmentGroups);
-
         $this->view->assign('letters', $letters);
         $this->view->assign('availableInitials', $availableInitials);
         $this->view->assign('employees', $employees);

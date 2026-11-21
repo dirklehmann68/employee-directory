@@ -172,6 +172,14 @@
             <trans-unit id="flexform.list_layout.department">
                 <source>Grouped by department</source>
             </trans-unit>
+
+            <trans-unit id="flexform.hide_department_headings">
+                <source>Hide department headings</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.hide_department_headings.description">
+                <source>Display all employees in one continuous grid while preserving the configured department order.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

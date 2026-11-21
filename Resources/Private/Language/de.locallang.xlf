@@ -214,6 +214,16 @@
                 <source>Grouped by department</source>
                 <target>Nach Abteilungen gruppiert</target>
             </trans-unit>
+
+            <trans-unit id="flexform.hide_department_headings">
+                <source>Hide department headings</source>
+                <target>Abteilungsüberschriften ausblenden</target>
+            </trans-unit>
+
+            <trans-unit id="flexform.hide_department_headings.description">
+                <source>Display all employees in one continuous grid while preserving the configured department order.</source>
+                <target>Die Mitarbeiter ohne Abteilungsüberschriften in einem durchgehenden Raster anzeigen. Die festgelegte Abteilungsreihenfolge bleibt erhalten.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -42,6 +42,16 @@
                             </itemsProcessors>
                         </config>
                     </settings.departmentOrder>
+                    <settings.hideDepartmentHeadings>
+                        <label>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.hide_department_headings</label>
+                        <description>LLL:EXT:employee_directory/Resources/Private/Language/locallang.xlf:flexform.hide_department_headings.description</description>
+                        <displayCond>FIELD:settings.listLayout:=:department</displayCond>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.hideDepartmentHeadings>
                 </el>
             </ROOT>
         </sDisplay>

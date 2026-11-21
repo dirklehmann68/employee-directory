@@ -4,7 +4,23 @@ All notable changes to Employee Directory for TYPO3 are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.3.0]
+## [1.4.0] - 2026-11-21
+
+### Added
+
+- Added an optional setting to hide department headings in the department-grouped LIST view.
+- Employees are displayed in one continuous card grid while preserving the configured department order.
+
+### Changed
+
+- Updated German and English plugin configuration labels and descriptions for the new setting.
+
+### Upgrade notes
+
+- Clear the TYPO3 caches after updating.
+- No database schema changes are required.
+
+## [1.3.0] - 2026-11-18
 
 ### Added
 
@@ -71,6 +87,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 <!-- Historical entries are reconstructed from project documentation and development records. -->
 
+[1.4.0]: https://github.com/dirklehmann68/employee-directory/releases/tag/v1.4.0
 [1.3.0]: https://github.com/dirklehmann68/employee-directory/releases/tag/v1.3.0
 [1.2.1]: https://github.com/dirklehmann68/employee-directory/releases/tag/v1.2.1
 [1.2.0]: https://github.com/dirklehmann68/employee-directory/releases/tag/v1.2.0
